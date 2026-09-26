@@ -1,89 +1,83 @@
-# Cloudflare setup for TCC Portal Build 3
+# Cloudflare setup for TCC Portal Builds 3–4
 
-The repository code is prepared for Cloudflare Pages Functions + D1. The remaining infrastructure step is to create/bind the D1 database in Cloudflare.
+The Cloudflare data layer is now provisioned. The remaining platform step is to create the **Git-integrated Cloudflare Pages project** from the GitHub repository and verify the first preview deployment.
 
-## Required resource
+Do **not** create a Direct Upload Pages project for this repository. The intended workflow is GitHub → Cloudflare Pages with automatic preview deployments.
 
-Create one D1 database for the production portal, suggested name:
+## Current Cloudflare resources
+
+Production D1:
 
 `tcc-portal-production`
 
-The Pages Function binding name must be exactly:
+Preview D1:
+
+`tcc-portal-preview`
+
+The Pages Function binding name is exactly:
 
 `TCC_DB`
 
-The code accesses the database through `context.env.TCC_DB`.
+The application accesses the database through `context.env.TCC_DB`.
 
-## 1. Create the D1 database
+## D1 schema status
 
-In Cloudflare:
-
-1. Open **Workers & Pages** / **D1**.
-2. Create a D1 database named `tcc-portal-production` or another clear production name.
-3. Keep note of the database you created.
-
-## 2. Apply the schema
-
-Run migrations in numeric order:
+The following migrations have already been applied to both preview and production D1 databases:
 
 1. `migrations/0001_portal.sql`
 2. `migrations/0002_reviewers.sql`
 3. `migrations/0003_reviewer_materials.sql`
 
-The third migration adds the reviewer material label/URL used to attach a specific manuscript or review packet to an invitation. Deep review remains locked until that URL is configured.
+Remote verification confirmed the portal, playtest, release-update, reviewer-invite, and review-submission tables exist. Reviewer invitations also contain `material_label` and `material_url`.
 
-You can apply the migrations in the Cloudflare D1 console or with Wrangler from an authenticated local environment.
+## Wrangler configuration
 
-Wrangler examples:
+`wrangler.jsonc` is checked into the portal branches and defines:
 
-```bash
-npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0001_portal.sql
-npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0002_reviewers.sql
-npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0003_reviewer_materials.sql
-```
+- project name: `tccrpg`
+- build output: `./dist`
+- production `TCC_DB` → `tcc-portal-production`
+- preview `TCC_DB` → `tcc-portal-preview`
 
-Apply the same three migrations to the preview database.
+Once the Git-integrated Pages project exists, the Wrangler configuration is intended to be the source of truth for these bindings.
 
-## 3. Bind D1 to the existing Pages project
+## Create the Pages project
 
-For the TCC Pages project:
+In the Cloudflare dashboard:
 
 1. Open **Workers & Pages**.
-2. Select the TCC Pages project.
-3. Open **Settings**.
-4. Open **Bindings**.
-5. Add a **D1 database binding**.
-6. Variable name: `TCC_DB`
-7. Select the production TCC D1 database.
-8. Save the binding.
-9. Redeploy after adding the binding.
+2. Select **Create application**.
+3. Choose **Pages**.
+4. Choose **Connect to Git** / **Import an existing Git repository**.
+5. Select GitHub repository `casevoiceai/tccrpg`.
+6. Project name: `tccrpg`.
+7. Production branch: `main`.
+8. Build command: `npm run build`.
+9. Build output directory: `dist`.
+10. Save and deploy.
 
-Cloudflare supports D1 bindings for Pages Functions through the dashboard or Wrangler configuration. The dashboard path avoids committing a database UUID to this repository.
+Do not use the Wrangler `pages project create` command for this initial project creation because that creates a Direct Upload project rather than the Git-integrated workflow required here.
 
-## 4. Preview environment
+## Preview environment
 
-Before production launch, Cloudflare preview deployments should use a separate D1 preview database rather than the production database.
+After Git integration is connected, commits to `tcc-portal-build3` and `tcc-portal-build4` should produce preview deployments. Preview Pages Functions must use the preview D1 database through the `env.preview` override in `wrangler.jsonc`.
 
-Suggested preview database name:
+Before production launch, confirm the preview deployment is using `tcc-portal-preview`, not `tcc-portal-production`.
 
-`tcc-portal-preview`
+## Reviewer material hosting
 
-Apply the same migrations and bind it to `TCC_DB` in the Pages preview environment.
+For Deep review, each invitation can carry a `material_label` and `material_url`.
 
-## 5. Reviewer material hosting
-
-For Deep review, each invitation can carry a `material_label` and `material_url`. Keep these assets Cloudflare-native when practical.
-
-Recommended pattern:
+Recommended Cloudflare-native pattern:
 
 - store the review PDF or packet in Cloudflare R2
-- expose it through a Cloudflare-hosted/custom-domain URL
+- expose it through an HTTPS Cloudflare-hosted/custom-domain URL
 - save that URL on the reviewer invitation
 - do not add Vercel or Supabase for reviewer assets or data
 
-R2 is optional for Quick and Focused review. The repository deliberately does not hardcode an R2 bucket ID or account credential.
+Deep review is locked unless a valid HTTPS material URL is assigned. Quick and Focused review do not require an attached manuscript.
 
-## 6. Automated function tests
+## Automated function tests
 
 GitHub CI runs browser-independent contract tests against the Cloudflare Pages Function handlers:
 
@@ -91,61 +85,53 @@ GitHub CI runs browser-independent contract tests against the Cloudflare Pages F
 npm test
 ```
 
-These tests verify the anonymous demo endpoint, playtest application separation, release-update consent, reviewer invitation/submission contracts, and the Deep-review material gate without requiring a live Cloudflare account.
+The suite verifies the anonymous demo endpoint, playtest application separation, release-update consent, reviewer invitation/submission contracts, and the Deep-review material gate.
 
-## 7. Preview smoke tests
+## Preview smoke tests
 
-After Cloudflare deploys the preview branch and the preview D1 binding is active, run:
+After Cloudflare produces a preview URL, run:
 
 ```bash
 npm run smoke:cloudflare -- https://<cloudflare-preview-host>
 ```
 
-If a Build 4 reviewer invite has already been inserted into the preview D1 database, include its code to test that endpoint too:
+After a preview reviewer invitation has a valid HTTPS `material_url`, run:
 
 ```bash
 npm run smoke:cloudflare -- https://<cloudflare-preview-host> REVIEWER_CODE
 ```
 
-The script submits clearly labeled preview-only records using an `example.invalid` email address. Run it only against the preview environment, not production.
+The script uses clearly labeled preview-only records and an `example.invalid` email address. Run it against preview only, never production.
 
-The automated smoke test checks:
+It verifies:
 
 - anonymous demo snapshot submission
 - playtest application submission
 - release-update opt-in submission
-- reviewer invitation lookup when a code is supplied
+- reviewer invitation lookup
+- Deep-review material readiness when a reviewer code is supplied
 
-Then confirm the corresponding rows exist in D1.
+Then confirm the expected rows exist in `tcc-portal-preview`.
 
-### Manual separation check
+## Production gate
 
-Confirm that submitting a playtest application does not create a `release_updates` row unless the same person separately submits the release-update form.
+Build 3 and Build 4 remain unmerged until:
 
-### Deep-review check
-
-Create one preview reviewer invitation with a valid `material_url`. Confirm the private reviewer room displays the assigned material and enables Deep review. Then create or edit an invitation with no `material_url` and confirm Deep review stays locked.
-
-## 8. Production gate
-
-Do not merge Build 3 solely because the code compiles. Production is ready only after:
-
-- D1 production database exists
-- D1 preview database exists
-- all migrations are applied in order
-- `TCC_DB` is bound in preview and production
+- the Git-integrated Cloudflare Pages project exists
+- a preview deployment is live
 - preview smoke tests pass
-- expected rows are confirmed in preview D1
+- expected preview D1 rows are verified
 - reviewer material delivery is verified for Deep review
-- retention period is approved
-- privacy/deletion contact procedure is approved
+- the retention period is approved
+- the privacy/deletion contact procedure is approved
 
-Build 4 remains chained behind this same Cloudflare gate.
+D1 creation, schema migration, and environment-specific binding configuration are complete.
 
 ## Official Cloudflare references
 
+- Git integration: https://developers.cloudflare.com/pages/get-started/git-integration/
+- Pages Wrangler configuration: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
 - Pages Functions: https://developers.cloudflare.com/pages/functions/
 - Pages Functions bindings: https://developers.cloudflare.com/pages/functions/bindings/
 - D1: https://developers.cloudflare.com/d1/
-- D1 getting started: https://developers.cloudflare.com/d1/get-started/
 - R2: https://developers.cloudflare.com/r2/
