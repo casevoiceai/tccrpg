@@ -42,7 +42,14 @@ export default function Build3Privacy() {
         <article>
           <h2>Infrastructure</h2>
           <p>
-            The portal is built for Cloudflare Pages and Cloudflare D1. It is not configured to send portal data to Vercel or Supabase.
+            The portal runs on Cloudflare Workers and Cloudflare D1. It is not configured to send portal data to Vercel or Supabase.
+          </p>
+        </article>
+
+        <article>
+          <h2>Privacy + deletion requests</h2>
+          <p>
+            Contact <a href="mailto:privacy@tccrpg.com">privacy@tccrpg.com</a> for privacy questions or deletion requests.
           </p>
         </article>
       </section>
@@ -50,7 +57,7 @@ export default function Build3Privacy() {
       <section className="privacy-open-item">
         <h2>Before public recruitment</h2>
         <p>
-          The project still needs a final published retention period and contact procedure for deletion/privacy requests. Those items will be locked before the Build 3 forms are opened for public recruitment.
+          The project still needs a final published retention period. That policy will be locked before the Build 3 forms are opened for public recruitment.
         </p>
       </section>
 
