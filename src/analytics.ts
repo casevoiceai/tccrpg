@@ -8,6 +8,10 @@ export type PortalEvent =
   | 'profile_viewed'
   | 'experience_cta_clicked'
   | 'discovery_abandoned'
+  | 'experience_started'
+  | 'experience_decision_made'
+  | 'experience_optional_source_opened'
+  | 'experience_completed'
 
 export function track(event: PortalEvent, properties: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return

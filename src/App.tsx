@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 import { track } from './analytics'
 import { discoveryQuestions, type QuestionId } from './content'
+import ExperiencePage from './ExperiencePage'
 import {
   buildProfile,
   createEmptySession,
@@ -529,19 +530,6 @@ function ProfilePage() {
   )
 }
 
-function ExperiencePlaceholder() {
-  return (
-    <main className="placeholder-page">
-      <p className="eyebrow">Level 3</p>
-      <h1>The guided Chronicle is being prepared.</h1>
-      <p>
-        Build 1 ends here. The next portal release will add the 15–20 minute guided TCC scenario with an Inspector, three simulated Agents, and you controlling the fourth Agent.
-      </p>
-      <Link className="button button-secondary" to="/profile">Return to my profile</Link>
-    </main>
-  )
-}
-
 function ReviewPlaceholder() {
   return (
     <main className="placeholder-page">
@@ -560,8 +548,21 @@ function PlaytestPlaceholder() {
     <main className="placeholder-page">
       <p className="eyebrow">Playtesting</p>
       <h1>Controlled playtest recruitment is not open yet.</h1>
-      <p>The first external playtest will open after the guided Chronicle and feedback system are ready.</p>
-      <Link className="button button-primary" to="/discover">Build my TCC experience</Link>
+      <p>The first external playtest will open after the feedback and application system is ready.</p>
+      <Link className="button button-primary" to="/experience">Replay the guided Chronicle</Link>
+    </main>
+  )
+}
+
+function UpdatesPlaceholder() {
+  return (
+    <main className="placeholder-page">
+      <p className="eyebrow">Release updates</p>
+      <h1>Email signup arrives in Build 3.</h1>
+      <p>
+        Build 2 does not collect contact information yet. Release notifications will be a separate opt-in from playtester applications.
+      </p>
+      <Link className="button button-secondary" to="/">Return home</Link>
     </main>
   )
 }
@@ -570,9 +571,9 @@ function PrivacyPage() {
   return (
     <main className="placeholder-page privacy-page">
       <p className="eyebrow">Privacy</p>
-      <h1>Build 1 does not require your name or email.</h1>
+      <h1>Build 2 does not require your name or email.</h1>
       <p>
-        Discovery answers are stored in your browser so you can leave and come back without losing progress. Build 1 does not send those answers to a TCC database.
+        Discovery answers, guided-Chronicle choices, and the post-demo debrief are stored in your browser so you can leave and come back without losing progress. Build 2 does not send those answers to a TCC database.
       </p>
       <p>
         Later testing versions may collect anonymous interaction data and optional contact information. Those features will be documented here before they are enabled, and release updates will remain separate from playtester applications.
@@ -601,9 +602,10 @@ function App() {
           <Route path="/" element={<OrientationPage />} />
           <Route path="/discover" element={<DiscoveryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/experience" element={<ExperiencePlaceholder />} />
+          <Route path="/experience" element={<ExperiencePage />} />
           <Route path="/review" element={<ReviewPlaceholder />} />
           <Route path="/playtest" element={<PlaytestPlaceholder />} />
+          <Route path="/updates" element={<UpdatesPlaceholder />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="*" element={<OrientationPage />} />
         </Routes>
