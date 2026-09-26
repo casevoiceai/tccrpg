@@ -1,6 +1,7 @@
 import { onRequestPost as submitSession } from '../functions/api/session.js'
 import { onRequestPost as submitPlaytest } from '../functions/api/playtest.js'
 import { onRequestPost as submitUpdates } from '../functions/api/updates.js'
+import { runRetentionCleanup } from '../functions/retention.js'
 
 function pagesContext(request, env, ctx) {
   return {
@@ -28,5 +29,9 @@ export default {
     }
 
     return env.ASSETS.fetch(request)
+  },
+
+  async scheduled(_controller, env, ctx) {
+    ctx.waitUntil(runRetentionCleanup(env.TCC_DB))
   },
 }
