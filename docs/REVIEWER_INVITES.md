@@ -26,6 +26,8 @@ INSERT INTO reviewer_invites (
   reviewer_name,
   expertise,
   tcc_version,
+  material_label,
+  material_url,
   active,
   created_at
 ) VALUES (
@@ -33,12 +35,29 @@ INSERT INTO reviewer_invites (
   'Reviewer Name',
   'GM / actual-play perspective',
   'TCC 6.5',
+  'TCC Version 6.5 Review PDF',
+  'https://review-assets.tccrpg.com/tcc-v6-5-review.pdf',
   1,
   datetime('now')
 );
 ```
 
 Use the actual manuscript/build version the reviewer will see.
+
+`material_url` is optional for Quick and Focused reviews. It is required for Deep review. The portal locks the Deep review path unless a specific review material URL is assigned to that invitation.
+
+## Reviewer material hosting
+
+Keep reviewer material on Cloudflare-controlled infrastructure when practical. Recommended production pattern:
+
+1. Store the review PDF or packet in Cloudflare R2.
+2. Expose it through an appropriate Cloudflare-hosted/custom-domain URL.
+3. Put that URL in `reviewer_invites.material_url`.
+4. Put a human-readable description in `material_label`.
+
+Do not add Vercel or Supabase for reviewer assets or data.
+
+The repository does not contain an R2 bucket ID or credential. R2 resource creation and access policy remain Cloudflare account setup tasks.
 
 ## Review paths
 
@@ -52,9 +71,7 @@ Core critique plus system status questions and selected focus modules.
 
 ### Deep review
 
-Core critique plus Inspector burden and manuscript/information-design sections.
-
-The current manuscript file must be attached to the reviewer portal before deep-review invitations are sent.
+Core critique plus Inspector burden and manuscript/information-design sections. Deep review is enabled only when the invitation has a configured `material_url`.
 
 ## What the database records
 
