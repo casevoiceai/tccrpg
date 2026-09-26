@@ -40,6 +40,16 @@ export default function Build3Privacy() {
         </article>
 
         <article>
+          <h2>Private reviewer feedback</h2>
+          <p>
+            Invited expert reviewers use a unique invitation code. The portal stores the reviewer perspective, material actually reviewed, standardized ratings, open-ended critique, the TCC version reviewed, and the review pathway selected.
+          </p>
+          <p>
+            Reviewer criticism is development feedback. It is not treated as an endorsement or testimonial without separate permission.
+          </p>
+        </article>
+
+        <article>
           <h2>Infrastructure</h2>
           <p>
             The portal is built for Cloudflare Pages and Cloudflare D1. It is not configured to send portal data to Vercel or Supabase.
@@ -50,7 +60,7 @@ export default function Build3Privacy() {
       <section className="privacy-open-item">
         <h2>Before public recruitment</h2>
         <p>
-          The project still needs a final published retention period and contact procedure for deletion/privacy requests. Those items will be locked before the Build 3 forms are opened for public recruitment.
+          The project still needs a final published retention period and contact procedure for deletion/privacy requests. Those items will be locked before the Build 3 forms and invited-review workflow are opened outside the development environment.
         </p>
       </section>
 
