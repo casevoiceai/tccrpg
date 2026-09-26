@@ -184,7 +184,7 @@ test('reviewer endpoint rejects malformed invite codes before database lookup', 
   assert.equal(db.calls.length, 0)
 })
 
-test('reviewer endpoint opens an active Cloudflare-backed invitation', async () => {
+test('reviewer endpoint opens an active Cloudflare-backed invitation with assigned material', async () => {
   const db = createDb({
     invite: {
       invite_code: 'REVIEW_123',
@@ -193,6 +193,8 @@ test('reviewer endpoint opens an active Cloudflare-backed invitation', async () 
       tcc_version: '6.5',
       active: 1,
       submitted_at: null,
+      material_label: 'TCC Version 6.5 Review PDF',
+      material_url: 'https://review-assets.tccrpg.com/tcc-v6-5-review.pdf',
     },
   })
 
@@ -206,11 +208,14 @@ test('reviewer endpoint opens an active Cloudflare-backed invitation', async () 
   assert.equal(result.body.ok, true)
   assert.equal(result.body.tcc_version, '6.5')
   assert.equal(result.body.already_submitted, false)
+  assert.equal(result.body.material_label, 'TCC Version 6.5 Review PDF')
+  assert.equal(result.body.material_url, 'https://review-assets.tccrpg.com/tcc-v6-5-review.pdf')
+  assert.equal(result.body.deep_review_ready, true)
   assert.equal(db.calls.filter((call) => call.type === 'first').length, 1)
   assert.equal(db.calls.filter((call) => call.type === 'run').length, 1)
 })
 
-test('reviewer endpoint stores a valid standardized critique', async () => {
+test('reviewer endpoint keeps deep review locked when no material is assigned', async () => {
   const db = createDb({
     invite: {
       invite_code: 'REVIEW_123',
@@ -219,6 +224,8 @@ test('reviewer endpoint stores a valid standardized critique', async () => {
       tcc_version: '6.5',
       active: 1,
       submitted_at: null,
+      material_label: null,
+      material_url: null,
     },
   })
 
@@ -227,8 +234,39 @@ test('reviewer endpoint stores a valid standardized critique', async () => {
     request: jsonRequest('/api/reviewer', {
       invite_code: 'REVIEW_123',
       path_selected: 'deep',
-      reviewer_types: ['game_designer'],
-      materials_reviewed: ['Version 6.5 manuscript'],
+      reviewer_types: ['designer'],
+      materials_reviewed: ['full_manuscript'],
+      answers: { top_priority: 'Teach the core loop sooner.' },
+      website: '',
+    }),
+  }))
+
+  assert.equal(result.status, 409)
+  assert.equal(result.body.error, 'review_material_not_configured')
+  assert.equal(db.calls.filter((call) => call.type === 'batch').length, 0)
+})
+
+test('reviewer endpoint stores a valid deep critique when material is assigned', async () => {
+  const db = createDb({
+    invite: {
+      invite_code: 'REVIEW_123',
+      reviewer_name: 'Sample Reviewer',
+      expertise: 'TTRPG design',
+      tcc_version: '6.5',
+      active: 1,
+      submitted_at: null,
+      material_label: 'TCC Version 6.5 Review PDF',
+      material_url: 'https://review-assets.tccrpg.com/tcc-v6-5-review.pdf',
+    },
+  })
+
+  const result = await read(await submitReviewer({
+    env: { TCC_DB: db },
+    request: jsonRequest('/api/reviewer', {
+      invite_code: 'REVIEW_123',
+      path_selected: 'deep',
+      reviewer_types: ['designer'],
+      materials_reviewed: ['full_manuscript'],
       answers: {
         overall_readiness: 3,
         top_priority: 'Teach the core loop sooner.',
