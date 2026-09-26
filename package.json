@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --test tests/cloudflare-functions.test.js",
+    "test:functions": "node --test tests/cloudflare-functions.test.js",
+    "smoke:cloudflare": "node scripts/smoke-cloudflare.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -5,6 +5,7 @@ import App from './App'
 import { retryPendingPortalSubmission } from './analytics'
 import { PlaytestPage, UpdatesPage } from './Build3Pages'
 import Build3Privacy from './Build3Privacy'
+import ReviewerPage from './ReviewerPage'
 import './styles.css'
 import './build3.css'
 
@@ -18,6 +19,7 @@ function PortalRoot() {
   if (location.pathname === '/playtest') return <PlaytestPage />
   if (location.pathname === '/updates') return <UpdatesPage />
   if (location.pathname === '/privacy') return <Build3Privacy />
+  if (location.pathname === '/review') return <ReviewerPage />
 
   return (
     <>

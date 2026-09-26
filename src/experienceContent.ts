@@ -118,28 +118,28 @@ export const threatDecision: ExperienceDecision = {
     },
     {
       id: 'evidence',
-      label: 'Use the recovered evidence against it.',
-      result: 'You hold the conflicting records together. For a moment, the Hollow Shift fractures around the contradiction instead of moving through it.',
-      companion: 'Nia: “The Branch recognizes the evidence.”',
+      label: 'Use the recovered evidence to identify where it can be stopped.',
+      result: 'You compare the records and point to the sealed machinery room as the common anchor. The evidence does not hurt the Hollow Shift. It tells the group where the real action needs to happen.',
+      companion: 'Nia: “The records tell us where it is anchored. Now we do something about it.”',
     },
     {
       id: 'draw',
       label: 'Draw it away from Elias.',
-      result: 'You force the thing to follow you toward the machinery room, buying Elias time but putting your Echo Form directly in its path.',
+      result: 'You force the thing to follow you toward the machinery room, buying Elias time but putting your Echo Ware directly in its path.',
       companion: 'Mara: “Keep moving. We will close behind you.”',
     },
     {
       id: 'study',
       label: 'Study it long enough to find its anchor.',
       result: 'You realize the Hollow Shift is not attached to Elias. It is attached to the contradiction between the records and the sealed room.',
-      companion: 'Mara: “Then the records are not clues. They are part of the mechanism.”',
+      companion: 'Mara: “Then the records are telling us why this is happening, not fighting it for us.”',
     },
   ],
 }
 
 export const echoWareDecision: ExperienceDecision = {
   id: 'echoWareResponse',
-  prompt: 'Temporal exposure hits your Echo Form. Two versions of the same life exist in your head at once. What do you do?',
+  prompt: 'Temporal exposure strains the connection between your Agent and Echo Ware. Two versions of the same life exist in your head at once. What do you do?',
   choices: [
     {
       id: 'anchor',
@@ -148,13 +148,13 @@ export const echoWareDecision: ExperienceDecision = {
     },
     {
       id: 'echo',
-      label: 'Let the Echo memory surface for a moment.',
+      label: 'Let an Echo Ware memory surface for a moment.',
       result: 'A borrowed memory shows you a maintenance key hidden beneath the third engine housing.',
     },
     {
       id: 'evidence',
-      label: 'Hold onto the historical evidence as an anchor.',
-      result: 'The copied ledger line gives you one version of reality that still stays put long enough to think clearly.',
+      label: 'Use the historical evidence to orient yourself.',
+      result: 'The copied ledger line gives you one stable fact to hold onto long enough to think clearly.',
     },
     {
       id: 'retreat',
@@ -186,8 +186,8 @@ export const resolutionDecision: ExperienceDecision = {
     },
     {
       id: 'third',
-      label: 'Refuse the apparent choice and use the evidence to force a third solution.',
-      result: 'Because the group collected enough contradictions, you bind the anomaly to the sealed room instead of Elias. The Branch keeps both the documented event and the proof that he existed.',
+      label: 'Refuse the apparent choice and use what you learned to force a third solution.',
+      result: 'Because the group collected enough contradictions to understand the Branch, you bind the anomaly to the sealed room instead of Elias. The Branch keeps both the documented event and the proof that he existed.',
     },
   ],
 }

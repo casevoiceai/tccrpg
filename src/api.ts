@@ -24,7 +24,9 @@ async function postJson(path: string, body: Record<string, unknown>): Promise<Ap
         error,
         message: error === 'storage_not_configured'
           ? 'Cloudflare storage is not configured yet.'
-          : 'The submission could not be saved right now.',
+          : error === 'review_material_not_configured'
+            ? 'Deep review material has not been configured for this invitation yet.'
+            : 'The submission could not be saved right now.',
       }
     }
 
@@ -91,4 +93,58 @@ export function submitReleaseUpdate(payload: {
   website?: string
 }) {
   return postJson('/api/updates', payload)
+}
+
+export type ReviewerInviteResult = ApiResult & {
+  reviewer_name?: string | null
+  expertise?: string | null
+  tcc_version?: string
+  already_submitted?: boolean
+  material_label?: string | null
+  material_url?: string | null
+  deep_review_ready?: boolean
+}
+
+export async function fetchReviewerInvite(code: string): Promise<ReviewerInviteResult> {
+  try {
+    const response = await fetch(`/api/reviewer?code=${encodeURIComponent(code)}`, {
+      headers: { accept: 'application/json' },
+    })
+    const payload = await response.json().catch(() => ({})) as Record<string, unknown>
+
+    if (!response.ok || payload.ok !== true) {
+      const error = typeof payload.error === 'string' ? payload.error : 'request_failed'
+      return {
+        ok: false,
+        error,
+        message: error === 'storage_not_configured'
+          ? 'Cloudflare reviewer storage is not configured yet.'
+          : 'That reviewer invitation could not be verified.',
+      }
+    }
+
+    return {
+      ok: true,
+      reviewer_name: typeof payload.reviewer_name === 'string' ? payload.reviewer_name : null,
+      expertise: typeof payload.expertise === 'string' ? payload.expertise : null,
+      tcc_version: typeof payload.tcc_version === 'string' ? payload.tcc_version : undefined,
+      already_submitted: payload.already_submitted === true,
+      material_label: typeof payload.material_label === 'string' ? payload.material_label : null,
+      material_url: typeof payload.material_url === 'string' ? payload.material_url : null,
+      deep_review_ready: payload.deep_review_ready === true,
+    }
+  } catch {
+    return { ok: false, error: 'network_error', message: 'The reviewer invitation could not be verified right now.' }
+  }
+}
+
+export function submitReviewerFeedback(payload: {
+  invite_code: string
+  path_selected: 'quick' | 'focused' | 'deep'
+  reviewer_types: string[]
+  materials_reviewed: string[]
+  answers: Record<string, unknown>
+  website?: string
+}) {
+  return postJson('/api/reviewer', payload)
 }

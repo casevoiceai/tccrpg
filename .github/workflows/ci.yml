@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  build-and-lint:
+  build-lint-test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -26,3 +26,6 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Test Cloudflare Functions
+        run: npm test

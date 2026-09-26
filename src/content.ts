@@ -219,26 +219,26 @@ export const discoveryQuestions: DiscoveryQuestion[] = [
     id: 'researchRecoveryReaction',
     title: 'What is your immediate reaction?',
     helper:
-      'In some versions of TCC, a character can suffer serious temporal consequences inside a historical Branch. One way to recover from certain consequences is by completing historical research connected to that Branch.',
+      'At Rules Level 2, severe temporal trauma can mark Branch Tear. An approved Research Challenge tied to that Branch can clear recoverable Level 2 Branch Tear boxes. Level 3 Branch Tear is permanent for that Branch.',
     selection: 'single',
     choices: [
       {
         tag: 'recovery_positive',
         label: 'That sounds like part of the game.',
         response:
-          'That is the intended upside: research becomes something that matters mechanically instead of just background reading.',
+          'That is the intended upside: research can become meaningful recovery and story work instead of background reading.',
       },
       {
         tag: 'recovery_optional',
-        label: 'Interesting, but I would want it optional.',
+        label: 'Interesting, but I would want alternatives.',
         response:
-          'That is useful feedback. TCC is already being designed so tables can use different levels of research involvement.',
+          'That is useful feedback. TCC can support approved alternatives when a table cannot or does not want to do a Research Challenge.',
       },
       {
         tag: 'recovery_negative',
         label: 'That sounds too much like homework.',
         response:
-          'That is exactly the risk we are testing. If a learning mechanic stops feeling like play, it is not doing its job.',
+          'That is exactly the risk we are testing. If a recovery mechanic stops feeling like play, it is not doing its job.',
       },
       {
         tag: 'recovery_uncertain',

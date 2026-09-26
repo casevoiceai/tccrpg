@@ -40,6 +40,16 @@ export default function Build3Privacy() {
         </article>
 
         <article>
+          <h2>Private reviewer feedback</h2>
+          <p>
+            Invited expert reviewers use a unique invitation code. The portal stores the reviewer perspective, material actually reviewed, standardized ratings, open-ended critique, the TCC version reviewed, and the review pathway selected.
+          </p>
+          <p>
+            Reviewer criticism is development feedback. It is not treated as an endorsement or testimonial without separate permission.
+          </p>
+        </article>
+
+        <article>
           <h2>Infrastructure</h2>
           <p>
             The portal runs on Cloudflare Workers and Cloudflare D1. It is not configured to send portal data to Vercel or Supabase.
@@ -58,6 +68,7 @@ export default function Build3Privacy() {
         <h2>How long we keep data</h2>
         <p>Anonymous Discovery and guided-demo testing data is kept for 180 days.</p>
         <p>Pending, declined, inactive, or unsuccessful playtest applications are kept for up to 12 months. Selected or active tester records may be kept while they are participating. Once their status becomes inactive, the 12-month retention period starts from that status change.</p>
+        <p>Reviewer feedback is kept as part of TCC's long-term development record. If a reviewer asks for deletion, identifying information can be removed or anonymized while non-identifying design feedback may be preserved.</p>
         <p>Release-update email addresses are kept until the subscriber unsubscribes or asks us to delete them.</p>
         <p>For privacy, deletion, or unsubscribe requests, contact <a href="mailto:privacy@tccrpg.com">privacy@tccrpg.com</a>.</p>
       </section>

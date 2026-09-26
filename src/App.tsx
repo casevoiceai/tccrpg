@@ -23,7 +23,7 @@ const ACCESSIBILITY_KEY = 'tcc_portal_accessibility_v1'
 const gameplayActions = [
   ['Investigate', 'Find contradictions and follow evidence.'],
   ['Explore', 'Experience historical locations as they existed.'],
-  ['Use evidence', 'Maps, photographs, newspapers, records, and other sources can affect play.'],
+  ['Use evidence', 'Maps, photographs, newspapers, records, and other sources can create context, leverage, and new choices.'],
   ['Make choices', 'There is not always one correct solution.'],
   ['Confront the impossible', 'Threats may be human, supernatural, or temporal.'],
   ['Get home', 'Leaving the Branch does not necessarily mean leaving unchanged.'],
@@ -180,8 +180,8 @@ function OrientationPage() {
             </article>
             <article className="concept-card">
               <p className="eyebrow">Then</p>
-              <h3>The Echo Form</h3>
-              <p>Inside a historical Branch, the Agent inhabits a body belonging to that place and time.</p>
+              <h3>The Echo Ware</h3>
+              <p>Inside a historical Branch, the Agent inhabits a body and local identity belonging to that place and time.</p>
               <p><strong>The body changes. You do not.</strong></p>
             </article>
           </div>
@@ -226,6 +226,7 @@ function OrientationPage() {
             <p>A historical record can change what the group decides to do.</p>
           </div>
           <p>TCC is designed so discovering real history can affect the game itself.</p>
+          <p className="quiet-note"><strong>History drives the mystery.</strong> Ordinary action handles immediate danger. Evidence creates context and leverage rather than replacing the action rules.</p>
           <p className="quiet-note">
             How deeply your group researches is adjustable. Some tables can play entirely from prepared material. Others can investigate real historical sources themselves.
           </p>
