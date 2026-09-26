@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --test tests/cloudflare-functions.test.js",
+    "test:functions": "node --test tests/cloudflare-functions.test.js",
     "preview": "vite preview"
   },
   "dependencies": {
