@@ -24,24 +24,25 @@ In Cloudflare:
 
 ## 2. Apply the schema
 
-Run the SQL in:
+Run migrations in numeric order:
 
-`migrations/0001_portal.sql`
+1. `migrations/0001_portal.sql`
+2. `migrations/0002_reviewers.sql`
+3. `migrations/0003_reviewer_materials.sql`
 
-Build 4 also adds:
+The third migration adds the reviewer material label/URL used to attach a specific manuscript or review packet to an invitation. Deep review remains locked until that URL is configured.
 
-`migrations/0002_reviewers.sql`
-
-Apply migrations in numeric order.
-
-You can apply them in the Cloudflare D1 console or with Wrangler from an authenticated local environment.
+You can apply the migrations in the Cloudflare D1 console or with Wrangler from an authenticated local environment.
 
 Wrangler examples:
 
 ```bash
 npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0001_portal.sql
 npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0002_reviewers.sql
+npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0003_reviewer_materials.sql
 ```
+
+Apply the same three migrations to the preview database.
 
 ## 3. Bind D1 to the existing Pages project
 
@@ -69,17 +70,30 @@ Suggested preview database name:
 
 Apply the same migrations and bind it to `TCC_DB` in the Pages preview environment.
 
-## 5. Automated function tests
+## 5. Reviewer material hosting
 
-GitHub CI now runs browser-independent contract tests against the Cloudflare Pages Function handlers:
+For Deep review, each invitation can carry a `material_label` and `material_url`. Keep these assets Cloudflare-native when practical.
+
+Recommended pattern:
+
+- store the review PDF or packet in Cloudflare R2
+- expose it through a Cloudflare-hosted/custom-domain URL
+- save that URL on the reviewer invitation
+- do not add Vercel or Supabase for reviewer assets or data
+
+R2 is optional for Quick and Focused review. The repository deliberately does not hardcode an R2 bucket ID or account credential.
+
+## 6. Automated function tests
+
+GitHub CI runs browser-independent contract tests against the Cloudflare Pages Function handlers:
 
 ```bash
 npm test
 ```
 
-These tests verify the anonymous demo endpoint, playtest application separation, release-update consent, and reviewer invitation/submission contracts without requiring a live Cloudflare account.
+These tests verify the anonymous demo endpoint, playtest application separation, release-update consent, reviewer invitation/submission contracts, and the Deep-review material gate without requiring a live Cloudflare account.
 
-## 6. Preview smoke tests
+## 7. Preview smoke tests
 
 After Cloudflare deploys the preview branch and the preview D1 binding is active, run:
 
@@ -108,16 +122,21 @@ Then confirm the corresponding rows exist in D1.
 
 Confirm that submitting a playtest application does not create a `release_updates` row unless the same person separately submits the release-update form.
 
-## 7. Production gate
+### Deep-review check
+
+Create one preview reviewer invitation with a valid `material_url`. Confirm the private reviewer room displays the assigned material and enables Deep review. Then create or edit an invitation with no `material_url` and confirm Deep review stays locked.
+
+## 8. Production gate
 
 Do not merge Build 3 solely because the code compiles. Production is ready only after:
 
 - D1 production database exists
 - D1 preview database exists
-- migrations are applied in order
+- all migrations are applied in order
 - `TCC_DB` is bound in preview and production
 - preview smoke tests pass
 - expected rows are confirmed in preview D1
+- reviewer material delivery is verified for Deep review
 - retention period is approved
 - privacy/deletion contact procedure is approved
 
@@ -129,3 +148,4 @@ Build 4 remains chained behind this same Cloudflare gate.
 - Pages Functions bindings: https://developers.cloudflare.com/pages/functions/bindings/
 - D1: https://developers.cloudflare.com/d1/
 - D1 getting started: https://developers.cloudflare.com/d1/get-started/
+- R2: https://developers.cloudflare.com/r2/
