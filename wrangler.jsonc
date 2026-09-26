@@ -18,6 +18,12 @@
       "database_id": "9cec6c83-8d26-480a-a260-cb5b954900f7"
     }
   ],
+  "kv_namespaces": [
+    {
+      "binding": "TCC_REVIEW_MATERIALS",
+      "id": "4a51ac6fcd6246d89b1685b80a20315e"
+    }
+  ],
   "env": {
     "preview": {
       "name": "tccrpg-preview",
@@ -26,6 +32,12 @@
           "binding": "TCC_DB",
           "database_name": "tcc-portal-preview",
           "database_id": "b5b6a8e1-72e1-4946-a2d9-989675be6dbd"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "TCC_REVIEW_MATERIALS",
+          "id": "efc9ca373c9545f08823f70c4706aa7f"
         }
       ]
     }

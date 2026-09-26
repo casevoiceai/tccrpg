@@ -12,6 +12,7 @@ Builds 3 and 4 are live on Cloudflare Workers with static assets and D1. The ear
 - Preview D1: `tcc-portal-preview`
 - D1 binding name: `TCC_DB`
 - Static asset binding: `ASSETS`
+- Private reviewer material binding: `TCC_REVIEW_MATERIALS` (Workers KV)
 - No Vercel
 - No Supabase
 
@@ -38,6 +39,7 @@ These migrations are applied to both D1 databases:
 2. `migrations/0002_reviewers.sql`
 3. `migrations/0003_reviewer_materials.sql`
 4. `migrations/0004_retention_status.sql`
+5. `migrations/0005_reviewer_material_key.sql`
 
 Remote verification confirmed the portal, playtest, release-update, reviewer-invite, and review-submission tables exist. The retention migration also adds playtester status fields and the automatic status timestamp trigger.
 
@@ -60,7 +62,7 @@ Cloudflare Email Routing forwards it to the TCC operations inbox. The destinatio
 
 ## Preview configuration
 
-The `preview` environment targets `tccrpg-preview` and binds `TCC_DB` to `tcc-portal-preview`.
+The `preview` environment targets `tccrpg-preview`, binds `TCC_DB` to `tcc-portal-preview`, and binds `TCC_REVIEW_MATERIALS` to the isolated preview KV namespace.
 
 For isolated preview testing:
 
@@ -81,7 +83,8 @@ The isolated preview Worker has successfully accepted and stored:
 - playtest applications through `/api/playtest`
 - separate release-update consent through `/api/updates`
 - reviewer invitation lookup through `/api/reviewer`
-- a Deep Review submission when valid HTTPS review material was assigned
+- invite-protected private PDF delivery through `/api/reviewer-material` using preview Workers KV
+- a Deep Review submission when review material was assigned
 
 Expected rows were verified directly in preview D1. Test-only rows were removed afterward.
 
@@ -93,20 +96,20 @@ The repo therefore uses the isolated `tccrpg-preview` Worker as the preview depl
 
 ## Reviewer material
 
-Deep Review stays locked unless the reviewer invitation contains a valid HTTPS `material_url`.
+Deep Review stays locked unless the reviewer invitation contains either a valid HTTPS `material_url` or a private Workers KV `material_key`.
 
-Recommended production delivery:
+Current production delivery uses private Workers KV:
 
-1. Store the current review PDF or packet on Cloudflare-controlled hosting, preferably R2.
-2. Expose it through an HTTPS Cloudflare-hosted or custom-domain URL.
-3. Save that URL in `reviewer_invites.material_url`.
-4. Save a human-readable description in `material_label`.
-5. Verify the exact material opens before sending a Deep Review invitation.
+1. Store the review PDF in the production `TCC_REVIEW_MATERIALS` namespace.
+2. Save its stable KV key in `reviewer_invites.material_key`.
+3. Save a human-readable description in `material_label`.
+4. The Worker exposes the file only through `/api/reviewer-material?code=...` after validating the active reviewer invitation.
+5. Verify the exact PDF bytes and reviewer-room link before sending a Deep Review invitation.
 
-Quick and Focused review do not require an attached manuscript.
+An external HTTPS `material_url` remains supported when intentionally needed. Quick and Focused review do not require an attached manuscript.
 
 ## Remaining operational gate
 
 There is no remaining Build 3 or Build 4 deployment gate.
 
-The outstanding content gate is specifically for Deep Review: locate or create the actual current review-ready TCC manuscript/packet, host it at a valid HTTPS URL, assign it to reviewer invitations, and verify delivery before inviting reviewers into that path.
+The current V6.5 Core Deep Review PDF is prepared and private KV delivery has been validated in preview. The remaining Deep Review operational step is reviewer-specific: create the actual reviewer invitation, assign the approved material key, and verify that invitation before outreach. Exact universal weapon-profile values and blind-playtest findings remain separate manuscript/product gates rather than portal deployment blockers.

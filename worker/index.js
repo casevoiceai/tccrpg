@@ -5,6 +5,7 @@ import {
   onRequestGet as openReviewer,
   onRequestPost as submitReviewer,
 } from '../functions/api/reviewer.js'
+import { onRequestGet as openReviewerMaterial } from '../functions/api/reviewer-material.js'
 import { runRetentionCleanup } from '../functions/retention.js'
 
 function pagesContext(request, env, ctx) {
@@ -26,6 +27,7 @@ export default {
     if (url.pathname === '/api/updates' && request.method === 'POST') return submitUpdates(context)
     if (url.pathname === '/api/reviewer' && request.method === 'GET') return openReviewer(context)
     if (url.pathname === '/api/reviewer' && request.method === 'POST') return submitReviewer(context)
+    if (url.pathname === '/api/reviewer-material' && request.method === 'GET') return openReviewerMaterial(context)
 
     if (url.pathname.startsWith('/api/')) {
       return new Response(JSON.stringify({ ok: false, error: 'not_found' }), {

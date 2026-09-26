@@ -25,19 +25,25 @@ function normalizeHttpsUrl(value) {
   }
 }
 
-function reviewerMaterial(invite) {
+function reviewerMaterial(invite, requestUrl, code) {
   const label = typeof invite.material_label === 'string' && invite.material_label.trim()
     ? invite.material_label.trim()
     : null
-  const url = normalizeHttpsUrl(invite.material_url)
+  const externalUrl = normalizeHttpsUrl(invite.material_url)
+  const materialKey = typeof invite.material_key === 'string' && invite.material_key.trim()
+    ? invite.material_key.trim()
+    : null
+  const internalUrl = materialKey
+    ? `${new URL(requestUrl).origin}/api/reviewer-material?code=${encodeURIComponent(code)}`
+    : null
 
-  return { label, url }
+  return { label, url: externalUrl || internalUrl, materialKey }
 }
 
 async function findInvite(db, code) {
   return db.prepare(
     `SELECT invite_code, reviewer_name, expertise, tcc_version, active, submitted_at,
-            material_label, material_url
+            material_label, material_url, material_key
      FROM reviewer_invites
      WHERE invite_code = ?`,
   ).bind(code).first()
@@ -62,7 +68,7 @@ export async function onRequestGet(context) {
       'UPDATE reviewer_invites SET last_opened_at = ? WHERE invite_code = ?',
     ).bind(openedAt, code).run()
 
-    const material = reviewerMaterial(invite)
+    const material = reviewerMaterial(invite, context.request.url, code)
 
     return json({
       ok: true,
@@ -134,7 +140,7 @@ export async function onRequestPost(context) {
       return json({ ok: false, error: 'invite_not_found' }, 404)
     }
 
-    const material = reviewerMaterial(invite)
+    const material = reviewerMaterial(invite, context.request.url, code)
     if (pathSelected === 'deep' && !material.url) {
       return json({ ok: false, error: 'review_material_not_configured' }, 409)
     }
