@@ -243,6 +243,7 @@ export default function ExperiencePage() {
           <p className="profile-bridge">{getDiscoveryBridge(discovery)}</p>
           <p className="profile-bridge">{getSupernaturalDescription(discovery)}</p>
           <p className="profile-bridge">{getResearchPrompt(discovery)}</p>
+          <p className="profile-bridge"><strong>History drives the mystery.</strong> Ordinary action handles the immediate danger.</p>
           <Inspector>
             <p>A local archive has two copies of an 1894 employee ledger from the same company.</p>
             <p>One lists a worker named Elias Vale. The other does not. Both appear authentic.</p>
@@ -266,10 +267,10 @@ export default function ExperiencePage() {
           <h2>You open your eyes in a body that is not yours.</h2>
           <div className="echo-card">
             <div><span>Your Agent</span><strong>Persistent modern identity</strong></div>
-            <div><span>Your Echo Form</span><strong>24-year-old freight clerk</strong></div>
+            <div><span>Your Echo Ware</span><strong>24-year-old freight clerk</strong></div>
             <div><span>Useful skills</span><strong>Observe · Move · Persuade</strong></div>
           </div>
-          <p className="pull-quote">Your Agent remembers the mission. Your Echo remembers the building.</p>
+          <p className="pull-quote">Your Agent remembers the mission. Your Echo Ware remembers the building.</p>
           <ContinueButton onClick={nextStep} />
         </section>
       )}
@@ -390,8 +391,8 @@ export default function ExperiencePage() {
         <section className="scene-panel consequence-panel">
           <p className="eyebrow">Temporal consequence</p>
           <h2>For several seconds, you remember two versions of the same life.</h2>
-          <div className="echo-ware-mark"><strong>Echo Ware +1</strong><span>The borrowed body is beginning to wear under temporal exposure.</span></div>
-          <p className="scene-copy">Your Agent remains themselves. The Echo Form is what is being stressed.</p>
+          <div className="echo-ware-mark"><strong>Ware Strain +1</strong><span>The Agent-to-Echo Ware connection is under temporal pressure.</span></div>
+          <p className="scene-copy">Your Agent remains themselves. Ware Strain tracks stress on the connection to the Echo Ware, not ordinary physical damage.</p>
           <ContinueButton onClick={nextStep} />
         </section>
       )}
@@ -445,7 +446,7 @@ export default function ExperiencePage() {
           <h2>You just played a small piece of TCC.</h2>
           <p className="scene-copy">The demo introduced the core pieces without asking you to learn the entire rulebook first.</p>
           <div className="learned-grid">
-            {['Agent + Echo Form', 'Inspector', 'Historical evidence', 'Year Zero dice', 'Cooperation', 'Temporal threat', 'Echo Ware', 'Consequential choices', 'Return + debrief'].map((item) => <span key={item}>{item}</span>)}
+            {['Agent + Echo Ware', 'Inspector', 'Historical evidence', 'Year Zero dice', 'Cooperation', 'Temporal threat', 'Ware Strain', 'Consequential choices', 'Return + debrief'].map((item) => <span key={item}>{item}</span>)}
           </div>
           <div className="completion-actions">
             <Link className="button button-primary" to="/playtest">I want to playtest TCC</Link>
