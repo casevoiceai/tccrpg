@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Route, Routes, useNavigate } from 'react-router-dom'
-import { discoveryQuestions, type QuestionId } from './content'
 import { track } from './analytics'
+import { discoveryQuestions, type QuestionId } from './content'
 import {
   buildProfile,
   createEmptySession,
@@ -18,6 +18,28 @@ type AccessibilitySettings = {
 }
 
 const ACCESSIBILITY_KEY = 'tcc_portal_accessibility_v1'
+
+const gameplayActions = [
+  ['Investigate', 'Find contradictions and follow evidence.'],
+  ['Explore', 'Experience historical locations as they existed.'],
+  ['Use evidence', 'Maps, photographs, newspapers, records, and other sources can affect play.'],
+  ['Make choices', 'There is not always one correct solution.'],
+  ['Confront the impossible', 'Threats may be human, supernatural, or temporal.'],
+  ['Get home', 'Leaving the Branch does not necessarily mean leaving unchanged.'],
+]
+
+const branchExamples = [
+  'A worker disappears from every company record.',
+  'A building appears in photographs before it existed.',
+  'Witnesses remember two versions of the same disaster.',
+  'A local legend begins leaving physical evidence.',
+]
+
+const stakes = [
+  ['Rules Level 1', 'Learn', 'Forgiving play designed to learn the game.'],
+  ['Rules Level 2', 'Consequence + Recovery', 'Serious events matter, but recovery can remain possible.'],
+  ['Rules Level 3', 'Lethal Risk', 'Tables can deliberately choose permanent consequences and lethal stakes.'],
+]
 
 function loadAccessibility(): AccessibilitySettings {
   const defaults: AccessibilitySettings = {
@@ -144,7 +166,7 @@ function OrientationPage() {
         </div>
       </section>
 
-      <section className="orientation-section split-section">
+      <section className="orientation-section">
         <p className="section-number">02</p>
         <div>
           <h2>The Agent stays. The body changes.</h2>
@@ -174,10 +196,7 @@ function OrientationPage() {
           <h2>History isn’t supposed to do this.</h2>
           <p>A Branch is a historical reality that has become unstable.</p>
           <div className="example-grid">
-            <p>A worker disappears from every company record.</p>
-            <p>A building appears in photographs before it existed.</p>
-            <p>Witnesses remember two versions of the same disaster.</p>
-            <p>A local legend begins leaving physical evidence.</p>
+            {branchExamples.map((example) => <p key={example}>{example}</p>)}
           </div>
           <p>The Agents enter the Branch to discover what is happening.</p>
         </div>
@@ -188,12 +207,9 @@ function OrientationPage() {
         <div>
           <h2>TCC isn’t just combat.</h2>
           <div className="action-grid">
-            <article><h3>Investigate</h3><p>Find contradictions and follow evidence.</p></article>
-            <article><h3>Explore</h3><p>Experience historical locations as they existed.</p></article>
-            <article><h3>Use evidence</h3><p>Maps, photographs, newspapers, records, and other sources can affect play.</p></article>
-            <article><h3>Make choices</h3><p>There is not always one correct solution.</p></article>
-            <article><h3>Confront the impossible</h3><p>Threats may be human, supernatural, or temporal.</p></article>
-            <article><h3>Get home</h3><p>Leaving the Branch does not necessarily mean leaving unchanged.</p></article>
+            {gameplayActions.map(([title, body]) => (
+              <article key={title}><h3>{title}</h3><p>{body}</p></article>
+            ))}
           </div>
         </div>
       </section>
@@ -220,9 +236,9 @@ function OrientationPage() {
         <div>
           <h2>Your table chooses the stakes.</h2>
           <div className="stakes-grid">
-            <article><span>Rules Level 1</span><h3>Learn</h3><p>Forgiving play designed to learn the game.</p></article>
-            <article><span>Rules Level 2</span><h3>Consequence + Recovery</h3><p>Serious events matter, but recovery can remain possible.</p></article>
-            <article><span>Rules Level 3</span><h3>Lethal Risk</h3><p>Tables can deliberately choose permanent consequences and lethal stakes.</p></article>
+            {stakes.map(([level, title, body]) => (
+              <article key={level}><span>{level}</span><h3>{title}</h3><p>{body}</p></article>
+            ))}
           </div>
           <p>TCC does not assume every group wants the same amount of danger.</p>
         </div>
@@ -256,33 +272,30 @@ function OrientationPage() {
 
 function selectedTags(session: DiscoverySession, id: QuestionId): string[] {
   switch (id) {
-    case 'historyInterests':
-      return session.historyInterests
-    case 'playPreference':
-      return session.playPreference ? [session.playPreference] : []
-    case 'supernaturalPreference':
-      return session.supernaturalPreference ? [session.supernaturalPreference] : []
-    case 'researchPreference':
-      return session.researchPreference ? [session.researchPreference] : []
-    case 'researchRecoveryReaction':
-      return session.researchRecoveryReaction ? [session.researchRecoveryReaction] : []
-    case 'riskPreference':
-      return session.riskPreference ? [session.riskPreference] : []
-    case 'rpgExperience':
-      return session.rpgExperience ? [session.rpgExperience] : []
-    case 'rolePreference':
-      return session.rolePreference ? [session.rolePreference] : []
+    case 'historyInterests': return session.historyInterests
+    case 'playPreference': return session.playPreference ? [session.playPreference] : []
+    case 'supernaturalPreference': return session.supernaturalPreference ? [session.supernaturalPreference] : []
+    case 'researchPreference': return session.researchPreference ? [session.researchPreference] : []
+    case 'researchRecoveryReaction': return session.researchRecoveryReaction ? [session.researchRecoveryReaction] : []
+    case 'riskPreference': return session.riskPreference ? [session.riskPreference] : []
+    case 'rpgExperience': return session.rpgExperience ? [session.rpgExperience] : []
+    case 'rolePreference': return session.rolePreference ? [session.rolePreference] : []
   }
+}
+
+function clampQuestionIndex(index: number) {
+  return Math.min(Math.max(index, 0), discoveryQuestions.length - 1)
 }
 
 function DiscoveryPage() {
   const navigate = useNavigate()
   const [session, setSession] = useState<DiscoverySession>(() => loadSession())
-  const [questionIndex, setQuestionIndex] = useState(() => {
+  const [questionIndex, setQuestionIndex] = useState(() => clampQuestionIndex(loadSession().currentQuestion))
+  const [responseTag, setResponseTag] = useState<string | null>(() => {
     const saved = loadSession()
-    return Math.min(Math.max(saved.currentQuestion, 0), discoveryQuestions.length - 1)
+    const savedIndex = clampQuestionIndex(saved.currentQuestion)
+    return selectedTags(saved, discoveryQuestions[savedIndex].id)[0] ?? null
   })
-  const [responseTag, setResponseTag] = useState<string | null>(null)
 
   const question = discoveryQuestions[questionIndex]
   const selected = selectedTags(session, question.id)
@@ -293,10 +306,8 @@ function DiscoveryPage() {
   }, [session.sessionId])
 
   useEffect(() => {
-    const firstSelected = selectedTags(session, question.id)[0] ?? null
-    setResponseTag(firstSelected)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [question.id, questionIndex])
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [questionIndex])
 
   const updateSession = (next: DiscoverySession) => {
     setSession(next)
@@ -319,27 +330,13 @@ function DiscoveryPage() {
         }
         break
       }
-      case 'playPreference':
-        next = { ...next, playPreference: tag }
-        break
-      case 'supernaturalPreference':
-        next = { ...next, supernaturalPreference: tag }
-        break
-      case 'researchPreference':
-        next = { ...next, researchPreference: tag }
-        break
-      case 'researchRecoveryReaction':
-        next = { ...next, researchRecoveryReaction: tag }
-        break
-      case 'riskPreference':
-        next = { ...next, riskPreference: tag }
-        break
-      case 'rpgExperience':
-        next = { ...next, rpgExperience: tag }
-        break
-      case 'rolePreference':
-        next = { ...next, rolePreference: tag }
-        break
+      case 'playPreference': next = { ...next, playPreference: tag }; break
+      case 'supernaturalPreference': next = { ...next, supernaturalPreference: tag }; break
+      case 'researchPreference': next = { ...next, researchPreference: tag }; break
+      case 'researchRecoveryReaction': next = { ...next, researchRecoveryReaction: tag }; break
+      case 'riskPreference': next = { ...next, riskPreference: tag }; break
+      case 'rpgExperience': next = { ...next, rpgExperience: tag }; break
+      case 'rolePreference': next = { ...next, rolePreference: tag }; break
     }
 
     updateSession(next)
@@ -357,11 +354,7 @@ function DiscoveryPage() {
     if (!canContinue) return
 
     if (questionIndex === discoveryQuestions.length - 1) {
-      const next = {
-        ...session,
-        level2Completed: true,
-        currentQuestion: questionIndex,
-      }
+      const next = { ...session, level2Completed: true, currentQuestion: questionIndex }
       updateSession(next)
       track('discovery_completed', { session_id: session.sessionId })
       navigate('/profile')
@@ -413,10 +406,16 @@ function DiscoveryPage() {
         <h1>{question.title}</h1>
         {question.helper && <p className="question-helper">{question.helper}</p>}
 
-        <div className="choice-list" role={question.selection === 'single' ? 'radiogroup' : 'group'} aria-label={question.title}>
+        <div
+          className="choice-list"
+          role={question.selection === 'single' ? 'radiogroup' : 'group'}
+          aria-label={question.title}
+        >
           {question.choices.map((choice) => {
             const isSelected = selected.includes(choice.tag)
-            const atLimit = question.selection === 'multi' && !isSelected && selected.length >= (question.maxSelections ?? 3)
+            const atLimit = question.selection === 'multi'
+              && !isSelected
+              && selected.length >= (question.maxSelections ?? 3)
 
             return (
               <button
@@ -463,14 +462,12 @@ function DiscoveryPage() {
 
 function ProfilePage() {
   const navigate = useNavigate()
-  const [session, setSession] = useState<DiscoverySession>(() => loadSession())
+  const [session] = useState<DiscoverySession>(() => loadSession())
   const profile = useMemo(() => buildProfile(session), [session])
 
   useEffect(() => {
     if (!session.profileViewed) {
-      const next = { ...session, profileViewed: true }
-      setSession(next)
-      saveSession(next)
+      saveSession({ ...session, profileViewed: true })
       track('profile_viewed', { session_id: session.sessionId })
     }
   }, [session])
@@ -563,9 +560,7 @@ function PlaytestPlaceholder() {
     <main className="placeholder-page">
       <p className="eyebrow">Playtesting</p>
       <h1>Controlled playtest recruitment is not open yet.</h1>
-      <p>
-        The first external playtest will open after the guided Chronicle and feedback system are ready.
-      </p>
+      <p>The first external playtest will open after the guided Chronicle and feedback system are ready.</p>
       <Link className="button button-primary" to="/discover">Build my TCC experience</Link>
     </main>
   )
