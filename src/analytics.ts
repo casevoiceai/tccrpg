@@ -1,3 +1,7 @@
+import { submitPortalSnapshot } from './api'
+import { loadExperienceState, saveExperienceState } from './experience'
+import { loadSession } from './session'
+
 export type PortalEvent =
   | 'orientation_started'
   | 'orientation_completed'
@@ -13,6 +17,40 @@ export type PortalEvent =
   | 'experience_optional_source_opened'
   | 'experience_completed'
 
+async function submitCompletedExperience() {
+  const discovery = loadSession()
+  const experience = loadExperienceState()
+
+  if (!experience.completed || experience.submissionStatus === 'submitted') return
+
+  saveExperienceState({
+    ...experience,
+    submissionStatus: 'submitting',
+    submissionError: null,
+  })
+
+  const result = await submitPortalSnapshot(discovery, experience)
+  const latest = loadExperienceState()
+
+  saveExperienceState({
+    ...latest,
+    submissionStatus: result.ok ? 'submitted' : 'failed',
+    submissionError: result.ok ? null : (result.error ?? 'request_failed'),
+  })
+}
+
+export function retryPendingPortalSubmission() {
+  if (typeof window === 'undefined') return
+  const experience = loadExperienceState()
+
+  if (
+    experience.completed
+    && (experience.submissionStatus === 'not_submitted' || experience.submissionStatus === 'failed')
+  ) {
+    void submitCompletedExperience()
+  }
+}
+
 export function track(event: PortalEvent, properties: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return
 
@@ -21,4 +59,8 @@ export function track(event: PortalEvent, properties: Record<string, unknown> = 
       detail: { event, properties, timestamp: new Date().toISOString() },
     }),
   )
+
+  if (event === 'experience_completed') {
+    void submitCompletedExperience()
+  }
 }

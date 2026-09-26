@@ -13,6 +13,8 @@ export type ExperienceDebrief = {
   wouldPlay: string | null
 }
 
+export type SubmissionStatus = 'not_submitted' | 'submitting' | 'submitted' | 'failed'
+
 export type ExperienceState = {
   version: 'missing-name-0.2'
   startedAt: string
@@ -21,6 +23,8 @@ export type ExperienceState = {
   choices: Partial<Record<DecisionId, string>>
   optionalSourceOpened: boolean
   completed: boolean
+  submissionStatus: SubmissionStatus
+  submissionError: string | null
   debrief: ExperienceDebrief
 }
 
@@ -36,6 +40,8 @@ export function createExperienceState(): ExperienceState {
     choices: {},
     optionalSourceOpened: false,
     completed: false,
+    submissionStatus: 'not_submitted',
+    submissionError: null,
     debrief: {
       motivation: null,
       evidenceFeeling: null,

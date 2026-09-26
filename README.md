@@ -2,26 +2,27 @@
 
 TCC Reviewer + Playtest Portal for **tccrpg.com**, a Vogtcom LLC project.
 
-## Current build
+## Current development branch
 
-**Portal 0.2 / Build 2**
+**Portal 0.3 / Build 3**
 
-Build 2 contains:
+Build 3 adds the research and recruitment layer on top of Builds 1 and 2:
 
 - Level 1 Orientation
 - Level 2 Discovery with eight interactive questions
 - Deterministic TCC profile generation
 - Level 3 guided Chronicle: **The Missing Name**
-- Six meaningful visitor decisions inside the guided Chronicle
-- Year Zero dice and Agent-cooperation examples
-- Historical-source interaction and optional deeper source detail
-- Echo Ware introduction
 - Post-mission debrief
-- Local browser persistence for Discovery and guided-Chronicle progress
+- Anonymous guided-demo snapshot submission
+- Playtest application form
+- Separate Inspector-interest path
+- Separate release-update email opt-in
+- Cloudflare Pages Functions API endpoints
+- Cloudflare D1 schema and migration
+- Browser persistence and retry for failed anonymous demo submissions
 - Accessibility controls for larger text, higher contrast, and reduced motion
-- Separate future paths for playtesting, Inspector interest, and release updates
 
-Build 2 deliberately uses **no AI service and no remote database**. Discovery answers, guided-Chronicle choices, and debrief answers remain in the visitor's browser. Build 3 will add optional feedback/contact flows and remote testing data only after the Cloudflare-native persistence layer is configured.
+Build 3 remains gated from production until the Cloudflare D1 database and `TCC_DB` Pages binding are configured and the remaining privacy retention/contact language is approved.
 
 ## Stack
 
@@ -30,9 +31,11 @@ Build 2 deliberately uses **no AI service and no remote database**. Discovery an
 - TypeScript
 - Tailwind CSS 4 through the official Vite plugin
 - React Router
-- **Cloudflare Pages** static deployment
+- **Cloudflare Pages**
+- **Cloudflare Pages Functions**
+- **Cloudflare D1** for Build 3 persistence
 
-This project is not configured for Vercel or Supabase. Server-side persistence must use Cloudflare-native infrastructure unless the project architecture is intentionally changed later.
+This project is not configured for Vercel or Supabase.
 
 ## Local development
 
@@ -56,6 +59,15 @@ Cloudflare Pages settings:
 - Recommended Node version: `22`
 
 The `public/_redirects` file provides the SPA fallback needed by React Router.
+
+Build 3 Pages Functions expect a D1 binding named:
+
+`TCC_DB`
+
+See:
+
+- `docs/CLOUDFLARE_BUILD3_SETUP.md`
+- `migrations/0001_portal.sql`
 
 ## Build sequence
 
