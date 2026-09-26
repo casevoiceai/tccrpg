@@ -80,9 +80,16 @@ await post('/api/updates', {
 })
 
 if (reviewerCode) {
-  await requestJson(`/api/reviewer?code=${encodeURIComponent(reviewerCode)}`)
+  const reviewer = await requestJson(`/api/reviewer?code=${encodeURIComponent(reviewerCode)}`)
+  if (reviewer.deep_review_ready !== true) {
+    throw new Error('/api/reviewer passed, but Deep review is not ready for the supplied preview invitation')
+  }
+  if (typeof reviewer.material_url !== 'string' || !reviewer.material_url.startsWith('https://')) {
+    throw new Error('/api/reviewer passed, but the supplied reviewer material is not an HTTPS URL')
+  }
+  console.log(`PASS reviewer material: ${reviewer.material_label ?? reviewer.material_url}`)
 } else {
-  console.log('SKIP /api/reviewer (no reviewer invite code supplied)')
+  console.log('SKIP /api/reviewer material check (no reviewer invite code supplied)')
 }
 
 console.log(`Cloudflare preview smoke test complete for ${baseUrl}`)
