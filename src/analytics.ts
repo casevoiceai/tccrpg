@@ -17,8 +17,4 @@ export function track(event: PortalEvent, properties: Record<string, unknown> = 
       detail: { event, properties, timestamp: new Date().toISOString() },
     }),
   )
-
-  if (import.meta.env.DEV) {
-    console.info('[TCC portal event]', event, properties)
-  }
 }
