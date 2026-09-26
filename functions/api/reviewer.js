@@ -14,13 +14,22 @@ function validCode(value) {
   return typeof value === 'string' && /^[A-Za-z0-9_-]{6,64}$/.test(value)
 }
 
+function normalizeHttpsUrl(value) {
+  if (typeof value !== 'string' || !value.trim()) return null
+
+  try {
+    const url = new URL(value.trim())
+    return url.protocol === 'https:' ? url.toString() : null
+  } catch {
+    return null
+  }
+}
+
 function reviewerMaterial(invite) {
   const label = typeof invite.material_label === 'string' && invite.material_label.trim()
     ? invite.material_label.trim()
     : null
-  const url = typeof invite.material_url === 'string' && invite.material_url.trim()
-    ? invite.material_url.trim()
-    : null
+  const url = normalizeHttpsUrl(invite.material_url)
 
   return { label, url }
 }
