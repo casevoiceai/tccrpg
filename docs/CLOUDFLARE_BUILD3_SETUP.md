@@ -28,12 +28,19 @@ Run the SQL in:
 
 `migrations/0001_portal.sql`
 
-You can apply it in the Cloudflare D1 console or with Wrangler from an authenticated local environment.
+Build 4 also adds:
 
-Wrangler example:
+`migrations/0002_reviewers.sql`
+
+Apply migrations in numeric order.
+
+You can apply them in the Cloudflare D1 console or with Wrangler from an authenticated local environment.
+
+Wrangler examples:
 
 ```bash
 npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0001_portal.sql
+npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0002_reviewers.sql
 ```
 
 ## 3. Bind D1 to the existing Pages project
@@ -54,47 +61,67 @@ Cloudflare supports D1 bindings for Pages Functions through the dashboard or Wra
 
 ## 4. Preview environment
 
-Before production launch, decide whether Cloudflare preview deployments should:
-
-- use a separate D1 preview database, recommended, or
-- use the production database, not recommended for development/testing.
+Before production launch, Cloudflare preview deployments should use a separate D1 preview database rather than the production database.
 
 Suggested preview database name:
 
 `tcc-portal-preview`
 
-Apply the same migration and bind it to `TCC_DB` in the Pages preview environment.
+Apply the same migrations and bind it to `TCC_DB` in the Pages preview environment.
 
-## 5. Smoke tests
+## 5. Automated function tests
 
-After Cloudflare deploys the preview branch, test:
+GitHub CI now runs browser-independent contract tests against the Cloudflare Pages Function handlers:
 
-### Anonymous demo snapshot
+```bash
+npm test
+```
 
-Complete Discovery and The Missing Name through the post-mission debrief. Confirm a row appears in `portal_submissions`.
+These tests verify the anonymous demo endpoint, playtest application separation, release-update consent, and reviewer invitation/submission contracts without requiring a live Cloudflare account.
 
-### Playtest application
+## 6. Preview smoke tests
 
-Submit the playtest form. Confirm a row appears in `playtest_applications`.
+After Cloudflare deploys the preview branch and the preview D1 binding is active, run:
 
-### Release updates
+```bash
+npm run smoke:cloudflare -- https://<cloudflare-preview-host>
+```
 
-Submit the release-update form. Confirm a row appears in `release_updates`.
+If a Build 4 reviewer invite has already been inserted into the preview D1 database, include its code to test that endpoint too:
 
-### Separation check
+```bash
+npm run smoke:cloudflare -- https://<cloudflare-preview-host> REVIEWER_CODE
+```
+
+The script submits clearly labeled preview-only records using an `example.invalid` email address. Run it only against the preview environment, not production.
+
+The automated smoke test checks:
+
+- anonymous demo snapshot submission
+- playtest application submission
+- release-update opt-in submission
+- reviewer invitation lookup when a code is supplied
+
+Then confirm the corresponding rows exist in D1.
+
+### Manual separation check
 
 Confirm that submitting a playtest application does not create a `release_updates` row unless the same person separately submits the release-update form.
 
-## 6. Production gate
+## 7. Production gate
 
 Do not merge Build 3 solely because the code compiles. Production is ready only after:
 
 - D1 production database exists
-- migration is applied
-- `TCC_DB` is bound
+- D1 preview database exists
+- migrations are applied in order
+- `TCC_DB` is bound in preview and production
 - preview smoke tests pass
+- expected rows are confirmed in preview D1
 - retention period is approved
 - privacy/deletion contact procedure is approved
+
+Build 4 remains chained behind this same Cloudflare gate.
 
 ## Official Cloudflare references
 
