@@ -21,4 +21,4 @@ The Cloudflare Worker runs a daily scheduled cleanup. It deletes anonymous porta
 
 ## Requests
 
-Privacy, deletion, and unsubscribe requests are handled through privacy@tccrpg.com. The address is intended to forward to the TCC operations inbox once domain email routing is active.
+Privacy, deletion, and unsubscribe requests are handled through privacy@tccrpg.com. Cloudflare Email Routing forwards that address to the TCC operations inbox.
