@@ -5,6 +5,7 @@ import { onRequestPost as submitSession } from '../functions/api/session.js'
 import { onRequestPost as submitPlaytest } from '../functions/api/playtest.js'
 import { onRequestPost as submitUpdate } from '../functions/api/updates.js'
 import { runRetentionCleanup } from '../functions/retention.js'
+import { onRequestGet as openReviewerMaterial } from '../functions/api/reviewer-material.js'
 import {
   onRequestGet as openReviewerInvite,
   onRequestPost as submitReviewer,
@@ -58,6 +59,18 @@ function createDb({ invite = null } = {}) {
         })),
       })
       return statements.map(() => ({ success: true }))
+    },
+  }
+}
+
+
+function createKv({ value = new Uint8Array([37, 80, 68, 70]).buffer, metadata = {} } = {}) {
+  const calls = []
+  return {
+    calls,
+    async getWithMetadata(key, type) {
+      calls.push({ key, type })
+      return { value, metadata }
     },
   }
 }
@@ -299,4 +312,57 @@ test('retention cleanup deletes only expired anonymous data and eligible playtes
   assert.match(sql, /pending.*declined.*inactive.*unsuccessful/s)
   assert.doesNotMatch(sql, /review_submissions/)
   assert.doesNotMatch(sql, /release_updates/)
+})
+
+test('reviewer endpoint exposes an invite-protected internal material URL for KV material', async () => {
+  const db = createDb({
+    invite: {
+      invite_code: 'REVIEW_123', reviewer_name: 'Sample Reviewer', expertise: 'TTRPG design',
+      tcc_version: '6.5', active: 1, submitted_at: null,
+      material_label: 'TCC V6.5 Core Deep Review Copy', material_url: null,
+      material_key: 'tcc-v65-core-deep-review-2026-09-26.pdf',
+    },
+  })
+  const result = await read(await openReviewerInvite({
+    env: { TCC_DB: db },
+    request: new Request('https://tccrpg.test/api/reviewer?code=REVIEW_123'),
+  }))
+
+  assert.equal(result.status, 200)
+  assert.equal(result.body.deep_review_ready, true)
+  assert.equal(result.body.material_url, 'https://tccrpg.test/api/reviewer-material?code=REVIEW_123')
+})
+
+test('reviewer material endpoint streams the assigned KV PDF only for an active invite', async () => {
+  const db = createDb({ invite: {
+    invite_code: 'REVIEW_123', active: 1,
+    material_label: 'TCC V6.5 Core Deep Review Copy',
+    material_key: 'tcc-v65-core-deep-review-2026-09-26.pdf',
+  } })
+
+  const kv = createKv({ metadata: {
+    filename: 'TCC_V65_CORE_DEEP_REVIEW_2026-09-26.pdf',
+    content_type: 'application/pdf',
+  } })
+  const response = await openReviewerMaterial({
+    env: { TCC_DB: db, TCC_REVIEW_MATERIALS: kv },
+    request: new Request('https://tccrpg.test/api/reviewer-material?code=REVIEW_123'),
+  })
+
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get('content-type'), 'application/pdf')
+  assert.match(response.headers.get('content-disposition'), /TCC_V65_CORE_DEEP_REVIEW_2026-09-26\.pdf/)
+  assert.equal((await response.arrayBuffer()).byteLength, 4)
+  assert.deepEqual(kv.calls, [{ key: 'tcc-v65-core-deep-review-2026-09-26.pdf', type: 'arrayBuffer' }])
+})
+
+test('reviewer material endpoint fails closed when KV is not bound', async () => {
+  const db = createDb()
+  const result = await read(await openReviewerMaterial({
+    env: { TCC_DB: db },
+    request: new Request('https://tccrpg.test/api/reviewer-material?code=REVIEW_123'),
+  }))
+
+  assert.equal(result.status, 503)
+  assert.equal(result.body.error, 'storage_not_configured')
 })
