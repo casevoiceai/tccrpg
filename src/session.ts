@@ -97,7 +97,7 @@ export function buildProfile(session: DiscoverySession): ProfileSummary {
     : 'Not selected'
 
   const play = label(session.playPreference)
-  const tone = label(session.supernaturalPreference)
+  const toneLabel = label(session.supernaturalPreference)
   const research = label(session.researchPreference)
   const consequences = label(session.riskPreference)
   const experience = label(session.rpgExperience)
@@ -133,18 +133,18 @@ export function buildProfile(session: DiscoverySession): ProfileSummary {
     ? `You are most interested in ${play.toLowerCase()}.`
     : ''
 
-  const tone = session.supernaturalPreference
+  const toneDescription = session.supernaturalPreference
     ? tonePhrase[session.supernaturalPreference] ?? 'keep the history and supernatural material connected'
     : 'keep the history and supernatural material connected'
 
   return {
     history,
     play,
-    tone: label(session.supernaturalPreference),
+    tone: toneLabel,
     research,
     consequences,
     experience,
     seat,
-    explanation: `${historyPhrase} ${playPhrase} The adventure should ${tone}. ${researchPhrase[session.researchPreference ?? ''] ?? ''} ${riskPhrase[session.riskPreference ?? ''] ?? ''}`.replace(/\s+/g, ' ').trim(),
+    explanation: `${historyPhrase} ${playPhrase} The adventure should ${toneDescription}. ${researchPhrase[session.researchPreference ?? ''] ?? ''} ${riskPhrase[session.riskPreference ?? ''] ?? ''}`.replace(/\s+/g, ' ').trim(),
   }
 }
