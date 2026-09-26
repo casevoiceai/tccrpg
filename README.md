@@ -4,19 +4,24 @@ TCC Reviewer + Playtest Portal for **tccrpg.com**, a Vogtcom LLC project.
 
 ## Current build
 
-**Portal 0.1 / Build 1**
+**Portal 0.2 / Build 2**
 
-Build 1 contains:
+Build 2 contains:
 
 - Level 1 Orientation
 - Level 2 Discovery with eight interactive questions
-- Local browser persistence so a visitor can leave and resume
 - Deterministic TCC profile generation
+- Level 3 guided Chronicle: **The Missing Name**
+- Six meaningful visitor decisions inside the guided Chronicle
+- Year Zero dice and Agent-cooperation examples
+- Historical-source interaction and optional deeper source detail
+- Echo Ware introduction
+- Post-mission debrief
+- Local browser persistence for Discovery and guided-Chronicle progress
 - Accessibility controls for larger text, higher contrast, and reduced motion
-- Level 3 guided-Chronicle placeholder
-- Reviewer, playtest, and privacy placeholders for later builds
+- Separate future paths for playtesting, Inspector interest, and release updates
 
-Build 1 deliberately uses **no AI service and no remote database**. Discovery state remains in the visitor's browser until a later testing build explicitly adds server-side collection.
+Build 2 deliberately uses **no AI service and no remote database**. Discovery answers, guided-Chronicle choices, and debrief answers remain in the visitor's browser. Build 3 will add optional feedback/contact flows and remote testing data only after the Cloudflare-native persistence layer is configured.
 
 ## Stack
 
@@ -27,7 +32,7 @@ Build 1 deliberately uses **no AI service and no remote database**. Discovery st
 - React Router
 - **Cloudflare Pages** static deployment
 
-This project is not configured for Vercel or Supabase. Future server-side persistence should use Cloudflare-native infrastructure unless the project architecture is intentionally changed later.
+This project is not configured for Vercel or Supabase. Server-side persistence must use Cloudflare-native infrastructure unless the project architecture is intentionally changed later.
 
 ## Local development
 
@@ -55,7 +60,7 @@ The `public/_redirects` file provides the SPA fallback needed by React Router.
 ## Build sequence
 
 1. **Build 1**: Orientation → Discovery → Profile
-2. **Build 2**: 15–20 minute guided Chronicle
-3. **Build 3**: feedback, playtest applications, and Cloudflare-native persistence
+2. **Build 2**: guided 15–20 minute Chronicle → debrief
+3. **Build 3**: feedback, playtest applications, release-update opt-in, and Cloudflare-native persistence
 4. **Build 4**: private reviewer room and standardized critique rubric
 5. **Build 5**: visual/audio polish after the core flow survives usability testing
