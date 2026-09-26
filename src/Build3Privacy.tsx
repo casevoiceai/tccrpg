@@ -65,10 +65,12 @@ export default function Build3Privacy() {
       </section>
 
       <section className="privacy-open-item">
-        <h2>Before public recruitment</h2>
-        <p>
-          The project still needs a final published retention period. That policy will be locked before the Build 3 forms and invited-review workflow are opened outside the development environment.
-        </p>
+        <h2>How long we keep data</h2>
+        <p>Anonymous Discovery and guided-demo testing data is kept for 180 days.</p>
+        <p>Pending, declined, inactive, or unsuccessful playtest applications are kept for up to 12 months. Selected or active tester records may be kept while they are participating. Once their status becomes inactive, the 12-month retention period starts from that status change.</p>
+        <p>Reviewer feedback is kept as part of TCC's long-term development record. If a reviewer asks for deletion, identifying information can be removed or anonymized while non-identifying design feedback may be preserved.</p>
+        <p>Release-update email addresses are kept until the subscriber unsubscribes or asks us to delete them.</p>
+        <p>For privacy, deletion, or unsubscribe requests, contact <a href="mailto:privacy@tccrpg.com">privacy@tccrpg.com</a>.</p>
       </section>
 
       <Link className="button button-secondary" to="/">Return home</Link>

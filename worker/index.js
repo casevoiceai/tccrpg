@@ -5,6 +5,7 @@ import {
   onRequestGet as openReviewer,
   onRequestPost as submitReviewer,
 } from '../functions/api/reviewer.js'
+import { runRetentionCleanup } from '../functions/retention.js'
 
 function pagesContext(request, env, ctx) {
   return {
@@ -34,5 +35,9 @@ export default {
     }
 
     return env.ASSETS.fetch(request)
+  },
+
+  async scheduled(_controller, env, ctx) {
+    ctx.waitUntil(runRetentionCleanup(env.TCC_DB))
   },
 }

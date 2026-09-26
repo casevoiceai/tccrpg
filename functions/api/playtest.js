@@ -115,8 +115,10 @@ export async function onRequestPost(context) {
         accessibility_needs,
         unfinished_game_ack,
         direct_criticism_ack,
+        status,
+        status_updated_at,
         created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, ?)`,
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, 'pending', ?, ?)`,
     )
       .bind(
         applicationId,
@@ -130,6 +132,7 @@ export async function onRequestPost(context) {
         inspectorInterest,
         availability,
         accessibilityNeeds || null,
+        createdAt,
         createdAt,
       )
       .run()

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { onRequestPost as submitSession } from '../functions/api/session.js'
 import { onRequestPost as submitPlaytest } from '../functions/api/playtest.js'
 import { onRequestPost as submitUpdate } from '../functions/api/updates.js'
+import { runRetentionCleanup } from '../functions/retention.js'
 import {
   onRequestGet as openReviewerInvite,
   onRequestPost as submitReviewer,
@@ -279,4 +280,23 @@ test('reviewer endpoint stores a valid deep critique when material is assigned',
   assert.equal(result.body.ok, true)
   assert.equal(db.calls.filter((call) => call.type === 'first').length, 1)
   assert.equal(db.calls.filter((call) => call.type === 'batch').length, 1)
+})
+
+test('retention cleanup deletes only expired anonymous data and eligible playtest applications', async () => {
+  const db = createDb()
+  await runRetentionCleanup(db)
+
+  const batch = db.calls.find((call) => call.type === 'batch')
+  assert.ok(batch)
+  assert.equal(batch.statements.length, 2)
+
+  const sql = batch.statements.map((statement) => statement.sql).join('\n')
+  assert.match(sql, /portal_submissions/)
+  assert.match(sql, /-180 days/)
+  assert.match(sql, /playtest_applications/)
+  assert.match(sql, /-12 months/)
+  assert.match(sql, /status_updated_at/)
+  assert.match(sql, /pending.*declined.*inactive.*unsuccessful/s)
+  assert.doesNotMatch(sql, /review_submissions/)
+  assert.doesNotMatch(sql, /release_updates/)
 })
