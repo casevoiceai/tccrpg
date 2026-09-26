@@ -247,6 +247,14 @@ export default function ReviewerPage() {
           {invite.expertise && <p className="reviewer-context">Invited perspective: {invite.expertise}</p>}
           {invite.already_submitted && <p className="review-warning">A review has already been submitted with this invitation. You can submit another pass, but it will be stored as a separate review.</p>}
 
+          {invite.material_url && (
+            <div className="review-demo-link">
+              <a className="button button-secondary" href={invite.material_url} target="_blank" rel="noreferrer">
+                Open {invite.material_label ?? 'assigned review material'}
+              </a>
+            </div>
+          )}
+
           <div className="path-grid">
             <article>
               <p className="eyebrow">Shortest path</p>
@@ -264,8 +272,19 @@ export default function ReviewerPage() {
               <p className="eyebrow">Deep review</p>
               <h2>Manuscript critique</h2>
               <p>Use the full rubric, including Inspector burden and book/information design.</p>
-              <p className="path-note">The current manuscript asset must be attached to the portal before this path is sent to outside reviewers.</p>
-              <button className="button button-primary" type="button" onClick={() => setPath('deep')}>Choose deep review</button>
+              {invite.deep_review_ready ? (
+                <p className="path-note">Your assigned manuscript or review packet is linked above.</p>
+              ) : (
+                <p className="path-note">Deep review is locked until this invitation has a specific manuscript or review packet attached.</p>
+              )}
+              <button
+                className="button button-primary"
+                type="button"
+                disabled={!invite.deep_review_ready}
+                onClick={() => setPath('deep')}
+              >
+                {invite.deep_review_ready ? 'Choose deep review' : 'Deep review not ready'}
+              </button>
             </article>
           </div>
 
@@ -286,6 +305,13 @@ export default function ReviewerPage() {
           <p className="lede">
             Use N/A when you did not see enough material to judge something. Direct criticism is more useful than encouragement.
           </p>
+          {path === 'deep' && invite.material_url && (
+            <p>
+              <a className="button button-secondary" href={invite.material_url} target="_blank" rel="noreferrer">
+                Open {invite.material_label ?? 'assigned review material'}
+              </a>
+            </p>
+          )}
           <button className="text-button" type="button" onClick={() => setPath(null)}>Change review path</button>
         </header>
 
