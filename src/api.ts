@@ -24,7 +24,9 @@ async function postJson(path: string, body: Record<string, unknown>): Promise<Ap
         error,
         message: error === 'storage_not_configured'
           ? 'Cloudflare storage is not configured yet.'
-          : 'The submission could not be saved right now.',
+          : error === 'review_material_not_configured'
+            ? 'Deep review material has not been configured for this invitation yet.'
+            : 'The submission could not be saved right now.',
       }
     }
 
@@ -98,6 +100,9 @@ export type ReviewerInviteResult = ApiResult & {
   expertise?: string | null
   tcc_version?: string
   already_submitted?: boolean
+  material_label?: string | null
+  material_url?: string | null
+  deep_review_ready?: boolean
 }
 
 export async function fetchReviewerInvite(code: string): Promise<ReviewerInviteResult> {
@@ -124,6 +129,9 @@ export async function fetchReviewerInvite(code: string): Promise<ReviewerInviteR
       expertise: typeof payload.expertise === 'string' ? payload.expertise : null,
       tcc_version: typeof payload.tcc_version === 'string' ? payload.tcc_version : undefined,
       already_submitted: payload.already_submitted === true,
+      material_label: typeof payload.material_label === 'string' ? payload.material_label : null,
+      material_url: typeof payload.material_url === 'string' ? payload.material_url : null,
+      deep_review_ready: payload.deep_review_ready === true,
     }
   } catch {
     return { ok: false, error: 'network_error', message: 'The reviewer invitation could not be verified right now.' }
