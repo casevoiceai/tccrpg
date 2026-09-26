@@ -14,9 +14,21 @@ function validCode(value) {
   return typeof value === 'string' && /^[A-Za-z0-9_-]{6,64}$/.test(value)
 }
 
+function reviewerMaterial(invite) {
+  const label = typeof invite.material_label === 'string' && invite.material_label.trim()
+    ? invite.material_label.trim()
+    : null
+  const url = typeof invite.material_url === 'string' && invite.material_url.trim()
+    ? invite.material_url.trim()
+    : null
+
+  return { label, url }
+}
+
 async function findInvite(db, code) {
   return db.prepare(
-    `SELECT invite_code, reviewer_name, expertise, tcc_version, active, submitted_at
+    `SELECT invite_code, reviewer_name, expertise, tcc_version, active, submitted_at,
+            material_label, material_url
      FROM reviewer_invites
      WHERE invite_code = ?`,
   ).bind(code).first()
@@ -41,12 +53,17 @@ export async function onRequestGet(context) {
       'UPDATE reviewer_invites SET last_opened_at = ? WHERE invite_code = ?',
     ).bind(openedAt, code).run()
 
+    const material = reviewerMaterial(invite)
+
     return json({
       ok: true,
       reviewer_name: invite.reviewer_name ?? null,
       expertise: invite.expertise ?? null,
       tcc_version: invite.tcc_version,
       already_submitted: Boolean(invite.submitted_at),
+      material_label: material.label,
+      material_url: material.url,
+      deep_review_ready: Boolean(material.url),
     })
   } catch (error) {
     console.error('reviewer invite lookup failed', error)
@@ -106,6 +123,11 @@ export async function onRequestPost(context) {
     const invite = await findInvite(context.env.TCC_DB, code)
     if (!invite || invite.active !== 1) {
       return json({ ok: false, error: 'invite_not_found' }, 404)
+    }
+
+    const material = reviewerMaterial(invite)
+    if (pathSelected === 'deep' && !material.url) {
+      return json({ ok: false, error: 'review_material_not_configured' }, 409)
     }
 
     const reviewId = crypto.randomUUID()
