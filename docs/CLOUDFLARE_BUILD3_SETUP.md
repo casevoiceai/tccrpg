@@ -1,104 +1,83 @@
-# Cloudflare setup for TCC Portal Build 3
+# Cloudflare deployment for TCC Portal Builds 3–4
 
-The repository code is prepared for Cloudflare Pages Functions + D1. The remaining infrastructure step is to create/bind the D1 database in Cloudflare.
+TCC now uses Cloudflare Workers with static assets and D1. The original Pages-specific plan was replaced after the Git-connected Cloudflare project was created as a Worker.
 
-## Required resource
+## Architecture
 
-Create one D1 database for the production portal, suggested name:
+- Cloudflare Worker: `tccrpg`
+- Production URL: `https://tccrpg.casevoice-ai.workers.dev`
+- Preview Worker: `tccrpg-preview`
+- Production D1: `tcc-portal-production`
+- Preview D1: `tcc-portal-preview`
+- D1 binding name: `TCC_DB`
+- Static asset binding: `ASSETS`
+- No Vercel
+- No Supabase
 
-`tcc-portal-production`
+`worker/index.js` routes `/api/*` requests to the portal API handlers and sends all other requests to Cloudflare static assets. SPA fallback is handled through Wrangler's `not_found_handling = single-page-application`, so the old `public/_redirects` file is intentionally removed.
 
-The Pages Function binding name must be exactly:
+## Database status
 
-`TCC_DB`
+These migrations have been applied to both D1 databases:
 
-The code accesses the database through `context.env.TCC_DB`.
+1. `migrations/0001_portal.sql`
+2. `migrations/0002_reviewers.sql`
+3. `migrations/0003_reviewer_materials.sql`
 
-## 1. Create the D1 database
+Remote verification confirmed the portal, playtest, release-update, reviewer-invite, and review-submission tables exist.
 
-In Cloudflare:
+## Production configuration
 
-1. Open **Workers & Pages** / **D1**.
-2. Create a D1 database named `tcc-portal-production` or another clear production name.
-3. Keep note of the database you created.
+`wrangler.jsonc` defines the production Worker and D1 binding. Production deploys use the default configuration.
 
-## 2. Apply the schema
+## Preview configuration
 
-Run the SQL in:
+The `preview` environment targets `tccrpg-preview` and binds `TCC_DB` to `tcc-portal-preview`.
 
-`migrations/0001_portal.sql`
-
-You can apply it in the Cloudflare D1 console or with Wrangler from an authenticated local environment.
-
-Wrangler example:
+For isolated preview testing:
 
 ```bash
-npx wrangler d1 execute tcc-portal-production --remote --file=./migrations/0001_portal.sql
+npm run build
+npx wrangler deploy --env preview
 ```
 
-## 3. Bind D1 to the existing Pages project
+The manually deployed preview Worker is available at:
 
-For the TCC Pages project:
+`https://tccrpg-preview.casevoice-ai.workers.dev`
 
-1. Open **Workers & Pages**.
-2. Select the TCC Pages project.
-3. Open **Settings**.
-4. Open **Bindings**.
-5. Add a **D1 database binding**.
-6. Variable name: `TCC_DB`
-7. Select the production TCC D1 database.
-8. Save the binding.
-9. Redeploy after adding the binding.
+## Verified smoke tests
 
-Cloudflare supports D1 bindings for Pages Functions through the dashboard or Wrangler configuration. The dashboard path avoids committing a database UUID to this repository.
+The preview Worker has successfully accepted and stored:
 
-## 4. Preview environment
+- anonymous guided-demo snapshot data through `/api/session`
+- playtest applications through `/api/playtest`
+- separate release-update consent through `/api/updates`
+- reviewer invitation lookup through `/api/reviewer`
+- a Deep-review submission when a valid HTTPS review material URL was assigned
 
-Before production launch, decide whether Cloudflare preview deployments should:
+Expected rows were verified directly in preview D1 after the test. Test-only rows were then removed.
 
-- use a separate D1 preview database, recommended, or
-- use the production database, not recommended for development/testing.
+## Reviewer material
 
-Suggested preview database name:
+Deep review stays locked unless a reviewer invitation contains a valid HTTPS `material_url`.
 
-`tcc-portal-preview`
+Recommended production delivery:
 
-Apply the same migration and bind it to `TCC_DB` in the Pages preview environment.
+- store the current review PDF or packet in Cloudflare R2
+- expose it through a Cloudflare-hosted HTTPS URL or custom domain
+- save that URL and a readable label on the reviewer invitation
 
-## 5. Smoke tests
+Quick and Focused review do not require an attached manuscript.
 
-After Cloudflare deploys the preview branch, test:
+## Current production gate
 
-### Anonymous demo snapshot
+Build 3 should not merge until the following product-policy choices are approved:
 
-Complete Discovery and The Missing Name through the post-mission debrief. Confirm a row appears in `portal_submissions`.
+- data-retention period
+- privacy/deletion contact procedure
 
-### Playtest application
+Build 4 additionally requires the real current manuscript or reviewer packet URL before Deep-review invitations are sent.
 
-Submit the playtest form. Confirm a row appears in `playtest_applications`.
+## Notes on Cloudflare PR checks
 
-### Release updates
-
-Submit the release-update form. Confirm a row appears in `release_updates`.
-
-### Separation check
-
-Confirm that submitting a playtest application does not create a `release_updates` row unless the same person separately submits the release-update form.
-
-## 6. Production gate
-
-Do not merge Build 3 solely because the code compiles. Production is ready only after:
-
-- D1 production database exists
-- migration is applied
-- `TCC_DB` is bound
-- preview smoke tests pass
-- retention period is approved
-- privacy/deletion contact procedure is approved
-
-## Official Cloudflare references
-
-- Pages Functions: https://developers.cloudflare.com/pages/functions/
-- Pages Functions bindings: https://developers.cloudflare.com/pages/functions/bindings/
-- D1: https://developers.cloudflare.com/d1/
-- D1 getting started: https://developers.cloudflare.com/d1/get-started/
+GitHub's normal CI and security checks pass. The Cloudflare GitHub App currently reports failed PR preview checks, while the isolated `tccrpg-preview` Worker deploys and passes live API smoke tests. Until the Cloudflare preview-build configuration is normalized, use the isolated preview Worker as the deployment gate.
