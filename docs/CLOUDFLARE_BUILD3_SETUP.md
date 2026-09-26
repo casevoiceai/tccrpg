@@ -1,137 +1,83 @@
-# Cloudflare setup for TCC Portal Builds 3–4
+# Cloudflare deployment for TCC Portal Builds 3–4
 
-The Cloudflare data layer is now provisioned. The remaining platform step is to create the **Git-integrated Cloudflare Pages project** from the GitHub repository and verify the first preview deployment.
+TCC now uses Cloudflare Workers with static assets and D1. The original Pages-specific plan was replaced after the Git-connected Cloudflare project was created as a Worker.
 
-Do **not** create a Direct Upload Pages project for this repository. The intended workflow is GitHub → Cloudflare Pages with automatic preview deployments.
+## Architecture
 
-## Current Cloudflare resources
+- Cloudflare Worker: `tccrpg`
+- Production URL: `https://tccrpg.casevoice-ai.workers.dev`
+- Preview Worker: `tccrpg-preview`
+- Production D1: `tcc-portal-production`
+- Preview D1: `tcc-portal-preview`
+- D1 binding name: `TCC_DB`
+- Static asset binding: `ASSETS`
+- No Vercel
+- No Supabase
 
-Production D1:
+`worker/index.js` routes `/api/*` requests to the portal API handlers and sends all other requests to Cloudflare static assets. SPA fallback is handled through Wrangler's `not_found_handling = single-page-application`, so the old `public/_redirects` file is intentionally removed.
 
-`tcc-portal-production`
+## Database status
 
-Preview D1:
-
-`tcc-portal-preview`
-
-The Pages Function binding name is exactly:
-
-`TCC_DB`
-
-The application accesses the database through `context.env.TCC_DB`.
-
-## D1 schema status
-
-The following migrations have already been applied to both preview and production D1 databases:
+These migrations have been applied to both D1 databases:
 
 1. `migrations/0001_portal.sql`
 2. `migrations/0002_reviewers.sql`
 3. `migrations/0003_reviewer_materials.sql`
 
-Remote verification confirmed the portal, playtest, release-update, reviewer-invite, and review-submission tables exist. Reviewer invitations also contain `material_label` and `material_url`.
+Remote verification confirmed the portal, playtest, release-update, reviewer-invite, and review-submission tables exist.
 
-## Wrangler configuration
+## Production configuration
 
-`wrangler.jsonc` is checked into the portal branches and defines:
+`wrangler.jsonc` defines the production Worker and D1 binding. Production deploys use the default configuration.
 
-- project name: `tccrpg`
-- build output: `./dist`
-- production `TCC_DB` → `tcc-portal-production`
-- preview `TCC_DB` → `tcc-portal-preview`
+## Preview configuration
 
-Once the Git-integrated Pages project exists, the Wrangler configuration is intended to be the source of truth for these bindings.
+The `preview` environment targets `tccrpg-preview` and binds `TCC_DB` to `tcc-portal-preview`.
 
-## Create the Pages project
-
-In the Cloudflare dashboard:
-
-1. Open **Workers & Pages**.
-2. Select **Create application**.
-3. Choose **Pages**.
-4. Choose **Connect to Git** / **Import an existing Git repository**.
-5. Select GitHub repository `casevoiceai/tccrpg`.
-6. Project name: `tccrpg`.
-7. Production branch: `main`.
-8. Build command: `npm run build`.
-9. Build output directory: `dist`.
-10. Save and deploy.
-
-Do not use the Wrangler `pages project create` command for this initial project creation because that creates a Direct Upload project rather than the Git-integrated workflow required here.
-
-## Preview environment
-
-After Git integration is connected, commits to `tcc-portal-build3` and `tcc-portal-build4` should produce preview deployments. Preview Pages Functions must use the preview D1 database through the `env.preview` override in `wrangler.jsonc`.
-
-Before production launch, confirm the preview deployment is using `tcc-portal-preview`, not `tcc-portal-production`.
-
-## Reviewer material hosting
-
-For Deep review, each invitation can carry a `material_label` and `material_url`.
-
-Recommended Cloudflare-native pattern:
-
-- store the review PDF or packet in Cloudflare R2
-- expose it through an HTTPS Cloudflare-hosted/custom-domain URL
-- save that URL on the reviewer invitation
-- do not add Vercel or Supabase for reviewer assets or data
-
-Deep review is locked unless a valid HTTPS material URL is assigned. Quick and Focused review do not require an attached manuscript.
-
-## Automated function tests
-
-GitHub CI runs browser-independent contract tests against the Cloudflare Pages Function handlers:
+For isolated preview testing:
 
 ```bash
-npm test
+npm run build
+npx wrangler deploy --env preview
 ```
 
-The suite verifies the anonymous demo endpoint, playtest application separation, release-update consent, reviewer invitation/submission contracts, and the Deep-review material gate.
+The manually deployed preview Worker is available at:
 
-## Preview smoke tests
+`https://tccrpg-preview.casevoice-ai.workers.dev`
 
-After Cloudflare produces a preview URL, run:
+## Verified smoke tests
 
-```bash
-npm run smoke:cloudflare -- https://<cloudflare-preview-host>
-```
+The preview Worker has successfully accepted and stored:
 
-After a preview reviewer invitation has a valid HTTPS `material_url`, run:
+- anonymous guided-demo snapshot data through `/api/session`
+- playtest applications through `/api/playtest`
+- separate release-update consent through `/api/updates`
+- reviewer invitation lookup through `/api/reviewer`
+- a Deep-review submission when a valid HTTPS review material URL was assigned
 
-```bash
-npm run smoke:cloudflare -- https://<cloudflare-preview-host> REVIEWER_CODE
-```
+Expected rows were verified directly in preview D1 after the test. Test-only rows were then removed.
 
-The script uses clearly labeled preview-only records and an `example.invalid` email address. Run it against preview only, never production.
+## Reviewer material
 
-It verifies:
+Deep review stays locked unless a reviewer invitation contains a valid HTTPS `material_url`.
 
-- anonymous demo snapshot submission
-- playtest application submission
-- release-update opt-in submission
-- reviewer invitation lookup
-- Deep-review material readiness when a reviewer code is supplied
+Recommended production delivery:
 
-Then confirm the expected rows exist in `tcc-portal-preview`.
+- store the current review PDF or packet in Cloudflare R2
+- expose it through a Cloudflare-hosted HTTPS URL or custom domain
+- save that URL and a readable label on the reviewer invitation
 
-## Production gate
+Quick and Focused review do not require an attached manuscript.
 
-Build 3 and Build 4 remain unmerged until:
+## Current production gate
 
-- the Git-integrated Cloudflare Pages project exists
-- a preview deployment is live
-- preview smoke tests pass
-- expected preview D1 rows are verified
-- reviewer material delivery is verified for Deep review
-- the retention period is approved
-- the privacy/deletion contact procedure is approved
+Build 3 should not merge until the following product-policy choices are approved:
 
-D1 creation, schema migration, and environment-specific binding configuration are complete.
+- data-retention period
+- privacy/deletion contact procedure
 
-## Official Cloudflare references
+Build 4 additionally requires the real current manuscript or reviewer packet URL before Deep-review invitations are sent.
 
-- Git integration: https://developers.cloudflare.com/pages/get-started/git-integration/
-- Pages Wrangler configuration: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
-- Pages Functions: https://developers.cloudflare.com/pages/functions/
-- Pages Functions bindings: https://developers.cloudflare.com/pages/functions/bindings/
-- D1: https://developers.cloudflare.com/d1/
-- R2: https://developers.cloudflare.com/r2/
+## Notes on Cloudflare PR checks
+
+GitHub's normal CI and security checks pass. The Cloudflare GitHub App currently reports failed PR preview checks, while the isolated `tccrpg-preview` Worker deploys and passes live API smoke tests. Until the Cloudflare preview-build configuration is normalized, use the isolated preview Worker as the deployment gate.
