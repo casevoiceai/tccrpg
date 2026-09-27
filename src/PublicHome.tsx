@@ -50,19 +50,23 @@ export default function PublicHome() {
           <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
             <p><strong>Player:</strong> “I check the cabinet for a label before I touch it.”</p>
-            <p>The label is plainly visible. You get the information. No roll. No wasted motion.</p>
-            <p><strong>Another player:</strong> “I force it open before whoever is in the hall gets here.”</p>
+            <p>The label is visible. The Inspector tells the player what it says. No roll is needed.</p>
+            <p><strong>Another player:</strong> “I force the cabinet open before whoever is in the hall gets here.”</p>
           </div>
-          <p>Checking a visible label is routine, so it happens. Forcing the cabinet before the footsteps reach the room is different: the outcome is uncertain, and the result matters. <strong>That is when TCC calls for dice.</strong></p>
-          <p>TCC uses the <strong>Year Zero Engine</strong> as its mechanical foundation: pools of six-sided dice, simple success counting, and consequences that change the situation.</p>
-          <p>The Inspector combines the <strong>Attribute + Skill</strong> that best match what the Agent is actually trying to do. If that creates a pool of six dice, roll <strong>6d6</strong> together. Do not add the numbers. Look for 6s.</p>
+          <p>The first action was simple. The label was there to be read, so the game kept moving.</p>
+          <p>The second action is different. The cabinet is locked, someone is approaching, and the outcome could change what happens next.</p>
+          <p><strong>That is when TCC rolls.</strong></p>
+          <p>TCC uses the <strong>Year Zero Engine</strong>. When an action is uncertain and the result matters, the Inspector chooses the <strong>Attribute + Skill</strong> that fit what the Agent is trying to do. Those dice form the pool.</p>
+          <p><strong>Roll them together.</strong></p>
+          <p>Do not add the numbers.</p>
+          <p>Look for <strong>6s</strong>.</p>
           <div className="dice-result-list">
-            <p><strong>No 6s:</strong> the roll fails and the situation changes.</p>
             <p><strong>One 6:</strong> the action succeeds.</p>
-            <p><strong>More than one 6:</strong> the action succeeds, and the extra 6s can improve the result: faster, quieter, with more information, or in a better position.</p>
+            <p><strong>Additional 6s:</strong> improve the result.</p>
+            <p><strong>No 6s:</strong> the action fails, and the situation changes.</p>
           </div>
-          <p className="section-hairline"><strong>Failure changes the situation instead of stopping the game.</strong></p>
-          <p>In this room, failure might mean the cabinet stays shut long enough for the footsteps to reach the door, the lock gives way with a crash, or the Agent gets what they wanted but in a worse position than before.</p>
+          <p>Back in the records room, a failed roll does not mean “nothing happens.” The footsteps may reach the door before the cabinet opens. The lock may break loudly enough to give the Agent away. The cabinet may open, but leave the Agent in a worse position.</p>
+          <p className="section-hairline"><strong>Roll only when the outcome is uncertain and the result matters.</strong></p>
         </div>
       </section>
 
