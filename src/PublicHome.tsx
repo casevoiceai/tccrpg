@@ -14,19 +14,13 @@ export default function PublicHome() {
       <section className="orientation-hero story-hero" aria-labelledby="hero-heading">
         <div className="orientation-hero-copy">
           <p className="eyebrow">Time-Crawl Chronicles</p>
-          <div className="cold-open" aria-label="A glimpse of play">
-            <p>A reproduced historical map lies open on the table.</p>
-            <p>The building is there. The rear alley is there.</p>
-            <p>The door your character just found in 1897 is not.</p>
-          </div>
-          <h1 id="hero-heading">The past is evidence. The mystery is what should not be there.</h1>
-          <p className="lede">Time-Crawl Chronicles is a tabletop roleplaying game where real historical sources become part of the investigation.</p>
-          <p className="lede">
-            The person running the game can put scans, reproductions, photographs, maps, newspaper pages, directories, ledgers, minutes, and other real sources from the locality in front of the players. In research-heavy play, players can bring additional real sources they find between sessions.
-          </p>
-          <p className="lede">
-            Those sources can reveal a route, expose a contradiction, identify a person, open access, strengthen a negotiation, or change what the group believes is happening. The game then builds a fictional case around what the evidence actually supports.
-          </p>
+          <h1 id="hero-heading">Time-Crawl Chronicles is a tabletop roleplaying game that turns real local history into mystery, adventure, and storytelling.</h1>
+          <p className="lede"><strong>Players use real-world research to explore what the historical record tells us, where the evidence conflicts, and what history has left unanswered.</strong></p>
+          <p className="lede"><strong>The people, cultures, industries, institutions, conflicts, folklore, and everyday life of a real place shape the locations, characters, clues, and mysteries the players encounter.</strong></p>
+          <p className="lede">The Game Master, known in TCC as the <strong>Inspector</strong>, uses authentic historical photographs, maps, newspaper pages, directories, ledgers, minutes, and other real materials from the local community to build the mysteries, puzzles, locations, and adventures the players will encounter.</p>
+          <p className="lede">The players, known as <strong>Agents</strong>, investigate those mysteries inside the game. The historical materials are not simply background information. They are brought to the table, examined, compared, and used as evidence that can reveal new routes, expose contradictions, identify people or places, and change what the Agents are able to do.</p>
+          <p className="lede">In research-heavy play, the group can go further. During <strong>Session Zero</strong>, the pregame planning session, and at appropriate points between later sessions, players can research additional real-world sources and bring what they discover back to the table. Those discoveries can become part of the ongoing investigation and help shape where the adventure goes next.</p>
+          <p className="lede"><strong>The sources themselves are real. What the players uncover through them belongs to the game.</strong> A historical map might reveal a hidden smuggling route. A directory might identify someone the Agents need to find. A newspaper might expose a contradiction. A ledger might provide access, strengthen a negotiation, or completely change the group?s understanding of what is happening inside the Branch.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#how-tcc-works">See how play begins</a>
             <Link className="button button-secondary" to="/experience">Enter The Missing Name</Link>

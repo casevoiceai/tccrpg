@@ -1021,3 +1021,19 @@ footer p {
     font-size: clamp(2.3rem, 10vw, 3.25rem);
   }
 }
+
+/* Locked homepage opening: long-form intro typography */
+.story-hero .orientation-hero-copy h1 {
+  max-width: 26ch;
+  font-size: clamp(2.35rem, 4.2vw, 3.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 47.99rem) {
+  .story-hero .orientation-hero-copy h1 {
+    max-width: none;
+    font-size: clamp(2.1rem, 9vw, 3rem);
+    line-height: 1.08;
+  }
+}
