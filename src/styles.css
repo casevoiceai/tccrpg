@@ -1146,6 +1146,21 @@ footer p {
   line-height: 1.6;
 }
 
+.records-room-art {
+  width: min(100%, 50rem);
+  margin: 1.75rem 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: var(--ink-raised);
+  box-shadow: 0 1.4rem 3rem rgba(0, 0, 0, 0.35);
+}
+
+.records-room-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .table-opening-example {
   width: min(100%, 48rem);
   gap: 0.8rem;

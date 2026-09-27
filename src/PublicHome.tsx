@@ -48,6 +48,9 @@ export default function PublicHome() {
         <div>
           <h2 className="table-opening-heading">The records room smells like coal smoke.</h2>
           <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves.<br />Somewhere in the corridor, a pair of footsteps stops, then starts again, closer this time.</p>
+          <figure className="records-room-art">
+            <img src="/records-room-scene.webp" alt="An empty historical records room with iron shelves, old ledgers, a locked cabinet, and a dim corridor beyond." />
+          </figure>
           <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall.”</p>
             <p><strong>Player:</strong> “I check it for a label.”</p>
