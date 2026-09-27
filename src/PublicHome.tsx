@@ -48,21 +48,20 @@ export default function PublicHome() {
         <div>
           <h2 className="table-opening-heading">The records room smells like coal smoke.</h2>
           <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves.<br />Somewhere in the corridor, a pair of footsteps stops, then starts again, closer this time.</p>
-          <figure className="records-room-art">
-            <img src="/records-room-scene.webp" alt="An empty historical records room with iron shelves, old ledgers, a locked cabinet, and a dim corridor beyond." />
-          </figure>
-          <div className="play-example table-opening-example">
-            <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall.”</p>
-            <p><strong>Player:</strong> “I check it for a label.”</p>
-            <p><strong>Inspector:</strong> “A brass plate: MUNICIPAL RECORDS — 1891–1896.”</p>
-            <p className="scene-stage">The label is in plain sight. No roll.</p>
-            <p><strong>Another player:</strong> “I force it open before whoever is out there reaches us.”</p>
-            <p><strong>Inspector:</strong> “Give me Strength plus Force.”</p>
-            <p className="scene-roll"><strong>Strength 4 + Force 2 = 6d6</strong> → 1, 2, 3, 5, 6, 6.</p>
-            <p><strong>Inspector:</strong> “You get it open. The extra 6 buys you speed. The footsteps are still outside.”</p>
-            <p className="scene-ending">Inside: city records tied in black cord. <strong>One folder is missing.</strong></p>
+          <div className="records-room-spread">
+            <figure className="records-room-art">
+              <img src="/records-room-scene.webp" alt="An empty historical records room with iron shelves, old ledgers, a locked cabinet, and a dim corridor beyond." />
+            </figure>
+            <div className="play-example table-opening-example">
+              <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. Brass plate: MUNICIPAL RECORDS — 1891–1896.”</p>
+              <p><strong>Player:</strong> “I force it open before whoever is out there reaches us.”</p>
+              <p><strong>Inspector:</strong> “Strength plus Force.”</p>
+              <p className="scene-roll"><strong>Strength 4 + Force 2 = 6d6</strong><br />1, 2, 3, 5, 6, 6.</p>
+              <p><strong>Inspector:</strong> “You get it open. The extra 6 buys you speed. The footsteps are still outside.”</p>
+              <p className="scene-ending">Inside: city records tied in black cord. <strong>One folder is missing.</strong></p>
+              <p className="year-zero-summary">TCC uses the <strong><a className="year-zero-link" href="https://freeleaguepublishing.com/wp-content/uploads/2023/11/YZE-Standard-Reference-Document.pdf" target="_blank" rel="noreferrer">Year Zero Engine</a></strong>: one 6 succeeds, extra 6s improve the result, and no 6s means failure changes the situation.</p>
+            </div>
           </div>
-          <p className="year-zero-summary">TCC uses the <strong>Year Zero Engine</strong>. Routine actions keep moving. When the outcome is uncertain and the result matters, <strong>Attribute + Skill</strong> builds a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result. No 6s means the action fails and the situation changes.</strong></p>
         </div>
       </section>
 
