@@ -13,8 +13,8 @@ export default function PublicHome() {
     <main className="orientation-page">
       <section className="orientation-hero story-hero" aria-labelledby="hero-heading">
         <div className="orientation-hero-copy">
-          <div className="hero-title-lockup" aria-label="Time-Crawl Chronicles, Tabletop Roleplaying Game">
-            <p className="hero-title-logo">Time-Crawl Chronicles</p>
+          <div className="hero-title-lockup" aria-label="Time Crawl Chronicles, Tabletop Roleplaying Game">
+            <p className="hero-title-logo">Time Crawl Chronicles</p>
             <p className="hero-title-subtitle">Tabletop Roleplaying Game</p>
           </div>
           <h1 id="hero-heading">Real local history becomes mystery, adventure, and storytelling.</h1>
