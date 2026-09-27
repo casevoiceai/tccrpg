@@ -1137,25 +1137,40 @@ footer p {
   max-width: 40ch;
 }
 
+#how-tcc-works .table-scene-setting {
+  max-width: 44rem;
+  margin-bottom: 0.5rem;
+  color: var(--paper);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.12rem;
+  line-height: 1.6;
+}
+
 .table-opening-example {
   width: min(100%, 48rem);
-  margin: 1.75rem 0 2.4rem clamp(0rem, 7vw, 6rem);
+  gap: 0.8rem;
+  margin: 1.6rem 0 2.25rem clamp(0rem, 7vw, 6rem);
 }
 
-#how-tcc-works .table-opening-example ~ p {
-  margin-bottom: 1.15rem;
+.table-opening-example .scene-stage {
+  color: var(--paper-dim);
+  font-style: italic;
 }
 
-.dice-result-list {
-  display: grid;
+.table-opening-example .scene-roll {
+  color: var(--paper);
+}
+
+.table-opening-example .scene-ending {
+  margin-top: 0.25rem;
+  color: var(--paper);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+}
+
+#how-tcc-works .year-zero-summary {
   max-width: 48rem;
-  gap: 0.55rem;
-  margin: 1.4rem 0 1.1rem;
-}
-
-.dice-result-list p {
-  margin: 0;
-  color: var(--paper-muted);
+  margin-bottom: 1.4rem;
 }
 
 .orientation-section .section-hairline {

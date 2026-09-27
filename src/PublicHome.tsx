@@ -47,28 +47,19 @@ export default function PublicHome() {
       <section className="orientation-section" id="how-tcc-works">
         <div>
           <h2 className="table-opening-heading">The records room smells like coal smoke.</h2>
-          <p>Dust hangs in the lamplight. Old paper crowds the shelves. Somewhere beyond the door, footsteps are moving closer.</p>
+          <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves. Somewhere in the corridor, a pair of footsteps stops, then starts again, closer this time.</p>
           <div className="play-example table-opening-example">
-            <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
-            <p><strong>Player:</strong> “I check the cabinet for a label before I touch it.”</p>
-            <p><strong>Inspector:</strong> “It has one. The brass plate reads: MUNICIPAL RECORDS — 1891–1896.”</p>
-            <p>No dice. The label is plainly visible, so the Inspector gives the player the information and the game keeps moving.</p>
-            <p><strong>Another player:</strong> “I force the cabinet open before whoever is in the hall gets here.”</p>
-            <p><strong>Inspector:</strong> “All right. The cabinet is locked and those footsteps are getting closer. Give me Strength plus Force.”</p>
-            <p>The Agent has <strong>Strength 4</strong> and <strong>Force 2</strong>, so the player rolls <strong>6d6</strong>.</p>
-            <p><strong>1, 2, 3, 5, 6, 6.</strong></p>
-            <p><strong>Inspector:</strong> “You get it open. The second 6 buys you speed. The cabinet gives before the footsteps reach the door.”</p>
-            <p>Inside is a stack of city records tied in black cord.</p>
-            <p><strong>One folder is already missing.</strong></p>
+            <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall.”</p>
+            <p><strong>Player:</strong> “I check it for a label.”</p>
+            <p><strong>Inspector:</strong> “A brass plate: MUNICIPAL RECORDS — 1891–1896.”</p>
+            <p className="scene-stage">The label is in plain sight. No roll.</p>
+            <p><strong>Another player:</strong> “I force it open before whoever is out there reaches us.”</p>
+            <p><strong>Inspector:</strong> “Give me Strength plus Force.”</p>
+            <p className="scene-roll"><strong>Strength 4 + Force 2 = 6d6</strong> → 1, 2, 3, 5, 6, 6.</p>
+            <p><strong>Inspector:</strong> “You get it open. The extra 6 buys you speed. The footsteps are still outside.”</p>
+            <p className="scene-ending">Inside: city records tied in black cord. <strong>One folder is missing.</strong></p>
           </div>
-          <p><strong>That is the Year Zero Engine in play.</strong></p>
-          <p>Routine or obvious actions do not need a roll. When the outcome becomes uncertain and the result matters, the Inspector calls for one.</p>
-          <p><strong>Attribute + Skill</strong> builds the pool of six-sided dice.</p>
-          <div className="dice-result-list">
-            <p><strong>One 6:</strong> the action succeeds.</p>
-            <p><strong>Additional 6s:</strong> improve the result.</p>
-            <p><strong>No 6s:</strong> the action fails, and the situation changes.</p>
-          </div>
+          <p className="year-zero-summary">TCC uses the <strong>Year Zero Engine</strong>. Routine actions keep moving. When the outcome is uncertain and the result matters, <strong>Attribute + Skill</strong> builds a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result. No 6s means the action fails and the situation changes.</strong></p>
           <p className="section-hairline"><strong>Roll only when the outcome is uncertain and the result matters.</strong></p>
         </div>
       </section>
