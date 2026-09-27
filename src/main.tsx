@@ -1,8 +1,8 @@
-import { StrictMode, useEffect } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Link, useLocation } from 'react-router-dom'
+import { BrowserRouter, useLocation } from 'react-router-dom'
 import App from './App'
-import { retryPendingPortalSubmission } from './analytics'
 import { PlaytestPage, UpdatesPage } from './Build3Pages'
 import Build3Privacy from './Build3Privacy'
 import ReviewerPage from './ReviewerPage'
@@ -12,25 +12,12 @@ import './build3.css'
 function PortalRoot() {
   const location = useLocation()
 
-  useEffect(() => {
-    retryPendingPortalSubmission()
-  }, [])
-
   if (location.pathname === '/playtest') return <PlaytestPage />
   if (location.pathname === '/updates') return <UpdatesPage />
   if (location.pathname === '/privacy') return <Build3Privacy />
   if (location.pathname === '/review') return <ReviewerPage />
 
-  return (
-    <>
-      {['/experience', '/demo'].includes(location.pathname) && (
-        <div className="data-notice">
-          Finishing the tabletop demonstration sends an anonymous testing snapshot to TCC. No name or email is attached. <Link to="/privacy">What is collected?</Link>
-        </div>
-      )}
-      <App />
-    </>
-  )
+  return <App />
 }
 
 createRoot(document.getElementById('root')!).render(

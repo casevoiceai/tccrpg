@@ -65,6 +65,27 @@ export function submitPortalSnapshot(
   })
 }
 
+export function submitDevelopmentSurvey(discovery: DiscoverySession): Promise<ApiResult> {
+  return postJson('/api/session', {
+    session_id: discovery.sessionId,
+    portal_version: '0.5',
+    demo_version: 'development-survey-1',
+    discovery: {
+      history_interests: discovery.historyInterests,
+      play_preference: discovery.playPreference,
+      supernatural_preference: discovery.supernaturalPreference,
+      research_preference: discovery.researchPreference,
+      research_recovery_reaction: discovery.researchRecoveryReaction,
+      risk_preference: discovery.riskPreference,
+      rpg_experience: discovery.rpgExperience,
+      role_preference: discovery.rolePreference,
+    },
+    choices: {},
+    debrief: {},
+    optional_source_opened: false,
+    website: '',
+  })
+}
 export type PlaytestApplicationPayload = {
   session_id: string
   name: string

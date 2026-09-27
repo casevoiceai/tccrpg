@@ -114,10 +114,8 @@ export function PlaytestPage() {
       <main className="form-page">
         <section className="form-success">
           <p className="eyebrow">Playtest application received</p>
-          <h1>Thank you.</h1>
-          <p>
-            Applying does not guarantee a seat. Early TCC tables will be deliberately mixed by experience level so the game can be tested from several perspectives.
-          </p>
+          <h1>Application received.</h1>
+          <p>Early tables will include people with different levels of RPG experience. Applying does not guarantee a seat, but every application helps us understand who is interested in testing the game.</p>
           <div className="form-success-actions">
             <Link className="button button-primary" to="/experience">Replay the tabletop demo</Link>
             <Link className="button button-secondary" to="/">Return home</Link>
@@ -130,12 +128,11 @@ export function PlaytestPage() {
   return (
     <main className="form-page">
       <section className="form-intro">
-        <p className="eyebrow">TCC development playtesters</p>
-        <h1>Help us find where the game breaks.</h1>
-        <p className="lede">
-          Time-Crawl Chronicles is still under development. Early playtests are for learning whether people can understand, run, and enjoy the game without its designer explaining every step.
-        </p>
-        <p>No previous RPG experience is required. Direct criticism is useful.</p>
+        <p className="eyebrow">TCC playtesting</p>
+        <h1>Help test TCC before it is finished.</h1>
+        <p className="lede">We are looking for people willing to play an unfinished tabletop RPG and tell us what was confusing, slow, dull, difficult to run, or genuinely fun.</p>
+        <p>No previous tabletop RPG experience is required.</p>
+        <p>Early playtests are meant to answer practical questions: Can new players understand the game? Can an Inspector run it without the designer sitting beside them? Does the history actually matter during play? Do the rules get out of the way when they should?</p>
       </section>
 
       <form className="portal-form" onSubmit={submit}>
@@ -242,7 +239,7 @@ export function PlaytestPage() {
         )}
 
         <button className="button button-primary" type="submit" disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Sending…' : 'Apply to playtest TCC'}
+          {status === 'submitting' ? 'Sendingâ€¦' : 'Apply to playtest TCC'}
         </button>
 
         <p className="form-privacy-note">
@@ -284,7 +281,7 @@ export function UpdatesPage() {
       <main className="form-page">
         <section className="form-success">
           <p className="eyebrow">TCC release updates</p>
-          <h1>You’re on the update list.</h1>
+          <h1>Youâ€™re on the update list.</h1>
           <p>This signup is only for TCC release and major project updates. It does not make you a playtester.</p>
           <Link className="button button-primary" to="/">Return home</Link>
         </section>
@@ -296,8 +293,9 @@ export function UpdatesPage() {
     <main className="form-page compact-form-page">
       <section className="form-intro">
         <p className="eyebrow">TCC release updates</p>
-        <h1>Tell me when TCC is ready.</h1>
-        <p className="lede">This is separate from the playtester application. We will use this address for TCC release and major project updates.</p>
+        <h1>Get major TCC updates.</h1>
+        <p className="lede">Leave your email if you want release news and major development updates.</p>
+        <p>This list is separate from playtest applications. Joining it does not make you a playtester.</p>
       </section>
 
       <form className="portal-form compact-form" onSubmit={submit}>
@@ -324,7 +322,7 @@ export function UpdatesPage() {
         )}
 
         <button className="button button-primary" type="submit" disabled={!consent || status === 'submitting'}>
-          {status === 'submitting' ? 'Saving…' : 'Send me TCC updates'}
+          {status === 'submitting' ? 'Savingâ€¦' : 'Send me TCC updates'}
         </button>
       </form>
     </main>
