@@ -50,22 +50,24 @@ export default function PublicHome() {
           <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
             <p><strong>Player:</strong> “I check the cabinet for a label before I touch it.”</p>
-            <p>The label is visible. The Inspector tells the player what it says. No roll is needed.</p>
+            <p><strong>Inspector:</strong> “It has one. The brass plate reads: MUNICIPAL RECORDS — 1891–1896.”</p>
+            <p>No dice. The label is plainly visible, so the Inspector gives the player the information and the game keeps moving.</p>
             <p><strong>Another player:</strong> “I force the cabinet open before whoever is in the hall gets here.”</p>
+            <p><strong>Inspector:</strong> “All right. The cabinet is locked and those footsteps are getting closer. Give me Strength plus Force.”</p>
+            <p>The Agent has <strong>Strength 4</strong> and <strong>Force 2</strong>, so the player rolls <strong>6d6</strong>.</p>
+            <p><strong>1, 2, 3, 5, 6, 6.</strong></p>
+            <p><strong>Inspector:</strong> “You get it open. The second 6 buys you speed. The cabinet gives before the footsteps reach the door.”</p>
+            <p>Inside is a stack of city records tied in black cord.</p>
+            <p><strong>One folder is already missing.</strong></p>
           </div>
-          <p>The first player leans in, reads the label, and keeps moving. Nothing stands between the Agent and the information, so the Inspector simply gives it.</p>
-          <p>Then the footsteps draw closer. The second player is no longer just examining the cabinet. They are trying to get it open before whoever is in the hall reaches the door.</p>
-          <p><strong>That is when TCC rolls.</strong></p>
-          <p>TCC uses the <strong>Year Zero Engine</strong>. When an action is uncertain and the result matters, the Inspector chooses the <strong>Attribute + Skill</strong> that fit what the Agent is trying to do. Those dice form the pool.</p>
-          <p><strong>Roll them together.</strong></p>
-          <p>Do not add the numbers.</p>
-          <p>Look for <strong>6s</strong>.</p>
+          <p><strong>That is the Year Zero Engine in play.</strong></p>
+          <p>Routine or obvious actions do not need a roll. When the outcome becomes uncertain and the result matters, the Inspector calls for one.</p>
+          <p><strong>Attribute + Skill</strong> builds the pool of six-sided dice.</p>
           <div className="dice-result-list">
             <p><strong>One 6:</strong> the action succeeds.</p>
             <p><strong>Additional 6s:</strong> improve the result.</p>
             <p><strong>No 6s:</strong> the action fails, and the situation changes.</p>
           </div>
-          <p>Back in the records room, a failed roll does not mean “nothing happens.” The footsteps may reach the door before the cabinet opens. The lock may break loudly enough to give the Agent away. The cabinet may open, but leave the Agent in a worse position.</p>
           <p className="section-hairline"><strong>Roll only when the outcome is uncertain and the result matters.</strong></p>
         </div>
       </section>
