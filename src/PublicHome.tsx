@@ -48,20 +48,18 @@ export default function PublicHome() {
         <div>
           <h2 className="table-opening-heading">The records room smells like coal smoke.</h2>
           <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves.<br />Somewhere in the corridor, a pair of footsteps stops, then starts again, closer this time.</p>
-          <div className="records-room-spread">
-            <figure className="records-room-art">
-              <img src="/records-room-scene.webp" alt="An empty historical records room with iron shelves, old ledgers, a locked cabinet, and a dim corridor beyond." />
-            </figure>
-            <div className="play-example table-opening-example">
-              <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. Brass plate: MUNICIPAL RECORDS — 1891–1896.”</p>
-              <p><strong>Player:</strong> “I force it open before whoever is out there reaches us.”</p>
-              <p><strong>Inspector:</strong> “Strength plus Force.”</p>
-              <p className="scene-roll"><strong>Strength 4 + Force 2 = 6d6</strong><br />1, 2, 3, 5, 6, 6.</p>
-              <p><strong>Inspector:</strong> “You get it open. The extra 6 buys you speed. The footsteps are still outside.”</p>
-              <p className="scene-ending">Inside: city records tied in black cord. <strong>One folder is missing.</strong></p>
-              <p className="year-zero-summary">TCC uses the <strong><a className="year-zero-link" href="https://freeleaguepublishing.com/wp-content/uploads/2023/11/YZE-Standard-Reference-Document.pdf" target="_blank" rel="noreferrer">Year Zero Engine</a></strong>: one 6 succeeds, extra 6s improve the result, and no 6s means failure changes the situation.</p>
-            </div>
+          <figure className="records-room-art">
+            <img src="/records-room-scene.webp" alt="An empty historical records room with iron shelves, old ledgers, a locked cabinet, and a dim corridor beyond." />
+          </figure>
+          <div className="table-play-card">
+            <p><strong>Inspector:</strong> “The cabinet is locked. Brass plate: MUNICIPAL RECORDS — 1891–1896.”</p>
+            <p><strong>Player:</strong> “I force it open before whoever is in the corridor gets here.”</p>
+            <p><strong>Inspector:</strong> “Strength plus Force.”</p>
+            <p className="scene-roll"><strong>Strength 4 + Force 2 = 6d6</strong> → 1, 2, 3, 5, 6, 6.</p>
+            <p><strong>Inspector:</strong> “Two 6s. It opens fast. The footsteps are still outside.”</p>
+            <p className="scene-ending">Inside are city records tied in black cord. <strong>One folder is missing.</strong></p>
           </div>
+          <p className="year-zero-summary">TCC uses the <strong><a className="year-zero-link" href="https://freeleaguepublishing.com/wp-content/uploads/2023/11/YZE-Standard-Reference-Document.pdf" target="_blank" rel="noreferrer">Year Zero Engine</a></strong>. One 6 succeeds. Extra 6s improve the result. No 6s means the situation changes.</p>
         </div>
       </section>
 
