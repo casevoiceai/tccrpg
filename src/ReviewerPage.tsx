@@ -230,8 +230,8 @@ export default function ReviewerPage() {
 
           <div className="review-public-option">
             <h2>Not an invited reviewer?</h2>
-            <p>You can still experience the public TCC prototype and give post-demo feedback.</p>
-            <Link className="button button-secondary" to="/discover">Try the TCC experience</Link>
+            <p>You can still view the public tabletop demonstration and give post-demo feedback.</p>
+            <Link className="button button-secondary" to="/discover">Open the tabletop demo</Link>
           </div>
         </section>
       </main>
@@ -289,7 +289,7 @@ export default function ReviewerPage() {
           </div>
 
           <div className="review-demo-link">
-            <Link to="/experience">Open The Missing Name guided demo</Link>
+            <Link to="/experience">Open The Missing Name tabletop demo</Link>
           </div>
         </section>
       </main>

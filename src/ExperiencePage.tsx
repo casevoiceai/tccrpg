@@ -41,8 +41,8 @@ function PartyRail() {
         </article>
       ))}
       <article className="party-card you-card">
-        <strong>You</strong>
-        <span>Fourth Agent</span>
+        <strong>Example player</strong>
+        <span>Example Agent seat</span>
       </article>
     </div>
   )
@@ -71,8 +71,9 @@ function DecisionPanel({
 
   return (
     <section className="decision-panel">
-      <p className="eyebrow">Your turn</p>
+      <p className="eyebrow">Example player response</p>
       <h2>{decision.prompt}</h2>
+      <p className="decision-helper">Choose one example response to see how this table could continue. At a real TCC table, a player can attempt anything that makes sense in the fiction.</p>
       <div className="experience-choice-list" role="radiogroup" aria-label={decision.prompt}>
         {decision.choices.map((choice) => {
           const selected = choice.id === selectedId
@@ -127,7 +128,7 @@ function Debrief({ state, onChange, onSubmit }: {
     },
     {
       field: 'researchAfter' as const,
-      title: 'After experiencing it, how do you feel about research affecting gameplay?',
+      title: 'After seeing the demonstration, how do you feel about research affecting gameplay?',
       options: ['More interested than before', 'About the same', 'Less interested', 'I still need a full session to decide'],
     },
     {
@@ -226,7 +227,7 @@ export default function ExperiencePage() {
     <main className="experience-page">
       <header className="experience-header">
         <div>
-          <p className="eyebrow">Level 3: Guided Chronicle</p>
+          <p className="eyebrow">Tabletop demonstration</p>
           <h1>The Missing Name</h1>
         </div>
         <div className="experience-meta" aria-label="Experience progress">
@@ -235,6 +236,8 @@ export default function ExperiencePage() {
           <button className="text-button" type="button" onClick={restart}>Restart</button>
         </div>
       </header>
+
+      <div className="demo-frame-note"><strong>Demonstration only.</strong> The browser is showing a TCC table in motion. The buttons let you inspect example player choices. They are not the limits of what a player can do in the actual tabletop game.</div>
 
       <PartyRail />
 
@@ -250,7 +253,7 @@ export default function ExperiencePage() {
             <p>Three days after the discrepancy was discovered, a sealed section of the old works began appearing in photographs where no building exists today.</p>
           </Inspector>
           <div className="assignment-card">
-            <h2>Your assignment</h2>
+            <h2>The table's assignment</h2>
             <ul>
               <li>Identify Elias Vale.</li>
               <li>Recover evidence that he existed.</li>
@@ -264,10 +267,10 @@ export default function ExperiencePage() {
       {state.currentStep === 1 && (
         <section className="scene-panel echo-transition">
           <p className="year-mark">1894</p>
-          <h2>You open your eyes in a body that is not yours.</h2>
+          <h2>The example Agent opens their eyes in a body that is not theirs.</h2>
           <div className="echo-card">
-            <div><span>Your Agent</span><strong>Persistent modern identity</strong></div>
-            <div><span>Your Echo Ware</span><strong>24-year-old freight clerk</strong></div>
+            <div><span>Continuing Agent</span><strong>Persistent modern identity</strong></div>
+            <div><span>Active Echo Ware</span><strong>24-year-old freight clerk</strong></div>
             <div><span>Useful skills</span><strong>Observe · Move · Persuade</strong></div>
           </div>
           <p className="pull-quote">Your Agent remembers the mission. Your Echo Ware remembers the building.</p>
@@ -356,7 +359,7 @@ export default function ExperiencePage() {
       {state.currentStep === 8 && (
         <section className="scene-panel">
           <p className="eyebrow">Group play</p>
-          <h2>You are not acting alone.</h2>
+          <h2>The Agent is not acting alone.</h2>
           <Inspector><p>The next move is risky. Lewis commits to the action with you.</p></Inspector>
           <div className="help-rule"><strong>Your pool: 4d6 → Lewis helps → 5d6</strong><span>Another Agent can improve your chance when their help makes sense in the fiction.</span></div>
           <p className="companion-line">Lewis: “I’m coming with you.”</p>
@@ -443,8 +446,8 @@ export default function ExperiencePage() {
       {state.currentStep === 17 && (
         <section className="scene-panel completion-panel">
           <p className="eyebrow">Demo complete</p>
-          <h2>You just played a small piece of TCC.</h2>
-          <p className="scene-copy">The demo introduced the core pieces without asking you to learn the entire rulebook first.</p>
+          <h2>You just watched an interactive tabletop demonstration of TCC.</h2>
+          <p className="scene-copy">The browser demonstrated the core pieces without pretending to replace the people, conversation, and freedom of an actual TCC table.</p>
           <div className="learned-grid">
             {['Agent + Echo Ware', 'Inspector', 'Historical evidence', 'Year Zero dice', 'Cooperation', 'Temporal threat', 'Ware Strain', 'Consequential choices', 'Return + debrief'].map((item) => <span key={item}>{item}</span>)}
           </div>

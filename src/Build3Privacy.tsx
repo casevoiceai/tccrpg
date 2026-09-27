@@ -7,18 +7,18 @@ export default function Build3Privacy() {
         <p className="eyebrow">Portal data + privacy</p>
         <h1>What the TCC portal collects.</h1>
         <p className="lede">
-          You can complete Orientation, Discovery, and the guided Chronicle without creating an account.
+          You can complete Orientation, Discovery, and the tabletop demonstration without creating an account.
         </p>
       </section>
 
       <section className="privacy-detail-grid">
         <article>
-          <h2>Discovery + guided demo</h2>
+          <h2>Discovery + tabletop demo</h2>
           <p>
-            Your answers are saved in your browser so you can leave and resume. When you finish the guided Chronicle, the portal sends an anonymous testing snapshot to TCC so we can compare what visitors said they wanted, what they chose during the demo, and how they felt afterward.
+            Your answers are saved in your browser so you can leave and resume. When you finish the tabletop demonstration, the portal sends an anonymous testing snapshot to TCC so we can compare what visitors said they wanted, what they chose during the demo, and how they felt afterward.
           </p>
           <p>
-            That snapshot includes a random portal session ID, Discovery selections, guided-demo choices, whether you opened optional source detail, and post-demo answers. It does not include your name or email.
+            That snapshot includes a random portal session ID, Discovery selections, tabletop-demo choices, whether you opened optional source detail, and post-demo answers. It does not include your name or email.
           </p>
         </article>
 

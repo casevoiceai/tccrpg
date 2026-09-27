@@ -119,7 +119,7 @@ export function PlaytestPage() {
             Applying does not guarantee a seat. Early TCC tables will be deliberately mixed by experience level so the game can be tested from several perspectives.
           </p>
           <div className="form-success-actions">
-            <Link className="button button-primary" to="/experience">Replay The Missing Name</Link>
+            <Link className="button button-primary" to="/experience">Replay the tabletop demo</Link>
             <Link className="button button-secondary" to="/">Return home</Link>
           </div>
         </section>

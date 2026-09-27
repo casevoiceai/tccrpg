@@ -23,9 +23,9 @@ function PortalRoot() {
 
   return (
     <>
-      {location.pathname === '/experience' && (
+      {['/experience', '/demo'].includes(location.pathname) && (
         <div className="data-notice">
-          Finishing the guided demo sends an anonymous testing snapshot to TCC. No name or email is attached. <Link to="/privacy">What is collected?</Link>
+          Finishing the tabletop demonstration sends an anonymous testing snapshot to TCC. No name or email is attached. <Link to="/privacy">What is collected?</Link>
         </div>
       )}
       <App />

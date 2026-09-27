@@ -19,6 +19,16 @@ type AccessibilitySettings = {
 }
 
 const ACCESSIBILITY_KEY = 'tcc_portal_accessibility_v1'
+const fullLogo = '/time-crawl-chronicles-logo.svg'
+
+const sessionLoop = [
+  ['1', 'Set the table', 'Choose the Case, Campaign Mode, Rules Level, and Research Mode.'],
+  ['2', 'Get the briefing', 'The Inspector explains what is known, what is uncertain, and why the Agents are being sent in.'],
+  ['3', 'Enter the Branch', 'The Inspector describes the situation. Players decide what their Agents say and do.'],
+  ['4', 'Use rules when needed', 'If the result is obvious, it happens. If it is uncertain and meaningful, dice decide.'],
+  ['5', 'Resolve the case', 'The group can solve, escape, protect, fail forward, or leave part of the problem unresolved.'],
+  ['6', 'Return and close out', 'Record consequences, optional debriefs, and the Branch Canon that matters next.'],
+] as const
 
 const gameplayActions = [
   ['Investigate', 'Find contradictions and follow evidence.'],
@@ -73,13 +83,19 @@ function SiteHeader({
   return (
     <header className="site-header">
       <Link className="brand-link" to="/" aria-label="Time-Crawl Chronicles home">
-        <span className="brand-mark" aria-hidden="true">TCC</span>
+        <img className="brand-logo" src={fullLogo} alt="" />
         <span className="brand-copy">
           <strong>Time-Crawl Chronicles</strong>
-          <span>Reviewer + Playtest Portal</span>
+          <span>Tabletop RPG | Reviewer + Playtest</span>
         </span>
       </Link>
-
+      <nav className="site-nav" aria-label="Primary navigation">
+        <Link to="/">Home</Link>
+        <a href="/#tabletop-loop">How it works</a>
+        <Link to="/experience">Tabletop demo</Link>
+        <Link to="/discover">Discovery</Link>
+        <Link to="/review">Review</Link>
+      </nav>
       <div className="accessibility-wrap">
         <button
           className="utility-button"
@@ -144,21 +160,44 @@ function OrientationPage() {
   return (
     <main className="orientation-page">
       <section className="orientation-hero" aria-labelledby="hero-heading">
-        <p className="eyebrow">Time-Crawl Chronicles</p>
-        <h1 id="hero-heading">History happened once. The Branch remembers differently.</h1>
-        <p className="lede">
-          Time-Crawl Chronicles is a tabletop roleplaying game where real local history becomes the setting for investigation, supernatural conflict, and adventure.
-        </p>
-        <div className="hero-actions">
-          <a className="button button-primary" href="#campaign-setting">See how TCC works</a>
-          <Link className="button button-secondary" to="/review">I’m here to review TCC</Link>
+        <div className="orientation-hero-copy">
+          <p className="eyebrow">A tabletop roleplaying game</p>
+          <h1 id="hero-heading">Real history. Branch fiction. Tabletop play.</h1>
+          <p className="lede">
+            Time-Crawl Chronicles turns the history of real places into tabletop cases. One person is the Inspector. Everyone else plays an Agent. The website explains and demonstrates the game; it is not the game itself.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#tabletop-loop">See how tabletop play works</a>
+            <Link className="button button-secondary" to="/experience">Watch a tabletop demonstration</Link>
+          </div>
+        </div>
+        <div className="orientation-hero-art" aria-hidden="true">
+          <img src={fullLogo} alt="" />
+        </div>
+      </section>
+
+      <section className="orientation-section tabletop-loop-section" id="tabletop-loop">
+        <p className="section-number">01</p>
+        <div>
+          <p className="eyebrow">At the table</p>
+          <h2>Most of the game is a conversation.</h2>
+          <p>The Inspector describes what is happening. A player says what their Agent does. If the result is obvious, it happens. If the result is uncertain and meaningful, the rules step in.</p>
+          <div className="session-loop-grid">
+            {sessionLoop.map(([number, title, body]) => (
+              <article className="session-loop-card" key={number}>
+                <span>{number}</span>
+                <div><h3>{title}</h3><p>{body}</p></div>
+              </article>
+            ))}
+          </div>
+          <p className="tabletop-boundary"><strong>The browser is not TCC.</strong> It can explain the rules, show an example table, collect feedback, and support reviewers or playtesters. The actual game is played by people at a table.</p>
         </div>
       </section>
 
       <section className="orientation-section" id="campaign-setting">
-        <p className="section-number">01</p>
+        <p className="section-number">02</p>
         <div>
-          <h2>Your city already has a campaign setting.</h2>
+          <h2>Every place already has a campaign setting.</h2>
           <p>
             Every place has history. Old industries. Neighborhoods. Disasters. Forgotten people. Political struggles. Local legends. Photographs. Newspapers. Buildings that disappeared.
           </p>
@@ -168,7 +207,7 @@ function OrientationPage() {
       </section>
 
       <section className="orientation-section">
-        <p className="section-number">02</p>
+        <p className="section-number">03</p>
         <div>
           <h2>The Agent stays. The body changes.</h2>
           <div className="concept-grid">
@@ -192,7 +231,7 @@ function OrientationPage() {
       </section>
 
       <section className="orientation-section">
-        <p className="section-number">03</p>
+        <p className="section-number">04</p>
         <div>
           <h2>History isn’t supposed to do this.</h2>
           <p>A Branch is a historical reality that has become unstable.</p>
@@ -204,7 +243,7 @@ function OrientationPage() {
       </section>
 
       <section className="orientation-section">
-        <p className="section-number">04</p>
+        <p className="section-number">05</p>
         <div>
           <h2>TCC isn’t just combat.</h2>
           <div className="action-grid">
@@ -216,7 +255,7 @@ function OrientationPage() {
       </section>
 
       <section className="orientation-section">
-        <p className="section-number">05</p>
+        <p className="section-number">06</p>
         <div>
           <h2>The history is not background decoration.</h2>
           <div className="evidence-lines">
@@ -234,7 +273,7 @@ function OrientationPage() {
       </section>
 
       <section className="orientation-section">
-        <p className="section-number">06</p>
+        <p className="section-number">07</p>
         <div>
           <h2>Your table chooses the stakes.</h2>
           <div className="stakes-grid">
@@ -247,7 +286,7 @@ function OrientationPage() {
       </section>
 
       <section className="orientation-section">
-        <p className="section-number">07</p>
+        <p className="section-number">08</p>
         <div>
           <h2>One person runs the Branch.</h2>
           <p>
@@ -510,17 +549,17 @@ function ProfilePage() {
       </dl>
 
       <section className="profile-next">
-        <p className="eyebrow">Level 3: Guided Chronicle</p>
-        <h2>Ready to try it?</h2>
+        <p className="eyebrow">Tabletop demonstration</p>
+        <h2>See the table loop in action.</h2>
         <p>
-          The next step will place you at a TCC table with an Inspector and three simulated Agents. You will control the fourth Agent.
+          The next step is an interactive demonstration of a TCC table. It shows an Inspector and example Agents, then lets you choose example player responses to see how evidence, rules, and consequences change the situation. It is not a browser version of TCC.
         </p>
         <Link
           className="button button-primary"
           to="/experience"
           onClick={() => track('experience_cta_clicked', { session_id: session.sessionId })}
         >
-          Enter the Branch
+          Open the tabletop demonstration
         </Link>
         <div className="profile-links">
           <Link to="/discover">Change my answers</Link>
@@ -602,8 +641,10 @@ function App() {
         <Routes>
           <Route path="/" element={<OrientationPage />} />
           <Route path="/discover" element={<DiscoveryPage />} />
+          <Route path="/discovery" element={<DiscoveryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/demo" element={<ExperiencePage />} />
           <Route path="/review" element={<ReviewPlaceholder />} />
           <Route path="/playtest" element={<PlaytestPlaceholder />} />
           <Route path="/updates" element={<UpdatesPlaceholder />} />
@@ -617,7 +658,7 @@ function App() {
           <Link to="/playtest">Playtest</Link>
           <Link to="/privacy">Privacy</Link>
         </nav>
-        <p>© {new Date().getFullYear()} Vogtcom LLC. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Vogtcom LLC. The website explains and demonstrates the tabletop game; it is not the game itself.</p>
       </footer>
     </div>
   )
