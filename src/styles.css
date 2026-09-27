@@ -1175,7 +1175,7 @@ footer p {
   display: grid;
   max-width: 50rem;
   gap: 0.7rem;
-  margin: 0 0 1.3rem 1.5rem;
+  margin: 0 auto 1.3rem;
   border-left: 3px solid var(--gold-strong);
   padding: 0.2rem 0 0.2rem 1.25rem;
 }
