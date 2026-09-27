@@ -58,9 +58,7 @@ export default function PublicHome() {
             <p><strong>Another player:</strong> “Then I’m not waiting. I force it open before whoever is out there reaches the room.”</p>
             <p><strong>Inspector:</strong> “Strength plus Force.”</p>
             <p className="scene-roll"><strong>Strength 4 + Force 2 = 6d6</strong> → 1, 2, 3, 5, 6, 6.</p>
-            <p><strong>Inspector:</strong> “Two 6s. The cabinet gives before the footsteps reach the door, and you keep the noise down.”</p>
-            <p className="scene-ending">Inside are city records tied in black cord. One space on the shelf is empty, the dust around it freshly disturbed. <strong>One folder is missing.</strong></p>
-            <p className="scene-ending"><strong>Then the footsteps stop outside the records-room door.</strong></p>
+            <p className="scene-ending"><strong>Inspector:</strong> “Two 6s. The cabinet gives before the footsteps reach the door, and you keep the noise down. Inside are city records tied in black cord. One space on the shelf is empty, the dust around it freshly disturbed. One folder is missing. Then the footsteps stop outside the records-room door.”</p>
           </div>
           <p className="year-zero-summary">That is the <strong><a className="year-zero-link" href="https://freeleaguepublishing.com/wp-content/uploads/2023/11/YZE-Standard-Reference-Document.pdf" target="_blank" rel="noreferrer">Year Zero Engine</a></strong> at work. Obvious information moves without a roll. When the outcome is uncertain and matters, <strong>Attribute + Skill</strong> builds the dice pool. One 6 succeeds; extra 6s improve the result; no 6s means the situation changes.</p>
         </div>
