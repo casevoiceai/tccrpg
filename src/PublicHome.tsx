@@ -47,7 +47,7 @@ export default function PublicHome() {
       <section className="orientation-section" id="how-tcc-works">
         <div>
           <h2 className="table-opening-heading">The records room smells like coal smoke.</h2>
-          <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves. Somewhere in the corridor, a pair of footsteps stops, then starts again, closer this time.</p>
+          <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves.<br />Somewhere in the corridor, a pair of footsteps stops, then starts again, closer this time.</p>
           <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall.”</p>
             <p><strong>Player:</strong> “I check it for a label.”</p>
@@ -60,7 +60,6 @@ export default function PublicHome() {
             <p className="scene-ending">Inside: city records tied in black cord. <strong>One folder is missing.</strong></p>
           </div>
           <p className="year-zero-summary">TCC uses the <strong>Year Zero Engine</strong>. Routine actions keep moving. When the outcome is uncertain and the result matters, <strong>Attribute + Skill</strong> builds a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result. No 6s means the action fails and the situation changes.</strong></p>
-          <p className="section-hairline"><strong>Roll only when the outcome is uncertain and the result matters.</strong></p>
         </div>
       </section>
 
