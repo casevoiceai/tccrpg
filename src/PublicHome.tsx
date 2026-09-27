@@ -63,7 +63,7 @@ export default function PublicHome() {
           <div className="year-zero-bridge">
             <p className="year-zero-summary"><strong>That is the <a className="year-zero-link" href="https://freeleaguepublishing.com/wp-content/uploads/2023/11/YZE-Standard-Reference-Document.pdf" target="_blank" rel="noreferrer">Year Zero Engine</a> at work.</strong> Obvious information moves without a roll. When the outcome is uncertain and matters, <strong>Attribute + Skill</strong> builds the dice pool: one 6 succeeds, extra 6s improve the result, and no 6s means the situation changes.</p>
             <p className="year-zero-turn"><strong>But opening the cabinet is only the beginning.</strong></p>
-            <p className="year-zero-next">The missing folder is not just a clue. It is evidence. And in TCC, evidence can change what the players are able to do next.</p>
+            <p className="year-zero-next">The missing folder is not just a clue. It is evidence.<br />And in TCC, evidence can change what the players are able to do next.</p>
           </div>
         </div>
       </section>
