@@ -46,7 +46,8 @@ export default function PublicHome() {
 
       <section className="orientation-section" id="how-tcc-works">
         <div>
-          <h2 className="table-opening-heading">The records room smells like coal smoke.<br />What do you do?</h2>
+          <h2 className="table-opening-heading">The records room smells like coal smoke.</h2>
+          <p>Dust hangs in the lamplight. Old paper crowds the shelves. Somewhere beyond the door, footsteps are moving closer.</p>
           <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
             <p><strong>Player:</strong> “I check the cabinet for a label before I touch it.”</p>
