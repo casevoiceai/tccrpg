@@ -21,12 +21,18 @@ export default function PublicHome() {
           <p className="lede"><strong>Players dig into the historical record, follow contradictions, and investigate the things history never fully answered.</strong></p>
           <p className="lede"><strong>Every TCC adventure begins in a real place, with its real history: its people, industries, neighborhoods, institutions, folklore, conflicts, and everyday life.</strong></p>
           <p className="lede"><strong>TCC plays with the unknowns of history, not the facts themselves.</strong></p>
-          <p className="lede">Documented people, events, dates, places, and outcomes remain what the historical sources support. TCC builds its fictional mysteries around those facts, especially in the gaps, contradictions, unanswered questions, and stories the surviving record leaves behind. Players do not replace or inhabit documented historical figures. You cannot step into Abraham Lincoln’s body or rewrite a real person’s life. The fictional story plays alongside the historical record, not instead of it.</p>
+          <p className="lede">Documented people, events, dates, places, and outcomes remain what the historical sources support. TCC builds its fictional mysteries around those facts, especially in the gaps, contradictions, unanswered questions, and stories the surviving record leaves behind.</p>
+          <p className="lede">Players do not replace or inhabit documented historical figures. You cannot step into Abraham Lincoln’s body or rewrite a real person’s life. The fictional story plays alongside the historical record, not instead of it.</p>
           <p className="lede">The Game Master, called the <strong>Inspector</strong>, brings real historical material to the table: photographs, maps, newspapers, directories, ledgers, minutes, and other surviving records from the community. Those sources help shape the mysteries, locations, puzzles, and threats the players encounter.</p>
           <p className="lede">The players, called <strong>Agents</strong>, investigate what is happening. The sources are not scenery. They are evidence.</p>
-          <p className="lede">A map might reveal a route nobody knew existed. A directory might put a name at the center of the case. A newspaper might contradict a witness. A ledger might give the Agents the leverage they need to get through a locked door or force someone to start talking.</p>
+          <ul className="hero-evidence-list">
+            <li><strong>A map</strong> might reveal a route nobody knew existed.</li>
+            <li><strong>A directory</strong> might put a name at the center of the case.</li>
+            <li><strong>A newspaper</strong> might contradict a witness.</li>
+            <li><strong>A ledger</strong> might give the Agents the leverage they need to get through a locked door or force someone to start talking.</li>
+          </ul>
           <p className="lede">In research-heavy play, the group can go further. During <strong>Session Zero</strong> and between later sessions, players may search for additional real-world sources and bring what they find back to the table. Those discoveries can change the investigation and influence where the adventure goes next.</p>
-          <p className="lede"><strong>The sources are real. The mystery built around them belongs to the game.</strong></p>
+          <p className="lede"><strong>The historical record sets the boundaries. The adventure begins with what it leaves open.</strong></p>
           <div className="hero-actions">
             <a className="button button-primary" href="#how-tcc-works">See how play begins</a>
             <Link className="button button-secondary" to="/experience">Enter The Missing Name</Link>

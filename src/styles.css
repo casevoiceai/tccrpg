@@ -1100,3 +1100,21 @@ footer p {
     line-height: 1.08;
   }
 }
+
+/* Homepage evidence examples */
+.hero-evidence-list {
+  max-width: 44rem;
+  margin: 0.3rem 0 1rem;
+  padding-left: 1.4rem;
+  color: var(--paper-muted);
+  font-size: 1.12rem;
+  line-height: 1.65;
+}
+
+.hero-evidence-list li + li {
+  margin-top: 0.45rem;
+}
+
+.hero-evidence-list li::marker {
+  color: var(--gold-strong);
+}
