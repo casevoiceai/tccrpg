@@ -46,7 +46,6 @@ export default function PublicHome() {
 
       <section className="orientation-section" id="how-tcc-works">
         <div>
-          <p className="eyebrow">The table opens</p>
           <h2 className="table-opening-heading">The records room smells like coal smoke.<br />What do you do?</h2>
           <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
@@ -54,11 +53,16 @@ export default function PublicHome() {
             <p>The label is plainly visible. You get the information. No roll. No wasted motion.</p>
             <p><strong>Another player:</strong> “I force it open before whoever is in the hall gets here.”</p>
           </div>
-          <p>Now the outcome is uncertain, the clock matters, and failure would change the scene. The dice come out.</p>
-          <p>That conversation is the heart of TCC. The Inspector presents the situation. The Agents decide what they do. The rules enter only when the answer is uncertain and matters.</p>
-          <p>When a roll is needed, TCC uses a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result.</strong></p>
+          <p>Checking a visible label is routine, so it happens. Forcing the cabinet before the footsteps reach the room is different: the outcome is uncertain, and the result matters. <strong>That is when TCC calls for dice.</strong></p>
+          <p>TCC uses the <strong>Year Zero Engine</strong> as its mechanical foundation: pools of six-sided dice, simple success counting, and consequences that change the situation.</p>
+          <p>The Inspector combines the <strong>Attribute + Skill</strong> that best match what the Agent is actually trying to do. If that creates a pool of six dice, roll <strong>6d6</strong> together. Do not add the numbers. Look for 6s.</p>
+          <div className="dice-result-list">
+            <p><strong>No 6s:</strong> the roll fails and the situation changes.</p>
+            <p><strong>One 6:</strong> the action succeeds.</p>
+            <p><strong>More than one 6:</strong> the action succeeds, and the extra 6s can improve the result: faster, quieter, with more information, or in a better position.</p>
+          </div>
           <p className="section-hairline"><strong>Failure changes the situation instead of stopping the game.</strong></p>
-          <p>You choose what your Agent says, investigates, risks, protects, refuses, or attempts. The rules step in when the answer is not already obvious.</p>
+          <p>In this room, failure might mean the cabinet stays shut long enough for the footsteps to reach the door, the lock gives way with a crash, or the Agent gets what they wanted but in a worse position than before.</p>
         </div>
       </section>
 
