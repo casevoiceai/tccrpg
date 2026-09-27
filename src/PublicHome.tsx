@@ -53,8 +53,8 @@ export default function PublicHome() {
             <p>The label is visible. The Inspector tells the player what it says. No roll is needed.</p>
             <p><strong>Another player:</strong> “I force the cabinet open before whoever is in the hall gets here.”</p>
           </div>
-          <p>The first action was simple. The label was there to be read, so the game kept moving.</p>
-          <p>The second action is different. The cabinet is locked, someone is approaching, and the outcome could change what happens next.</p>
+          <p>The first player leans in, reads the label, and keeps moving. Nothing stands between the Agent and the information, so the Inspector simply gives it.</p>
+          <p>Then the footsteps draw closer. The second player is no longer just examining the cabinet. They are trying to get it open before whoever is in the hall reaches the door.</p>
           <p><strong>That is when TCC rolls.</strong></p>
           <p>TCC uses the <strong>Year Zero Engine</strong>. When an action is uncertain and the result matters, the Inspector chooses the <strong>Attribute + Skill</strong> that fit what the Agent is trying to do. Those dice form the pool.</p>
           <p><strong>Roll them together.</strong></p>
