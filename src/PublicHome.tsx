@@ -13,8 +13,11 @@ export default function PublicHome() {
     <main className="orientation-page">
       <section className="orientation-hero story-hero" aria-labelledby="hero-heading">
         <div className="orientation-hero-copy">
-          <p className="eyebrow">Time-Crawl Chronicles</p>
-          <h1 id="hero-heading">Time-Crawl Chronicles is a tabletop roleplaying game that turns real local history into mystery, adventure, and storytelling.</h1>
+          <div className="hero-title-lockup" aria-label="Time-Crawl Chronicles, Tabletop Roleplaying Game">
+            <p className="hero-title-logo">Time-Crawl Chronicles</p>
+            <p className="hero-title-subtitle">Tabletop Roleplaying Game</p>
+          </div>
+          <h1 id="hero-heading">Real local history becomes mystery, adventure, and storytelling.</h1>
           <p className="lede"><strong>Players dig into the historical record, follow contradictions, and investigate the things history never fully answered.</strong></p>
           <p className="lede"><strong>Every TCC adventure grows out of a real place: its people, industries, neighborhoods, institutions, folklore, conflicts, and everyday life.</strong></p>
           <p className="lede"><strong>But the history itself stays intact.</strong> Documented people, events, dates, places, and outcomes remain what the historical sources support. TCC builds its fictional mysteries around those facts, especially in the gaps, contradictions, unanswered questions, and stories the surviving record leaves behind. Players do not replace or inhabit documented historical figures. You cannot step into Abraham Lincoln’s body or rewrite a real person’s life. The fictional story plays alongside the historical record, not instead of it.</p>
