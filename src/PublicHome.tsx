@@ -47,105 +47,111 @@ export default function PublicHome() {
       <section className="orientation-section" id="how-tcc-works">
         <div>
           <p className="eyebrow">The table opens</p>
-          <h2>Someone describes the room. You decide what your character does.</h2>
-          <p>The person running the game tells you what your character can see, hear, and know. They portray the people and threats around you, answer questions about the world, and decide when an uncertain action needs a roll.</p>
-          <p>TCC calls that person the <strong>Inspector</strong>.</p>
+          <h2>The records room smells like coal smoke. What do you do?</h2>
+          <p>Nobody hands you a menu of actions. Someone puts you in the room, tells you what is there, and waits for your answer.</p>
           <div className="play-example">
-            <p><strong>Inspector:</strong> “The records room smells like coal smoke. A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
+            <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
             <p><strong>Player:</strong> “I check the cabinet for a label before I touch it.”</p>
-            <p>The label is plainly visible. The Inspector gives the information. No roll is needed.</p>
-            <p><strong>Another player:</strong> “I force the cabinet open before whoever is in the hall gets here.”</p>
-            <p>Now the timing matters. Failure would change the scene, so the dice come out.</p>
+            <p>The label is plainly visible. You get the information. No roll. No wasted motion.</p>
+            <p><strong>Another player:</strong> “I force it open before whoever is in the hall gets here.”</p>
+            <p>Now the outcome is uncertain, the clock matters, and failure would change the scene. The dice come out.</p>
           </div>
-          <p>TCC uses pools of six-sided dice when an action is uncertain and meaningful. <strong>One 6 succeeds. Extra 6s improve the result. Failure changes the situation instead of stopping the game.</strong></p>
-          <p>The modern-day character you carry from one case to the next is called an <strong>Agent</strong>. You decide what that Agent says, investigates, risks, protects, refuses, or attempts.</p>
+          <p>That conversation is the heart of TCC. The Inspector presents the situation. The Agents decide what they do. The rules enter only when the answer is uncertain and matters.</p>
+          <p>When a roll is needed, TCC uses a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result. Failure changes the situation instead of stopping the game.</strong></p>
+          <p>You choose what your Agent says, investigates, risks, protects, refuses, or attempts. The rules step in when the answer is not already obvious.</p>
         </div>
       </section>
 
       <section className="orientation-section">
         <div>
-          <p className="eyebrow">The evidence is real</p>
-          <h2>The map on the table is not flavor text. It can change the plan.</h2>
-          <p>In TCC, historical research is brought into play. The Inspector can prepare verified source material for the case: maps, photographs, newspapers, directories, ledgers, minutes, memorial records, industrial records, and other sources the locality actually left behind.</p>
-          <p>Depending on the Research Mode, players can also follow real-world leads between sessions and bring new sources back to the table.</p>
-          <p>A map can reveal a route. A photograph can expose a contradiction. A directory can identify the person the group needs to find. A newspaper can show that somebody's story does not match the record.</p>
-          <p>The source does not dictate the answer. It changes what the players know, what they can try, and what leverage they have.</p>
+          <p className="eyebrow">Then the evidence changes the room</p>
+          <h2>A source matters when it gives you a choice you did not have before.</h2>
+          <p>A verified building plan shows a basement coal room. That room belongs to the historical record. You can point to it on the page.</p>
+          <p>Inside the adventure, the coal room may open into an impossible corridor that appears on no surviving plan. A caretaker may swear dead workers built it and that it only opens at midnight.</p>
+          <p>The plan did not solve the case for you. It did something better: it told you what the history supports, exposed where the fiction begins, and gave you something concrete to act on.</p>
+          <p>That is how evidence earns its place in TCC. It can reveal a route, expose a false claim, identify the right person, protect someone, create an escape, strengthen a negotiation, or open another meaningful choice.</p>
           <div className="history-boundary-grid">
-            <article><h3>What the sources support</h3><p>That is the real historical record the case must respect.</p></article>
-            <article><h3>What the game invents</h3><p>That is the fictional case built around the history for play.</p></article>
-            <article><h3>What people believe</h3><p>A witness, source, community, or character may be right, wrong, mistaken, frightened, or lying.</p></article>
+            <article><h3>On the page</h3><p>What the sources actually support remains the historical record.</p></article>
+            <article><h3>Inside the adventure</h3><p>TCC can build mysteries, threats, impossible places, and other fiction around that record.</p></article>
+            <article><h3>In somebody's mouth</h3><p>A witness, character, community, source, or tradition can be right, wrong, frightened, mistaken, or lying.</p></article>
           </div>
-          <p>Once that boundary is clear, TCC can build a fictional historical reality around the verified past. TCC calls that reality a <strong>Branch</strong>.</p>
-          <p>A supernatural event can be completely real inside a Branch without being presented as real-world history.</p>
+          <p>Once that line is clear, the fictional historical reality built around the verified past has a name: a <strong>Branch</strong>.</p>
+          <p>A supernatural event can be completely real inside a Branch without being presented as real-world history. The map stays honest even when the corridor does not.</p>
         </div>
       </section>
 
       <section className="orientation-section">
         <div>
-          <p className="eyebrow">You cross over</p>
-          <h2>You keep your memories. You do not keep your body.</h2>
+          <p className="eyebrow">Then you cross over</p>
+          <h2>Your consciousness crosses. Your modern body stays behind.</h2>
           <div className="cold-open compact-cold-open">
-            <p>Yesterday, your character was sixty-eight years old.</p>
-            <p>Tonight, they open their eyes in 1897 with a young laborer's hands and a foreman calling them by a name that belongs to this assignment.</p>
+            <p>This morning, your character was sixty-eight years old.</p>
+            <p>Tonight, they open their eyes in 1897 with a young laborer's hands, period clothes on their back, and a foreman shouting a name that belongs to this assignment.</p>
           </div>
-          <p>The person behind those eyes is still the same continuing modern-day Agent. Their memories, judgment, relationships, Skills, and long-term choices carry from one Chronicle to another.</p>
-          <p>The historical body and local identity used inside the Branch is called <strong>Echo Ware</strong>. It is fictional and period-compatible. The Agent does not replace, possess, or secretly inhabit a documented historical person.</p>
-          <p>Another case may require completely different Echo Ware. The body changes with the assignment. The Agent is the person who returns.</p>
-        </div>
-      </section>
-      <section className="orientation-section">
-        <div>
-          <p className="eyebrow">The case is waiting</p>
-          <h2>Friday night does not begin with a research assignment.</h2>
-          <p>For the baseline version of TCC, the Inspector arrives with the case prepared. The verified sources needed for play are ready. The historical boundary is clear. The active problem is in motion. The available Echo Ware is ready to choose.</p>
-          <p>This is a <strong>Ready Case</strong>.</p>
-          <p>The group receives the briefing, chooses from the supplied assignment options, enters the Branch, and plays a complete RPG session. No outside research is required before the table can begin.</p>
-          <p>Groups that enjoy research can go farther. The Inspector can offer real-world leads between sessions, and players may search online collections, libraries, archives, historical societies, field locations, newspapers, interviews, maps, photographs, and other appropriate sources.</p>
-          <p>At the deepest research setting, the players can help build the Chronicle by conducting real-world research and submitting what they find. The Inspector still verifies what those sources actually support before that material becomes part of the case.</p>
+          <p>The person behind those eyes has not been replaced. Their memories, judgment, personality, relationships, and long-term choices still belong to the same continuing Agent.</p>
+          <p>Back in the present, the team works through an organization that creates and stabilizes a fictional historical body and local identity for each assignment. That identity can come with an occupation, social position, responsibilities, relationships, ordinary possessions, money, and a place to live or work.</p>
+          <p>TCC calls that present-day organization the <strong>Agency</strong>. It calls the historical body <strong>Echo Ware</strong>.</p>
+          <p>Echo Ware is never a documented historical person. The Agent does not possess Abraham Lincoln, replace a real miner, or secretly take over somebody who actually lived.</p>
+          <p>When the assignment ends, the Agent returns. Memory and consequences can come home. Period money, tools, clothing, and other physical matter stay in the Branch.</p>
         </div>
       </section>
 
       <section className="orientation-section">
         <div>
-          <p className="eyebrow">Before the first scene</p>
-          <h2>The table agrees on what can be true, how hard it can hurt, and where the evidence comes from.</h2>
-          <p>One group may want a grounded historical mystery where every strange event might still have an ordinary explanation. Another may want spirits, monsters, magic, and other impossible things to be objectively real inside the Branch.</p>
-          <p>One group may want forgiving consequences. Another may deliberately choose lasting or potentially lethal stakes.</p>
-          <p>One group may want every historical source ready at the table. Another may want to spend the week between sessions chasing a lead through an archive.</p>
+          <p className="eyebrow">Friday night starts at the table</p>
+          <h2>You can sit down and play without doing homework first.</h2>
+          <p>The case can already be waiting when the group arrives: the verified sources, the historical boundary, the active problem, the evidence that matters, and the available Echo Ware choices.</p>
+          <p>You get the briefing. You choose from the supplied assignment options. You enter the Branch. The game starts.</p>
+          <p>That ready-to-run format is called a <strong>Ready Case</strong>, and it is the baseline Friday-night version of TCC.</p>
+          <p>No player has to spend the week in an archive before the next session can happen. If the group wants more research, the Inspector can open optional real-world leads between sessions and players can follow them through online collections, libraries, archives, historical societies, field locations, newspapers, interviews, maps, photographs, and other sources.</p>
+          <p>Those discoveries can add context, leverage, alternate routes, encounters, or new questions. The next session never depends on somebody completing outside research.</p>
+          <p>At the deepest research setting, players can make real-world research part of play itself. The Inspector still verifies what the sources actually support before that material becomes part of the adventure.</p>
+        </div>
+      </section>
+
+      <section className="orientation-section">
+        <div>
+          <p className="eyebrow">Before the first door opens</p>
+          <h2>Three questions decide what kind of night this becomes.</h2>
+          <p>Can the impossible be objectively real, or must every strange event remain explainable? How hard can consequences hit? Is the evidence already waiting at the table, or does the group want to go looking for more?</p>
+          <p>TCC separates those decisions so a table can choose the kind of experience it actually wants.</p>
           <div className="setting-grid">
             <article>
-              <h3>Campaign Mode</h3>
-              <p>Answers one question: <strong>What kind of reality can be true?</strong> A case can stay historically plausible, leave the supernatural uncertain, or make supernatural forces objectively real.</p>
+              <h3>What can be true?</h3>
+              <p>A case can stay grounded in historically plausible explanations, leave folklore and strange events unresolved, or make supernatural forces objectively real inside the Branch. TCC calls that choice <strong>Campaign Mode</strong>.</p>
             </article>
             <article>
-              <h3>Rules Level</h3>
-              <p>Answers: <strong>How much danger and mechanical detail does the table want?</strong> It can range from a forgiving learning game to permanent and potentially lethal stakes.</p>
+              <h3>How hard can it hurt?</h3>
+              <p>The table can choose forgiving learning play, stronger consequences with recovery, or full stakes where lasting damage and clearly warned lethal risk can enter the game. That choice is the <strong>Rules Level</strong>.</p>
             </article>
             <article>
-              <h3>Research Mode</h3>
-              <p>Answers: <strong>Where does the historical evidence come from?</strong> The case can arrive fully prepared, include optional guided research, or be built through deeper player research.</p>
+              <h3>Where does the evidence come from?</h3>
+              <p>The historical material can arrive fully prepared, open optional guided research between sessions, or make deeper player research part of the game. That choice is <strong>Research Mode</strong>.</p>
             </article>
           </div>
-          <p>These settings are independent. A grounded case can still be deadly. A supernatural campaign can use forgiving rules. A Ready Case can be played at any Rules Level.</p>
+          <p>Those three settings are independent. A grounded case can be dangerous. A supernatural case can use forgiving rules. A fully prepared Ready Case can be played at any Rules Level.</p>
         </div>
       </section>
 
       <section className="orientation-section">
         <div>
-          <p className="eyebrow">Change the place</p>
-          <h2>The rules stay. The history does not.</h2>
-          <p>A mining town leaves behind one kind of record. A port city leaves another. A rural county, industrial neighborhood, river community, or courthouse town carries different institutions, conflicts, industries, folklore, geography, and people into play.</p>
-          <p>A TCC Chronicle is rebuilt around the locality being played rather than dropping the same fictional lore onto every place.</p>
-          <p><strong>Carbondale, Pennsylvania</strong> is the first worked TCC locality because it gives the project a real community and real source material against which the system can be tested. It is the first implementation of TCC, not the definition of the game.</p>
+          <p className="eyebrow">Change the place and the story changes</p>
+          <h2>TCC is not one town wearing different street names.</h2>
+          <p>A coal town leaves one trail behind. A port city leaves another. A rural county, industrial neighborhood, river community, courthouse town, or old resort district carries different maps, institutions, industries, conflicts, folklore, geography, and people into play.</p>
+          <p>The rules travel. The history does not. Each locality changes the evidence on the table, the kinds of questions worth asking, the places an Agent can go, and the pressures that can grow into an adventure.</p>
+          <p><strong>Carbondale, Pennsylvania</strong> is the first worked TCC locality because it gives the system a real community and real source material against which it can be tested. Carbondale is the first implementation of TCC, not the definition of the game.</p>
+          <p>Your town, county, neighborhood, or city does not need to resemble Carbondale to work. It needs a history the table can investigate.</p>
         </div>
       </section>
 
       <section className="orientation-cta">
-        <p className="eyebrow">A case is already open</p>
-        <h2>The Missing Name</h2>
-        <p>Two copies of the same 1894 employee ledger lie side by side. One names a freight worker named Elias Vale. The other does not. Both appear genuine.</p>
-        <p>Then old photographs begin showing a sealed section of the works that does not exist on the surviving plans.</p>
-        <p>The case is fictional, but it demonstrates the actual TCC loop: evidence at the table, free player decisions, dice when uncertainty matters, and a Branch that reacts to what the group discovers.</p>
+        <p className="eyebrow">Now open a case</p>
+        <h2>Two ledgers. One missing name.</h2>
+        <p>It is 1894. Two copies of the same employee ledger lie side by side. In one, a freight worker named Elias Vale exists. In the other, he does not. Both appear genuine.</p>
+        <p>Then old photographs show a sealed section of the works that does not exist on the surviving plans.</p>
+        <p>When the Agents finally reach Elias, his name begins fading from the page while he is still standing in front of them.</p>
+        <p><strong>The Missing Name</strong> is a fictional demonstration case. Its sample documents stand in for the verified local historical sources a published Ready Case would actually bring to the table.</p>
+        <p>Enter it to see the TCC loop in motion: evidence on the table, free player decisions, dice only when uncertainty matters, and a Branch that changes as the group discovers what is happening.</p>
         <div className="hero-actions">
           <Link className="button button-primary" to="/experience">Enter The Missing Name</Link>
           <Link className="button button-secondary" to="/discover">Take the development survey</Link>
