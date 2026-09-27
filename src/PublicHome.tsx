@@ -47,17 +47,17 @@ export default function PublicHome() {
       <section className="orientation-section" id="how-tcc-works">
         <div>
           <p className="eyebrow">The table opens</p>
-          <h2>The records room smells like coal smoke. What do you do?</h2>
-          <p>Nobody hands you a menu of actions. Someone puts you in the room, tells you what is there, and waits for your answer.</p>
-          <div className="play-example">
+          <h2 className="table-opening-heading">The records room smells like coal smoke.<br />What do you do?</h2>
+          <div className="play-example table-opening-example">
             <p><strong>Inspector:</strong> “A locked cabinet sits against the far wall. You hear footsteps in the hall. What do you do?”</p>
             <p><strong>Player:</strong> “I check the cabinet for a label before I touch it.”</p>
             <p>The label is plainly visible. You get the information. No roll. No wasted motion.</p>
             <p><strong>Another player:</strong> “I force it open before whoever is in the hall gets here.”</p>
-            <p>Now the outcome is uncertain, the clock matters, and failure would change the scene. The dice come out.</p>
           </div>
+          <p>Now the outcome is uncertain, the clock matters, and failure would change the scene. The dice come out.</p>
           <p>That conversation is the heart of TCC. The Inspector presents the situation. The Agents decide what they do. The rules enter only when the answer is uncertain and matters.</p>
-          <p>When a roll is needed, TCC uses a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result. Failure changes the situation instead of stopping the game.</strong></p>
+          <p>When a roll is needed, TCC uses a pool of six-sided dice. <strong>One 6 succeeds. Extra 6s improve the result.</strong></p>
+          <p className="section-hairline"><strong>Failure changes the situation instead of stopping the game.</strong></p>
           <p>You choose what your Agent says, investigates, risks, protects, refuses, or attempts. The rules step in when the answer is not already obvious.</p>
         </div>
       </section>

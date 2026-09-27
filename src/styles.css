@@ -1131,3 +1131,20 @@ footer p {
 .story-hero .hero-adventure-lead {
   margin-bottom: 1.75rem;
 }
+
+/* Table-opening section refinements */
+.orientation-section .table-opening-heading {
+  max-width: 40ch;
+}
+
+.table-opening-example {
+  width: min(100%, 48rem);
+  margin: 2rem auto;
+}
+
+.orientation-section .section-hairline {
+  width: fit-content;
+  max-width: 48rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--gold-strong);
+}
