@@ -66,7 +66,7 @@ function RatingSection({
       <h2>{group.title}</h2>
       {group.description && <p className="section-help">{group.description}</p>}
       <div className="rating-table" role="group" aria-label={group.title}>
-        <div className="rating-scale-help">1 = serious problem Â· 2 = weak Â· 3 = workable Â· 4 = strong Â· 5 = excellent Â· N/A = not enough information</div>
+        <div className="rating-scale-help">1 = serious problem · 2 = weak · 3 = workable · 4 = strong · 5 = excellent · N/A = not enough information</div>
         {group.items.map((item) => (
           <label className="rating-row" key={item.id}>
             <span>{item.label}</span>
@@ -206,15 +206,15 @@ export default function ReviewerPage() {
       <main className="review-page">
         <section className="review-gate">
           <p className="eyebrow">TCC private review</p>
-          <h1>Tell us where the game breaks.</h1>
-          <p className="lede">This page is for invited TCC reviewers. We are looking for criticism, not promotion. Review the material you were given, choose the depth that fits your time, and tell us what is unclear, weak, overloaded, derivative, missing, or not ready.</p>
+          <h1>You have the material. Find the weak spots.</h1>
+          <p className="lede">This page is for invited TCC reviewers. Do not sell us on the premise. Stress it. Tell us where the rules become work, where the history stops mattering, where the terminology arrives too early, where the Game Master load gets too heavy, and where the game is not ready for the next table.</p>
 
           <form className="invite-form" onSubmit={verify}>
             <label htmlFor="review-code">Reviewer invitation code</label>
             <div className="invite-row">
               <input id="review-code" required maxLength={64} value={code} onChange={(event) => setCode(event.target.value)} />
               <button className="button button-primary" type="submit" disabled={verifyStatus === 'checking'}>
-                {verifyStatus === 'checking' ? 'Checkingâ€¦' : 'Open review'}
+                {verifyStatus === 'checking' ? 'Checking…' : 'Open review'}
               </button>
             </div>
           </form>
@@ -240,7 +240,7 @@ export default function ReviewerPage() {
     return (
       <main className="review-page">
         <section className="review-paths">
-          <p className="eyebrow">Private review Â· {invite.tcc_version ?? 'current development build'}</p>
+          <p className="eyebrow">Private review · {invite.tcc_version ?? 'current development build'}</p>
           <h1>{invite.reviewer_name ? `Welcome, ${invite.reviewer_name}.` : 'Choose how deep you want to go.'}</h1>
           {invite.expertise && <p className="reviewer-context">Invited perspective: {invite.expertise}</p>}
           {invite.already_submitted && <p className="review-warning">A review has already been submitted with this invitation. You can submit another pass, but it will be stored as a separate review.</p>}
@@ -257,19 +257,19 @@ export default function ReviewerPage() {
             <article>
               <p className="eyebrow">Shortest path</p>
               <h2>Quick review</h2>
-              <p>A short pass on the premise, clarity, and what you actually saw.</p>
+              <p>A short pass on whether the premise lands, whether you understood what play looks like, and where you hit friction.</p>
               <button className="button button-primary" type="button" onClick={() => setPath('quick')}>Choose quick review</button>
             </article>
             <article>
-              <p className="eyebrow">30â€“60 minutes</p>
+              <p className="eyebrow">30–60 minutes</p>
               <h2>Focused review</h2>
-              <p>A deeper pass on the systems or areas you know best.</p>
+              <p>A deeper pass on the systems or areas you know best, with room to follow the problems that matter most.</p>
               <button className="button button-primary" type="button" onClick={() => setPath('focused')}>Choose focused review</button>
             </article>
             <article>
               <p className="eyebrow">Deep review</p>
               <h2>Manuscript critique</h2>
-              <p>A full critique of the assigned manuscript or review packet, including Inspector burden, organization, examples, and readiness for playtesting.</p>
+              <p>A full developmental critique of the assigned manuscript or review packet, including teaching order, Inspector burden, organization, examples, system clarity, and readiness for playtesting.</p>
               {invite.deep_review_ready ? (
                 <p className="path-note">Your assigned manuscript or review packet is linked above.</p>
               ) : (
@@ -287,7 +287,7 @@ export default function ReviewerPage() {
           </div>
 
           <div className="review-demo-link">
-            <Link to="/experience">Open The Missing Name tabletop demo</Link>
+            <Link to="/experience">Open The Missing Name sample case</Link>
           </div>
         </section>
       </main>
@@ -299,8 +299,8 @@ export default function ReviewerPage() {
       <form className="review-form" onSubmit={submit}>
         <header className="review-form-header">
           <p className="eyebrow">{path === 'quick' ? 'Quick' : path === 'focused' ? 'Focused' : 'Deep'} TCC review</p>
-          <h1>Be specific.</h1>
-          <p className="lede">Use N/A when the material did not give you enough information to judge something. Direct criticism is more useful than politeness.</p>
+          <h1>Point to the exact place it fails.</h1>
+          <p className="lede">Use N/A when the material did not give you enough information to judge something. Specific criticism is more useful than a generous score.</p>
           {path === 'deep' && invite.material_url && (
             <p>
               <a className="button button-secondary" href={invite.material_url} target="_blank" rel="noreferrer">
@@ -349,11 +349,11 @@ export default function ReviewerPage() {
             <span>How confident are you in this review based on what you saw?</span>
             <select required value={review.confidence} onChange={(event) => setReview({ ...review, confidence: event.target.value })}>
               <option value="">Choose</option>
-              <option value="1">1 Â· very limited exposure</option>
+              <option value="1">1 · very limited exposure</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
-              <option value="5">5 Â· very confident</option>
+              <option value="5">5 · very confident</option>
             </select>
           </label>
         </section>
@@ -487,7 +487,7 @@ export default function ReviewerPage() {
         <div className="review-submit-area">
           {review.reviewerTypes.length === 0 && <p>Choose at least one reviewer perspective before submitting.</p>}
           <button className="button button-primary" type="submit" disabled={submitStatus === 'submitting' || review.reviewerTypes.length === 0}>
-            {submitStatus === 'submitting' ? 'Saving reviewâ€¦' : 'Submit private critique'}
+            {submitStatus === 'submitting' ? 'Saving review…' : 'Submit private critique'}
           </button>
 
         </div>

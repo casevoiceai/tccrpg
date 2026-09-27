@@ -115,9 +115,9 @@ export function PlaytestPage() {
         <section className="form-success">
           <p className="eyebrow">Playtest application received</p>
           <h1>Application received.</h1>
-          <p>Early tables will include people with different levels of RPG experience. Applying does not guarantee a seat, but every application helps us understand who is interested in testing the game.</p>
+          <p>Early tables will mix people with different levels of RPG experience. Applying does not guarantee a seat, but it tells us who is willing to test the game while it is still changing.</p>
           <div className="form-success-actions">
-            <Link className="button button-primary" to="/experience">Replay the tabletop demo</Link>
+            <Link className="button button-primary" to="/experience">Read The Missing Name again</Link>
             <Link className="button button-secondary" to="/">Return home</Link>
           </div>
         </section>
@@ -129,10 +129,10 @@ export function PlaytestPage() {
     <main className="form-page">
       <section className="form-intro">
         <p className="eyebrow">TCC playtesting</p>
-        <h1>Help test TCC before it is finished.</h1>
-        <p className="lede">We are looking for people willing to play an unfinished tabletop RPG and tell us what was confusing, slow, dull, difficult to run, or genuinely fun.</p>
-        <p>No previous tabletop RPG experience is required.</p>
-        <p>Early playtests are meant to answer practical questions: Can new players understand the game? Can an Inspector run it without the designer sitting beside them? Does the history actually matter during play? Do the rules get out of the way when they should?</p>
+        <h1>The rules are written. Now they have to survive a real table.</h1>
+        <p className="lede">TCC needs players and people willing to run an unfinished game. TCC calls its Game Master the <strong>Inspector</strong>. We want both players and Inspectors to tell us where it drags, where it confuses, where it breaks, and where it becomes the kind of night you want to keep playing.</p>
+        <p>You do not need previous tabletop RPG experience. New players matter here because the game has to explain itself without a designer sitting beside you.</p>
+        <p>Early playtests are for practical questions: Can a new player understand what to do? Can an Inspector run the case without the designer in the room? Do the historical sources create real choices at the table? Do the rules step in when they help and get out of the way when they do not?</p>
       </section>
 
       <form className="portal-form" onSubmit={submit}>
@@ -239,7 +239,7 @@ export function PlaytestPage() {
         )}
 
         <button className="button button-primary" type="submit" disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Sendingâ€¦' : 'Apply to playtest TCC'}
+          {status === 'submitting' ? 'Sending…' : 'Apply to playtest TCC'}
         </button>
 
         <p className="form-privacy-note">
@@ -281,7 +281,7 @@ export function UpdatesPage() {
       <main className="form-page">
         <section className="form-success">
           <p className="eyebrow">TCC release updates</p>
-          <h1>Youâ€™re on the update list.</h1>
+          <h1>You’re on the update list.</h1>
           <p>This signup is only for TCC release and major project updates. It does not make you a playtester.</p>
           <Link className="button button-primary" to="/">Return home</Link>
         </section>
@@ -293,8 +293,8 @@ export function UpdatesPage() {
     <main className="form-page compact-form-page">
       <section className="form-intro">
         <p className="eyebrow">TCC release updates</p>
-        <h1>Get major TCC updates.</h1>
-        <p className="lede">Leave your email if you want release news and major development updates.</p>
+        <h1>Follow TCC as it moves from manuscript to table.</h1>
+        <p className="lede">Leave your email if you want the major development milestones, playtest news, and release updates without having to keep checking the site.</p>
         <p>This list is separate from playtest applications. Joining it does not make you a playtester.</p>
       </section>
 
@@ -322,7 +322,7 @@ export function UpdatesPage() {
         )}
 
         <button className="button button-primary" type="submit" disabled={!consent || status === 'submitting'}>
-          {status === 'submitting' ? 'Savingâ€¦' : 'Send me TCC updates'}
+          {status === 'submitting' ? 'Saving…' : 'Send me TCC updates'}
         </button>
       </form>
     </main>

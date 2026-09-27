@@ -172,7 +172,7 @@ export default function DevelopmentSurveyPage() {
           <div className="survey-intro">
             <p className="eyebrow">Help us shape TCC</p>
             <p className="question-helper">
-              This survey asks what kinds of history, play, research, and risk interest you. Your answers help us understand what potential players want from the game.
+              You have seen what TCC is trying to do. Now tell us what kind of history, play, research, and risk would actually make you want a seat at the table. These answers are development research, not a quiz and not a character builder.
             </p>
           </div>
         )}
@@ -229,15 +229,15 @@ export function SurveyCompletePage() {
   return (
     <main className="profile-page">
       <section className="profile-hero">
-        <p className="eyebrow">Development survey complete</p>
-        <h1>Survey complete. Your answers have been recorded.</h1>
+        <p className="eyebrow">You made it through the case file.</p>
+        <h1>Survey complete. Your answers have been recorded for TCC development.</h1>
         {submitted === false && (
           <p className="quiet-note">Your answers are still saved in this browser, but the submission did not reach the server. You can continue using the site.</p>
         )}
       </section>
       <section className="profile-next">
-        <h2>See how the game works at the table.</h2>
-        <p>The Missing Name is a short fictional sample showing how an Inspector presents a case, how players choose what to do, and when the rules enter play.</p>
+        <h2>Want to see those ideas in motion?</h2>
+        <p>The Missing Name is a short fictional case that shows the table conversation, the evidence, the player decisions, and the moment the Branch stops behaving like ordinary history.</p>
         <div className="hero-actions">
           <Link className="button button-primary" to="/experience">Read The Missing Name</Link>
           <Link className="button button-secondary" to="/playtest">Apply to playtest</Link>

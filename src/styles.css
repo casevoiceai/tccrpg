@@ -978,3 +978,46 @@ footer p {
     font-size: clamp(2rem, 8.5vw, 2.85rem);
   }
 }
+
+/* RPG-editor narrative pass */
+.cold-open {
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  border-left: 3px solid var(--gold-strong);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+}
+
+.cold-open p {
+  margin: 0.25rem 0;
+  color: var(--paper);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  line-height: 1.45;
+}
+
+.compact-cold-open {
+  margin-top: 1.5rem;
+}
+
+.story-hero .orientation-hero-copy h1 {
+  max-width: 22ch;
+  font-size: clamp(2.6rem, 5.2vw, 4.7rem);
+}
+
+.story-panel .scene-copy {
+  max-width: 52rem;
+  line-height: 1.72;
+}
+
+@media (min-width: 48rem) {
+  .orientation-page .orientation-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .story-hero .orientation-hero-copy h1 {
+    max-width: 18ch;
+    font-size: clamp(2.3rem, 10vw, 3.25rem);
+  }
+}
