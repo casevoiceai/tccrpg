@@ -20,12 +20,12 @@ export default function PublicHome() {
           <h1 id="hero-heading">Real local history becomes mystery, adventure, and storytelling.</h1>
           <p className="lede"><strong>Players dig into the historical record, follow contradictions, and investigate the things history never fully answered.</strong></p>
           <p className="lede"><strong>Every TCC adventure begins in a real place, with its real history: its people, industries, neighborhoods, institutions, folklore, conflicts, and everyday life.</strong></p>
-          <p className="lede"><strong>TCC plays with the unknowns of history, not the facts themselves.</strong></p>
+          <p className="lede hero-hairline"><strong>TCC plays with the unknowns of history, not the facts themselves.</strong></p>
           <p className="lede">Documented people, events, dates, places, and outcomes remain what the historical sources support. TCC builds its fictional mysteries around those facts, especially in the gaps, contradictions, unanswered questions, and stories the surviving record leaves behind.</p>
           <p className="lede">Players do not replace or inhabit documented historical figures. You cannot step into Abraham Lincoln’s body or rewrite a real person’s life. The fictional story plays alongside the historical record, not instead of it.</p>
           <p className="lede">The Game Master, called the <strong>Inspector</strong>, brings real historical material to the table: photographs, maps, newspapers, directories, ledgers, minutes, and other surviving records from the community. Those sources help shape the mysteries, locations, puzzles, and threats the players encounter.</p>
           <p className="lede">The players, called <strong>Agents</strong>, investigate what is happening.</p>
-          <p className="lede"><strong>The sources are not scenery. They are evidence.</strong></p>
+          <p className="lede hero-hairline"><strong>The sources are not scenery. They are evidence.</strong></p>
           <ul className="hero-evidence-list">
             <li><strong>A map</strong> might reveal a route nobody knew existed.</li>
             <li><strong>A directory</strong> might put a name at the center of the case.</li>

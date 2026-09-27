@@ -1118,3 +1118,11 @@ footer p {
 .hero-evidence-list li::marker {
   color: var(--gold-strong);
 }
+
+/* Homepage emphasis hairlines */
+.story-hero .hero-hairline {
+  width: fit-content;
+  max-width: 44rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--gold-strong);
+}
