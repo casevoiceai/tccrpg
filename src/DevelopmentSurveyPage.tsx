@@ -230,14 +230,14 @@ export function SurveyCompletePage() {
     <main className="profile-page">
       <section className="profile-hero">
         <p className="eyebrow">Development survey complete</p>
-        <h1>Thanks. That helps us understand what people want from TCC.</h1>
+        <h1>Survey complete. Your answers have been recorded.</h1>
         {submitted === false && (
           <p className="quiet-note">Your answers are still saved in this browser, but the submission did not reach the server. You can continue using the site.</p>
         )}
       </section>
       <section className="profile-next">
-        <h2>See the game in context.</h2>
-        <p>Read The Missing Name for a concrete example of how a TCC Chronicle can begin at the table.</p>
+        <h2>See how the game works at the table.</h2>
+        <p>The Missing Name is a short fictional sample showing how an Inspector presents a case, how players choose what to do, and when the rules enter play.</p>
         <div className="hero-actions">
           <Link className="button button-primary" to="/experience">Read The Missing Name</Link>
           <Link className="button button-secondary" to="/playtest">Apply to playtest</Link>

@@ -43,7 +43,7 @@ function SiteHeader({
       </Link>
       <nav className="site-nav" aria-label="Primary navigation">
         <Link to="/">Home</Link>
-        <a href="/#how-tcc-plays">How TCC Plays</a>
+        <a href="/#how-tcc-works">How TCC Works</a>
         <Link to="/experience">The Missing Name</Link>
         <Link to="/discover">Help Shape TCC</Link>
         <Link to="/playtest">Playtest</Link>
