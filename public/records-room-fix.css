@@ -11,11 +11,7 @@
 }
 
 #how-tcc-works > div > .eyebrow {
-  width: 100% !important;
-  margin: 0 auto 1rem !important;
-  text-align: center !important;
-  font-size: 0.82rem !important;
-  letter-spacing: 0.18em !important;
+  display: none !important;
 }
 
 #how-tcc-works .table-opening-heading {
@@ -64,10 +60,8 @@
   max-width: none !important;
   gap: 0.8rem !important;
   margin: 0 auto 2.1rem !important;
-  border-left: 0 !important;
-  border-top: 1px solid var(--line) !important;
-  border-bottom: 1px solid var(--line) !important;
-  padding: 1.65rem 2rem !important;
+  border: 0 !important;
+  padding: 1.25rem 2rem 1.6rem !important;
   text-align: center !important;
 }
 
@@ -95,35 +89,45 @@
 }
 
 #how-tcc-works .year-zero-bridge {
-  width: min(100%, 66rem) !important;
+  width: 100% !important;
   max-width: none !important;
-  margin: 0 auto !important;
-  border-top: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
   padding: 0 !important;
+  text-align: left !important;
 }
 
 #how-tcc-works .year-zero-summary,
 #how-tcc-works .year-zero-next {
-  max-width: none !important;
+  max-width: 66rem !important;
   margin: 0 0 1rem !important;
   color: var(--paper-muted) !important;
   font-size: clamp(1.03rem, 1.25vw, 1.14rem) !important;
   line-height: 1.72 !important;
+  text-align: left !important;
 }
 
 #how-tcc-works .year-zero-summary {
-  border-top: 1px solid var(--line) !important;
-  padding-top: 1.5rem !important;
+  border: 0 !important;
+  padding-top: 0 !important;
 }
 
 #how-tcc-works .year-zero-turn {
-  max-width: 28ch !important;
+  max-width: none !important;
   margin: 1.7rem 0 0.85rem !important;
   color: var(--paper) !important;
   font-family: Georgia, "Times New Roman", serif !important;
-  font-size: clamp(1.75rem, 2.5vw, 2.45rem) !important;
+  font-size: clamp(1.65rem, 2vw, 2.15rem) !important;
   line-height: 1.16 !important;
   letter-spacing: -0.02em !important;
+  white-space: nowrap !important;
+  text-align: left !important;
+}
+
+#how-tcc-works .year-zero-turn:last-child {
+  margin-top: 2rem !important;
+  border-top: 1px solid var(--line) !important;
+  padding-top: 1.4rem !important;
 }
 
 #how-tcc-works .year-zero-link {
@@ -160,6 +164,7 @@
   }
 
   #how-tcc-works .year-zero-turn {
-    max-width: 18ch !important;
+    white-space: normal !important;
+    font-size: clamp(1.55rem, 7vw, 2rem) !important;
   }
 }
