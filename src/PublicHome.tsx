@@ -33,7 +33,7 @@ export default function PublicHome() {
             <li><strong>A ledger</strong> might give the Agents the leverage they need to get through a locked door or force someone to start talking.</li>
           </ul>
           <p className="lede">In research-heavy play, the group can go further. During <strong>Session Zero</strong> and between later sessions, players may search for additional real-world sources and bring what they find back to the table. Those discoveries can change the investigation and influence where the adventure goes next.</p>
-          <p className="lede"><strong>The historical record sets the boundaries. The adventure begins with what it leaves open.</strong></p>
+          <p className="lede"><strong>The historical record sets the boundaries.<br />The adventure begins with what it leaves open.</strong></p>
           <div className="hero-actions">
             <a className="button button-primary" href="#how-tcc-works">See how play begins</a>
             <Link className="button button-secondary" to="/experience">Enter The Missing Name</Link>
