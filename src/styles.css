@@ -1126,3 +1126,8 @@ footer p {
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--gold-strong);
 }
+
+/* Extra separation before the historical-boundary statement */
+.story-hero .hero-adventure-lead {
+  margin-bottom: 1.75rem;
+}

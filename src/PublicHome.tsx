@@ -19,7 +19,7 @@ export default function PublicHome() {
           </div>
           <h1 id="hero-heading">Real local history becomes mystery, adventure, and storytelling.</h1>
           <p className="lede"><strong>Players dig into the historical record, follow contradictions, and investigate the things history never fully answered.</strong></p>
-          <p className="lede"><strong>Every TCC adventure begins in a real place, with its real history: its people, industries, neighborhoods, institutions, folklore, conflicts, and everyday life.</strong></p>
+          <p className="lede hero-adventure-lead"><strong>Every TCC adventure begins in a real place, with its real history: its people, industries, neighborhoods, institutions, folklore, conflicts, and everyday life.</strong></p>
           <p className="lede hero-hairline"><strong>TCC plays with the unknowns of history, not the facts themselves.</strong></p>
           <p className="lede">Documented people, events, dates, places, and outcomes remain what the historical sources support. TCC builds its fictional mysteries around those facts, especially in the gaps, contradictions, unanswered questions, and stories the surviving record leaves behind.</p>
           <p className="lede">Players do not replace or inhabit documented historical figures. You cannot step into Abraham Lincoln’s body or rewrite a real person’s life. The fictional story plays alongside the historical record, not instead of it.</p>
