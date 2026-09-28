@@ -1,0 +1,9 @@
+#how-tcc-works .year-zero-final {
+  width: min(calc(100vw - 2rem), 88rem) !important;
+  max-width: none !important;
+  text-align: center !important;
+}
+
+#how-tcc-works .year-zero-final span {
+  text-align: center !important;
+}
