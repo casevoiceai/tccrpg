@@ -1498,3 +1498,9 @@ footer p {
   font-size: clamp(1.02rem, 1.2vw, 1.12rem) !important;
   line-height: 1.65 !important;
 }
+
+/* Tighten crossover section close */
+.crossover-section {
+  padding-bottom: 2.5rem !important;
+}
+
