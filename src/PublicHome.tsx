@@ -91,7 +91,7 @@ export default function PublicHome() {
           </div>
           <div className="evidence-change-close">
             <p><strong>If removing the source would not reduce the Agents’ options, leverage, or understanding, the source is probably decoration.</strong></p>
-            <p>History sets the boundary. Evidence changes the options. The players decide what to do next.</p>
+            <p className="evidence-close-lines"><span>History sets the boundary.</span><span>Evidence changes the options.</span><span>The players decide what to do next.</span></p>
           </div>
         </div>
       </section>

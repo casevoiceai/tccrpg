@@ -1,0 +1,21 @@
+.evidence-change-close {
+  width: min(100%, 88rem) !important;
+}
+
+@media (min-width: 64rem) {
+  .evidence-change-close > p:first-child {
+    white-space: nowrap !important;
+  }
+
+  .evidence-close-lines span {
+    display: block !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .evidence-close-lines span {
+    display: block !important;
+    white-space: normal !important;
+  }
+}
