@@ -1248,3 +1248,22 @@ footer p {
   padding-bottom: 2.35rem !important;
 }
 
+
+/* Desktop headline and evidence-close corrections */
+@media (min-width: 64rem) {
+  .story-hero > .hero-centered-header {
+    width: min(calc(100% - 2.5rem), 88rem) !important;
+  }
+
+  .story-hero > .hero-centered-header h1 {
+    width: 100% !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    font-size: clamp(1.85rem, 2.2vw, 2.65rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  body .orientation-page .evidence-change-section {
+    padding-bottom: 2.35rem !important;
+  }
+}
