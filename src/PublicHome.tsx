@@ -96,7 +96,7 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section className="orientation-section">
+      <section className="orientation-section crossover-section">
         <div>
           <p className="eyebrow">Then you cross over</p>
           <h2>Your consciousness crosses. Your modern body stays behind.</h2>

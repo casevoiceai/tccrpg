@@ -1,0 +1,12 @@
+.crossover-section > div > .eyebrow {
+  width: 100% !important;
+  margin: 0 auto 0.7rem !important;
+  text-align: center !important;
+}
+
+.crossover-section h2 {
+  max-width: 22ch !important;
+  margin: 0 auto 1.85rem !important;
+  text-align: center !important;
+  text-wrap: balance !important;
+}
