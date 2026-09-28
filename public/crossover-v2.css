@@ -1,0 +1,141 @@
+/* Crossover section: Version 7 Agent / Echo Ware presentation */
+.crossover-section {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+  padding: 5.25rem 1.25rem !important;
+}
+
+.crossover-section > div {
+  width: min(100%, 72rem) !important;
+  margin: 0 auto !important;
+}
+
+.crossover-section > div > .eyebrow {
+  margin: 0 0 0.85rem !important;
+  text-align: center !important;
+  letter-spacing: 0.18em !important;
+}
+
+.crossover-section h2 {
+  max-width: 21ch !important;
+  margin: 0 auto 2.2rem !important;
+  text-align: center !important;
+  font-size: clamp(3rem, 5vw, 4.7rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+  text-wrap: balance !important;
+}
+.crossover-scene {
+  width: min(100%, 52rem) !important;
+  margin: 0 auto 2.5rem !important;
+  border-left: 3px solid var(--gold-strong) !important;
+  padding: 0.85rem 1.4rem !important;
+  background: rgba(24, 22, 19, 0.58) !important;
+}
+
+.crossover-scene p {
+  margin: 0 !important;
+  color: var(--paper) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.12rem, 1.5vw, 1.32rem) !important;
+  line-height: 1.55 !important;
+}
+
+.crossover-scene p + p {
+  margin-top: 0.55rem !important;
+}
+
+.crossover-lead {
+  width: min(100%, 58rem) !important;
+  margin: 0 auto 2.5rem !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1.05rem, 1.3vw, 1.18rem) !important;
+  line-height: 1.72 !important;
+  text-align: center !important;
+}
+.crossover-grid {
+  display: grid !important;
+  width: min(100%, 66rem) !important;
+  margin: 0 auto 2.6rem !important;
+  gap: 1.25rem !important;
+}
+
+.crossover-grid article {
+  min-height: 12rem !important;
+  border: 1px solid var(--line-strong) !important;
+  background: rgba(25, 23, 20, 0.82) !important;
+  padding: 1.6rem !important;
+}
+
+.crossover-grid h3 {
+  margin: 0 0 0.75rem !important;
+  color: var(--gold-strong) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.35rem, 1.8vw, 1.75rem) !important;
+  line-height: 1.15 !important;
+}
+
+.crossover-grid p {
+  margin: 0 !important;
+  color: var(--paper-muted) !important;
+  font-size: 1rem !important;
+  line-height: 1.62 !important;
+}
+.crossover-boundary {
+  width: min(100%, 58rem) !important;
+  margin: 0 auto 2.5rem !important;
+  border-top: 1px solid var(--line) !important;
+  border-bottom: 1px solid var(--line) !important;
+  padding: 2rem 0 !important;
+  text-align: center !important;
+}
+
+.crossover-boundary h3 {
+  margin: 0 0 0.75rem !important;
+  color: var(--paper) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.55rem, 2vw, 2rem) !important;
+  line-height: 1.2 !important;
+}
+
+.crossover-boundary p,
+.crossover-close {
+  color: var(--paper-muted) !important;
+  font-size: clamp(1.03rem, 1.22vw, 1.14rem) !important;
+  line-height: 1.72 !important;
+}
+
+.crossover-boundary p {
+  max-width: 52rem !important;
+  margin: 0 auto !important;
+}
+.crossover-close {
+  width: min(100%, 58rem) !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+.crossover-close strong {
+  color: var(--paper) !important;
+}
+
+@media (min-width: 48rem) {
+  .crossover-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .crossover-section {
+    padding: 3.75rem 1rem !important;
+  }
+
+  .crossover-section h2 {
+    max-width: 16ch !important;
+    font-size: clamp(2.5rem, 10vw, 3.3rem) !important;
+  }
+
+  .crossover-grid article {
+    min-height: 0 !important;
+  }
+}

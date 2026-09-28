@@ -100,15 +100,21 @@ export default function PublicHome() {
         <div>
           <p className="eyebrow">Then you cross over</p>
           <h2>Your consciousness crosses. Your modern body stays behind.</h2>
-          <div className="cold-open compact-cold-open">
-            <p>This morning, your character was sixty-eight years old.</p>
-            <p>Tonight, they open their eyes in 1897 with a young laborer's hands, period clothes on their back, and a foreman shouting a name that belongs to this assignment.</p>
+          <div className="crossover-scene">
+            <p>This morning, your Agent is sixty-eight years old.</p>
+            <p>Tonight, they open their eyes in 1897 with a young laborer&apos;s hands, period clothes, and a foreman shouting a name that belongs to the assignment.</p>
           </div>
-          <p>The person behind those eyes has not been replaced. Their memories, judgment, personality, relationships, and long-term choices still belong to the same continuing Agent.</p>
-          <p>Back in the present, the team works through an organization that creates and stabilizes a fictional historical body and local identity for each assignment. That identity can come with an occupation, social position, responsibilities, relationships, ordinary possessions, money, and a place to live or work.</p>
-          <p>TCC calls that present-day organization the <strong>Agency</strong>. It calls the historical body <strong>Echo Ware</strong>.</p>
-          <p>Echo Ware is never a documented historical person. The Agent does not possess Abraham Lincoln, replace a real miner, or secretly take over somebody who actually lived.</p>
-          <p>When the assignment ends, the Agent returns. Memory and consequences can come home. Period money, tools, clothing, and other physical matter stay in the Branch.</p>
+          <p className="crossover-lead">The person behind those eyes is still the same continuing Agent. Entering a Branch changes the body and the situation around you. It does not erase who you are.</p>
+          <div className="crossover-grid">
+            <article><h3>Mind: the Agent</h3><p>Your memories, personality, judgment, Skills, modern knowledge, Resolve, and long-term choices remain with the continuing Agent.</p></article>
+            <article><h3>Body: Echo Ware</h3><p>Echo Ware supplies the historical body: physical capability, period appearance, a local role, ordinary possessions, and a believable place in that Branch.</p></article>
+            <article><h3>Connection</h3><p>The present-day Agency uses Rift systems to connect Agent and Echo Ware. Ware Strain measures trouble in that active link.</p></article>
+          </div>
+          <div className="crossover-boundary">
+            <h3>Real historical people remain themselves.</h3>
+            <p>Echo Ware is a fictional historical person created for the assignment. An Agent never replaces, possesses, or secretly inhabits somebody who actually lived.</p>
+          </div>
+          <p className="crossover-close"><strong>When the assignment ends, the Agent returns.</strong> Memory, knowledge, emotional consequences, and Branch Canon can come home. Period money, tools, clothing, and other physical matter stay in the Branch.</p>
         </div>
       </section>
 
