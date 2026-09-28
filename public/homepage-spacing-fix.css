@@ -1,0 +1,4 @@
+/* Homepage opening spacing correction at wide/zoomed-out viewports. */
+.orientation-page .story-hero {
+  min-height: auto !important;
+}
