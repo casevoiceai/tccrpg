@@ -90,8 +90,8 @@ export default function PublicHome() {
             <article><h3>Player choice</h3><p>Evidence should change what the Agents can try: reveal a route, expose a false claim, gain access, protect someone, strengthen a negotiation, or open another meaningful option.</p></article>
           </div>
           <div className="evidence-change-close">
-            <p><strong>If removing the source would not reduce the Agents’ options, leverage, or understanding, the source is probably decoration.</strong></p>
-            <p className="evidence-close-lines"><span>History sets the boundary.</span><span>Evidence changes the options.</span><span>The players decide what to do next.</span></p>
+            <p style={{ whiteSpace: 'nowrap' }}><strong>If removing the source would not reduce the Agents’ options, leverage, or understanding, the source is probably decoration.</strong></p>
+            <p className="evidence-close-lines"><span style={{ display: 'block' }}>History sets the boundary.</span><span style={{ display: 'block' }}>Evidence changes the options.</span><span style={{ display: 'block' }}>The players decide what to do next.</span></p>
           </div>
         </div>
       </section>
