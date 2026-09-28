@@ -73,21 +73,25 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section className="orientation-section">
+      <section className="orientation-section evidence-change-section">
         <div>
           <p className="eyebrow">Then the evidence changes the room</p>
           <h2>A source matters when it gives you a choice you did not have before.</h2>
+          <div className="evidence-change-lead">
           <p>A verified building plan shows a basement coal room. That room belongs to the historical record. You can point to it on the page.</p>
           <p>Inside the adventure, the coal room may open into an impossible corridor that appears on no surviving plan. A caretaker may swear dead workers built it and that it only opens at midnight.</p>
           <p>The plan did not solve the case for you. It did something better: it told you what the history supports, exposed where the fiction begins, and gave you something concrete to act on.</p>
           <p>That is how evidence earns its place in TCC. It can reveal a route, expose a false claim, identify the right person, protect someone, create an escape, strengthen a negotiation, or open another meaningful choice.</p>
+          </div>
           <div className="history-boundary-grid">
             <article><h3>On the page</h3><p>What the sources actually support remains the historical record.</p></article>
             <article><h3>Inside the adventure</h3><p>TCC can build mysteries, threats, impossible places, and other fiction around that record.</p></article>
             <article><h3>In somebody's mouth</h3><p>A witness, character, community, source, or tradition can be right, wrong, frightened, mistaken, or lying.</p></article>
           </div>
+          <div className="evidence-change-close">
           <p>Once that line is clear, the fictional historical reality built around the verified past has a name: a <strong>Branch</strong>.</p>
           <p>A supernatural event can be completely real inside a Branch without being presented as real-world history. The map stays honest even when the corridor does not.</p>
+          </div>
         </div>
       </section>
 
