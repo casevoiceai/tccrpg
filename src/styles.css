@@ -1501,3 +1501,8 @@ footer p {
   padding-bottom: 2.5rem !important;
 }
 
+
+/* Balance Ready Case to settings transition */
+.ready-case-section .ready-case-research { margin-bottom: 0 !important; }
+body .orientation-page .ready-case-section { padding-bottom: 4rem !important; }
+body .orientation-page .settings-section { padding-top: 4rem !important; }

@@ -134,9 +134,8 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section className="orientation-section">
+      <section className="orientation-section settings-section">
         <div>
-          <p className="eyebrow">Before the first door opens</p>
           <h2>Three questions decide what kind of night this becomes.</h2>
           <p>Can the impossible be objectively real, or must every strange event remain explainable? How hard can consequences hit? Is the evidence already waiting at the table, or does the group want to go looking for more?</p>
           <p>TCC separates those decisions so a table can choose the kind of experience it actually wants.</p>
