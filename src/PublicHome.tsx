@@ -160,10 +160,10 @@ export default function PublicHome() {
             <article><h3>The adventure changes</h3><p>The sources reveal different pressures, contradictions, gaps, and open questions. Those are where a locality begins producing mysteries that belong to that place.</p></article>
           </div>
           <div className="locality-finale">
-            <h3>Carbondale is the first worked locality. It is not the template.</h3>
-            <p>Its maps, anthracite history, transportation records, industrial material, people, and places show how one real community can supply the evidence and pressures that shape a Chronicle. Another locality keeps the same TCC rules and brings its own historical record to the table.</p>
-            <p className="locality-finale-rule">Same rules. Different place. Different evidence. Different adventure.</p>
-            <p className="locality-finale-next">The demonstration case below shows what that looks like once play begins.</p>
+            <h3>Carbondale is the first worked locality - not the template.</h3>
+            <p className="locality-finale-copy"><span>Carbondale shows how one real community can shape a Chronicle from its own records, people, places, and pressures.</span><span>Another locality keeps the same TCC rules and brings its own history to the table.</span></p>
+            <p className="locality-finale-rule">Same rules. Different place. Different history. Different adventure.</p>
+            <p className="locality-finale-next">Next, see that process in play.</p>
           </div>
         </div>
       </section>
