@@ -60,11 +60,11 @@
   width: min(100%, 50rem) !important;
   max-width: 50rem !important;
   gap: 0.7rem !important;
-  margin: 0 0 2.1rem 0 !important;
+  margin: 0 auto 2.1rem !important;
   border: 0 !important;
   border-left: 3px solid var(--gold-strong) !important;
   padding: 0.2rem 0 0.2rem 1.25rem !important;
-  text-align: left !important;
+  text-align: center !important;
 }
 
 #how-tcc-works .table-play-card p {
