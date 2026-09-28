@@ -90,9 +90,10 @@
 }
 
 #how-tcc-works .year-zero-bridge {
-  width: 100% !important;
+  width: min(calc(100vw - 2rem), 88rem) !important;
   max-width: none !important;
-  margin: 0 !important;
+  margin: 0 50% !important;
+  transform: translateX(-50%) !important;
   border: 0 !important;
   padding: 0 !important;
   text-align: left !important;
@@ -114,10 +115,13 @@
 }
 
 #how-tcc-works .year-zero-heading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
   max-width: none !important;
   margin: 1.7rem 0 0.85rem !important;
-  border-top: 1px solid var(--line) !important;
-  padding-top: 1.35rem !important;
+  border: 0 !important;
+  padding: 0 !important;
   color: var(--paper) !important;
   font-family: Georgia, "Times New Roman", serif !important;
   font-size: clamp(1.45rem, 1.9vw, 2.05rem) !important;
@@ -125,6 +129,13 @@
   letter-spacing: -0.02em !important;
   white-space: nowrap !important;
   text-align: left !important;
+}
+
+#how-tcc-works .year-zero-heading::after {
+  content: "" !important;
+  flex: 1 1 auto !important;
+  height: 1px !important;
+  background: var(--line) !important;
 }
 
 #how-tcc-works .year-zero-final {
