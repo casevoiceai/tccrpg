@@ -1267,3 +1267,58 @@ footer p {
     padding-bottom: 2.35rem !important;
   }
 }
+
+/* Crossover section cleanup */
+.crossover-section .crossover-title {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 2.2rem !important;
+  text-align: center !important;
+}
+
+.crossover-section .crossover-title span {
+  display: block !important;
+}
+
+.crossover-section .crossover-grid h3 {
+  margin: 0 0 1rem !important;
+  border-bottom: 1px solid var(--line) !important;
+  padding-bottom: 0.85rem !important;
+}
+
+.crossover-section .crossover-close {
+  width: min(100%, 66rem) !important;
+  margin: 0 auto !important;
+  border-top: 1px solid var(--line) !important;
+  padding-top: 2rem !important;
+  text-align: center !important;
+}
+
+.crossover-section .crossover-close h3 {
+  margin: 0 auto 1rem !important;
+  color: var(--paper) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.65rem, 2.2vw, 2.15rem) !important;
+  line-height: 1.2 !important;
+}
+
+.crossover-section .crossover-close p {
+  max-width: 56rem !important;
+  margin: 0 auto !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1.03rem, 1.2vw, 1.14rem) !important;
+  line-height: 1.72 !important;
+  text-align: left !important;
+}
+
+@media (min-width: 64rem) {
+  .crossover-section .crossover-title span {
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .crossover-section .crossover-title span {
+    white-space: normal !important;
+  }
+}

@@ -98,8 +98,7 @@ export default function PublicHome() {
 
       <section className="orientation-section crossover-section">
         <div>
-          <p className="eyebrow">Then you cross over</p>
-          <h2>Your consciousness crosses. Your modern body stays behind.</h2>
+          <h2 className="crossover-title"><span>Your consciousness crosses.</span><span>Your modern body stays behind.</span></h2>
           <div className="crossover-scene">
             <p>This morning, your Agent is sixty-eight years old.</p>
             <p>Tonight, they open their eyes in 1897 with a young laborer&apos;s hands, period clothes, and a foreman shouting a name that belongs to the assignment.</p>
@@ -108,13 +107,12 @@ export default function PublicHome() {
           <div className="crossover-grid">
             <article><h3>Mind: the Agent</h3><p>Your memories, personality, judgment, Skills, modern knowledge, Resolve, and long-term choices remain with the continuing Agent.</p></article>
             <article><h3>Body: Echo Ware</h3><p>Echo Ware supplies the historical body: physical capability, period appearance, a local role, ordinary possessions, and a believable place in that Branch.</p></article>
-            <article><h3>Connection</h3><p>The present-day Agency uses Rift systems to connect Agent and Echo Ware. Ware Strain measures trouble in that active link.</p></article>
+            <article><h3>Connection: the Link</h3><p>The present-day Agency uses Rift systems to connect Agent and Echo Ware. Ware Strain measures trouble in that active link.</p></article>
           </div>
-          <div className="crossover-boundary">
-            <h3>Real historical people remain themselves.</h3>
-            <p>Echo Ware is a fictional historical person created for the assignment. An Agent never replaces, possesses, or secretly inhabits somebody who actually lived.</p>
+          <div className="crossover-close">
+            <h3>Echo Ware is fictional. The Agent is the continuing character.</h3>
+            <p>An Agent never replaces, possesses, or secretly inhabits a documented historical person. When the assignment ends, the Agent returns to the present with memory, knowledge, emotional consequences, and Branch Canon. Period money, tools, clothing, and other physical matter stay in the Branch.</p>
           </div>
-          <p className="crossover-close"><strong>When the assignment ends, the Agent returns.</strong> Memory, knowledge, emotional consequences, and Branch Canon can come home. Period money, tools, clothing, and other physical matter stay in the Branch.</p>
         </div>
       </section>
 
