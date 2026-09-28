@@ -1,5 +1,10 @@
+#how-tcc-works .year-zero-bridge {
+  width: 100% !important;
+  max-width: none !important;
+}
+
 #how-tcc-works .year-zero-final {
-  width: min(calc(100vw - 2rem), 88rem) !important;
+  width: 100% !important;
   max-width: none !important;
   text-align: center !important;
 }
