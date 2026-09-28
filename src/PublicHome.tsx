@@ -143,21 +143,27 @@ export default function PublicHome() {
             <article><h3>Rules Level</h3><p className="settings-question">How dangerous and mechanically detailed is play?</p><p>Choose forgiving learning play, recoverable consequences, or permanent Level 3 stakes with clearly warned lethal risk.</p></article>
             <article><h3>Research Mode</h3><p className="settings-question">Where does the historical evidence come from?</p><p>Play a fully prepared Ready Case, follow optional Guided Investigation leads, or make real-world research part of play through Full Agency.</p></article>
           </div>
-          <div className="settings-close">
-            <p className="settings-close-lead">The settings shape how the game plays. The place gives the campaign its history.</p>
-            <p>Campaign Mode, Rules Level, and Research Mode are independent. A grounded case can be dangerous. A supernatural case can use light rules. A fully prepared Ready Case can be played at any Rules Level.</p>
-            <p>Those choices establish the table&apos;s reality, stakes, and research style. They do not decide what the case is about. That comes from the locality itself: its surviving records, institutions, industries, conflicts, folklore, people, and unanswered questions.</p>
+          <div className="settings-handoff">
+            <h3>Choose how the table plays. Then choose where.</h3>
+            <p>Campaign Mode, Rules Level, and Research Mode set the table&apos;s reality, danger, and research style. They do not supply the mystery. TCC gets that from a real place and the historical record it leaves behind.</p>
           </div>
         </div>
       </section>
 
       <section className="orientation-section locality-section">
         <div>
-          <h2>TCC is not one town wearing different street names.</h2>
-          <p>A coal town leaves one trail behind. A port city leaves another. A rural county, industrial neighborhood, river community, courthouse town, or old resort district carries different maps, institutions, industries, conflicts, folklore, geography, and people into play.</p>
-          <p>The rules travel. The history does not. Each locality changes the evidence on the table, the kinds of questions worth asking, the places an Agent can go, and the pressures that can grow into an adventure.</p>
-          <p><strong>Carbondale, Pennsylvania</strong> is the first worked TCC locality because it gives the system a real community and real source material against which it can be tested. Carbondale is the first implementation of TCC, not the definition of the game.</p>
-          <p>Your town, county, neighborhood, or city does not need to resemble Carbondale to work. It needs a history the table can investigate.</p>
+          <h2 className="locality-title">The rules travel. The history changes with the place.</h2>
+          <p className="locality-intro">TCC does not move the same adventure from town to town. Each locality brings different evidence, institutions, people, geography, folklore, conflicts, and unanswered questions to the table.</p>
+          <div className="locality-grid">
+            <article><h3>The record changes</h3><p>Maps, photographs, newspapers, directories, public records, buildings, oral histories, and other surviving sources determine what the table can actually know.</p></article>
+            <article><h3>The world changes</h3><p>Local industries, neighborhoods, institutions, jobs, customs, routes, and social access shape the Echo Ware, NPCs, locations, and choices available inside the Branch.</p></article>
+            <article><h3>The adventure changes</h3><p>The sources reveal different pressures, contradictions, gaps, and open questions. Those are where a locality begins producing mysteries that belong to that place.</p></article>
+          </div>
+          <div className="locality-example">
+            <h3>Carbondale is the first worked example—not the template.</h3>
+            <p>Carbondale, Pennsylvania gives TCC a real community whose maps, anthracite history, transportation records, industrial material, people, and places can test the system against actual sources. Another locality uses the same TCC rules with its own history.</p>
+          </div>
+          <p className="locality-close">Your town, county, neighborhood, or city does not need to resemble Carbondale. It needs a history the table can investigate.</p>
         </div>
       </section>
 
