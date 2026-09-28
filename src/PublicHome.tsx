@@ -116,16 +116,21 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section className="orientation-section">
+      <section className="orientation-section ready-case-section">
         <div>
           <p className="eyebrow">Friday night starts at the table</p>
-          <h2>You can sit down and play without doing homework first.</h2>
-          <p>The case can already be waiting when the group arrives: the verified sources, the historical boundary, the active problem, the evidence that matters, and the available Echo Ware choices.</p>
-          <p>You get the briefing. You choose from the supplied assignment options. You enter the Branch. The game starts.</p>
-          <p>That ready-to-run format is called a <strong>Ready Case</strong>, and it is the baseline Friday-night version of TCC.</p>
-          <p>No player has to spend the week in an archive before the next session can happen. If the group wants more research, the Inspector can open optional real-world leads between sessions and players can follow them through online collections, libraries, archives, historical societies, field locations, newspapers, interviews, maps, photographs, and other sources.</p>
-          <p>Those discoveries can add context, leverage, alternate routes, encounters, or new questions. The next session never depends on somebody completing outside research.</p>
-          <p>At the deepest research setting, players can make real-world research part of play itself. The Inspector still verifies what the sources actually support before that material becomes part of the adventure.</p>
+          <h2 className="ready-case-title">You can sit down and play without doing homework first.</h2>
+          <p className="ready-case-intro"><strong>A Ready Case arrives ready to play.</strong> The historical material, evidence, active problem, and Echo Ware choices are already assembled before the group sits down.</p>
+          <div className="ready-case-flow">
+            <article><span>1</span><h3>Get the briefing</h3><p>The Inspector explains where the case is happening, what is known, what is uncertain, and why the Agency is sending the team in.</p></article>
+            <article><span>2</span><h3>Choose your Echo Ware</h3><p>Pick from the supplied assignment profiles, review what you need to know, and decide how your Agent enters the situation.</p></article>
+            <article><span>3</span><h3>Enter the Branch</h3><p>The scene begins. Investigate, talk, take risks, follow evidence, and make choices. No outside research is required first.</p></article>
+          </div>
+          <div className="ready-case-research">
+            <h3>Want to go deeper?</h3>
+            <p>Guided Investigation can open optional real-world leads between sessions. Those discoveries can add context, leverage, alternate routes, encounters, or new questions. Tables that deliberately choose Full Agency can make research part of play itself, with the Inspector verifying what the sources actually support.</p>
+          </div>
+          <p className="ready-case-close"><strong>The rule is simple:</strong> research can expand the game, but the next session never depends on a player completing homework outside the table.</p>
         </div>
       </section>
 
