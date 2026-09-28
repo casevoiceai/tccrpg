@@ -146,3 +146,11 @@
     margin-bottom: 2rem !important;
   }
 }
+
+@media (min-width: 64rem) {
+  .evidence-change-intro {
+    width: 100% !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+  }
+}
