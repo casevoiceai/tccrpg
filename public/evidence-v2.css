@@ -1,0 +1,148 @@
+/* Records-room headline + third homepage section */
+@media (min-width: 64rem) {
+  #how-tcc-works .table-opening-heading {
+    width: 100% !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    font-size: clamp(2.35rem, 3.6vw, 4.2rem) !important;
+    line-height: 1 !important;
+  }
+}
+
+.evidence-change-section {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+  border-top: 1px solid var(--line) !important;
+  padding: 4.5rem 1.25rem 5.25rem !important;
+}
+
+.evidence-change-section > div {
+  width: min(100%, 88rem) !important;
+  margin: 0 auto !important;
+}
+.evidence-change-section h2 {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto 1.25rem !important;
+  text-align: center !important;
+  font-size: clamp(1.75rem, 2.45vw, 3.05rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+}
+
+@media (min-width: 64rem) {
+  .evidence-change-section h2 {
+    white-space: nowrap !important;
+  }
+}
+
+.evidence-change-intro {
+  width: min(100%, 64rem) !important;
+  margin: 0 auto 2.4rem !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem) !important;
+  line-height: 1.65 !important;
+  text-align: center !important;
+}
+.evidence-example {
+  width: min(100%, 64rem) !important;
+  margin: 0 auto 2.75rem !important;
+  border-left: 3px solid var(--gold-strong) !important;
+  background: rgba(25, 23, 20, 0.74) !important;
+  padding: 1.4rem 1.6rem !important;
+}
+
+.evidence-example p {
+  max-width: none !important;
+  margin: 0 0 0.85rem !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1rem, 1.2vw, 1.12rem) !important;
+  line-height: 1.65 !important;
+  text-align: left !important;
+}
+
+.evidence-example p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.evidence-example strong {
+  color: var(--paper) !important;
+}
+.evidence-choice-grid {
+  width: min(100%, 72rem) !important;
+  margin: 0 auto 2.75rem !important;
+  display: grid !important;
+  gap: 1.25rem !important;
+}
+
+.evidence-choice-grid article {
+  border: 1px solid var(--line-strong) !important;
+  background: rgba(25, 23, 20, 0.82) !important;
+  padding: 1.6rem !important;
+}
+
+.evidence-choice-grid h3 {
+  margin: 0 0 0.75rem !important;
+  color: var(--gold-strong) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.35rem, 1.8vw, 1.75rem) !important;
+  line-height: 1.15 !important;
+}
+
+.evidence-choice-grid p {
+  margin: 0 !important;
+  color: var(--paper-muted) !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+}
+@media (min-width: 48rem) {
+  .evidence-choice-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+.evidence-change-close {
+  width: min(100%, 64rem) !important;
+  margin: 0 auto !important;
+  border-top: 1px solid var(--line) !important;
+  padding-top: 2.35rem !important;
+  text-align: center !important;
+}
+
+.evidence-change-close p {
+  max-width: none !important;
+  margin: 0 auto 1rem !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1rem, 1.2vw, 1.12rem) !important;
+  line-height: 1.65 !important;
+  text-align: center !important;
+}
+
+.evidence-change-close p:last-child {
+  margin-bottom: 0 !important;
+  color: var(--paper) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.8rem, 2.8vw, 2.7rem) !important;
+  line-height: 1.12 !important;
+}
+@media (max-width: 63.99rem) {
+  #how-tcc-works .table-opening-heading,
+  .evidence-change-section h2 {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .evidence-change-section {
+    padding: 3.75rem 1rem 4.25rem !important;
+  }
+
+  .evidence-change-section h2 {
+    font-size: clamp(2rem, 8.5vw, 2.85rem) !important;
+  }
+
+  .evidence-example,
+  .evidence-choice-grid {
+    margin-bottom: 2rem !important;
+  }
+}

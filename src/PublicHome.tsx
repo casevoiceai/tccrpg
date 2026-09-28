@@ -78,20 +78,20 @@ export default function PublicHome() {
       <section className="orientation-section evidence-change-section">
         <div>
           <h2>A source matters when it gives you a choice you did not have before.</h2>
-          <div className="evidence-change-lead">
-          <p>A verified building plan shows a basement coal room. That room belongs to the historical record. You can point to it on the page.</p>
-          <p>Inside the adventure, the coal room may open into an impossible corridor that appears on no surviving plan. A caretaker may swear dead workers built it and that it only opens at midnight.</p>
-          <p>The plan did not solve the case for you. It did something better: it told you what the history supports, exposed where the fiction begins, and gave you something concrete to act on.</p>
-          <p>That is how evidence earns its place in TCC. It can reveal a route, expose a false claim, identify the right person, protect someone, create an escape, strengthen a negotiation, or open another meaningful choice.</p>
+          <p className="evidence-change-intro">The historical record does not tell the Agents what to do. It tells them what is real enough to act on.</p>
+          <div className="evidence-example">
+            <p><strong>The source:</strong> A verified building plan shows a basement coal room. That room belongs to the historical record.</p>
+            <p><strong>The Branch:</strong> Inside the adventure, that same coal room may open into an impossible corridor that appears on no surviving plan.</p>
+            <p><strong>The choice:</strong> The plan does not solve the mystery. It gives the Agents a real place to investigate, a fact to test, and something concrete to use when the situation changes.</p>
           </div>
-          <div className="history-boundary-grid">
-            <article><h3>On the page</h3><p>What the sources actually support remains the historical record.</p></article>
-            <article><h3>Inside the adventure</h3><p>TCC can build mysteries, threats, impossible places, and other fiction around that record.</p></article>
-            <article><h3>In somebody's mouth</h3><p>A witness, character, community, source, or tradition can be right, wrong, frightened, mistaken, or lying.</p></article>
+          <div className="evidence-choice-grid">
+            <article><h3>Verified history</h3><p>Documented people, places, dates, events, and outcomes remain what the surviving sources support.</p></article>
+            <article><h3>Branch fiction</h3><p>TCC can build mysteries, threats, impossible places, and other fiction around the verified record without rewriting it.</p></article>
+            <article><h3>Player choice</h3><p>Evidence should change what the Agents can try: reveal a route, expose a false claim, gain access, protect someone, strengthen a negotiation, or open another meaningful option.</p></article>
           </div>
           <div className="evidence-change-close">
-          <p>Once that line is clear, the fictional historical reality built around the verified past has a name: a <strong>Branch</strong>.</p>
-          <p>A supernatural event can be completely real inside a Branch without being presented as real-world history. The map stays honest even when the corridor does not.</p>
+            <p><strong>If removing the source would not reduce the Agents’ options, leverage, or understanding, the source is probably decoration.</strong></p>
+            <p>History sets the boundary. Evidence changes the options. The players decide what to do next.</p>
           </div>
         </div>
       </section>
