@@ -46,7 +46,6 @@ export default function PublicHome() {
 
       <section className="orientation-section" id="how-tcc-works">
         <div>
-          <p className="eyebrow">See the rules in motion</p>
           <h2 className="table-opening-heading" style={{ maxWidth: '20ch', fontSize: 'clamp(2.8rem, 5.4vw, 4.7rem)', lineHeight: 1.02, letterSpacing: '-0.04em', textWrap: 'balance' }}>The records room smells like coal smoke.</h2>
           <p className="table-scene-setting">Dust hangs in the lamplight. Ledgers sag on iron shelves.<br />Somewhere in the corridor, a pair of footsteps stops...<br />Then starts again, closer this time.</p>
           <figure className="records-room-art" style={{ width: '100%', maxWidth: 'none', margin: '2rem 0 2.1rem', borderWidth: '1px', boxShadow: '0 1.5rem 3.5rem rgba(0, 0, 0, 0.42)' }}>
@@ -63,13 +62,13 @@ export default function PublicHome() {
           </div>
           <div className="year-zero-bridge" style={{ maxWidth: '50rem' }}>
             <p className="year-zero-summary"><strong>That is the <a className="year-zero-link" href="https://freeleaguepublishing.com/wp-content/uploads/2023/11/YZE-Standard-Reference-Document.pdf" target="_blank" rel="noreferrer">Year Zero Engine</a> at work.</strong> Obvious information moves without a roll. When the outcome is uncertain and matters, <strong>Attribute + Skill</strong> builds the dice pool: one 6 succeeds, extra 6s improve the result, and no 6s means the situation changes.</p>
-            <p className="year-zero-turn"><strong>But opening the cabinet is only the beginning.</strong></p>
+            <p className="year-zero-heading"><strong>But opening the cabinet is only the beginning.</strong></p>
             <p className="year-zero-next">The missing folder is not just a clue. It is evidence. And in TCC, evidence can change what the players are able to do next.</p>
             <p className="year-zero-next">A source can tell the table which building really stood on the block, who actually held an office, when a road opened, where a rail spur ran, or whether a witness’s story matches the surviving record. That does not solve the mystery for the players. It changes the position they are in when they make the next decision.</p>
             <p className="year-zero-next">A verified map might reveal another way into the site. A directory might identify the person who had authority to sign a document. A newspaper account might give the Agents something concrete to challenge. A ledger might connect a name to a room, a shift, a company, or a date that nobody at the table could have known from guesswork alone.</p>
             <p className="year-zero-next">That evidence can create leverage, expose a contradiction, open a route, protect an innocent person, narrow a search, or make a new question possible. The Inspector still runs the world. The players still choose what to attempt. The dice still come out only when the outcome is uncertain and the result matters.</p>
             <p className="year-zero-next">Then the loop continues: <strong>look at the record, decide what it means, act on it, and discover what the Branch does in response.</strong></p>
-            <p className="year-zero-turn"><strong>The roll gets you into the cabinet. The evidence inside changes the case.</strong></p>
+            <p className="year-zero-final"><strong><span>The roll gets you into the cabinet.</span><br /><span>The evidence inside changes the case.</span></strong></p>
           </div>
         </div>
       </section>
