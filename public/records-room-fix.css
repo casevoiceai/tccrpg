@@ -149,9 +149,9 @@
 }
 
 #how-tcc-works .year-zero-final span + span {
-  margin-top: 0.65rem !important;
-  border-top: 1px solid var(--line) !important;
-  padding-top: 0.65rem !important;
+  margin-top: 1rem !important;
+  border-top: 1px solid var(--line-strong) !important;
+  padding-top: 1rem !important;
 }
 
 #how-tcc-works + .orientation-section {
