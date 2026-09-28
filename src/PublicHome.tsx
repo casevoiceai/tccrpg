@@ -143,13 +143,16 @@ export default function PublicHome() {
             <article><h3>Rules Level</h3><p className="settings-question">How dangerous and mechanically detailed is play?</p><p>Choose forgiving learning play, recoverable consequences, or permanent Level 3 stakes with clearly warned lethal risk.</p></article>
             <article><h3>Research Mode</h3><p className="settings-question">Where does the historical evidence come from?</p><p>Play a fully prepared Ready Case, follow optional Guided Investigation leads, or make real-world research part of play through Full Agency.</p></article>
           </div>
-          <div className="settings-close"><p className="settings-close-lead">Mix them independently.</p><p>A grounded case can be lethal. A supernatural case can use light rules. A Ready Case can be played at any Rules Level.</p></div>
+          <div className="settings-close">
+            <p className="settings-close-lead">The settings shape how the game plays. The place gives the campaign its history.</p>
+            <p>Campaign Mode, Rules Level, and Research Mode are independent. A grounded case can be dangerous. A supernatural case can use light rules. A fully prepared Ready Case can be played at any Rules Level.</p>
+            <p>Those choices establish the table&apos;s reality, stakes, and research style. They do not decide what the case is about. That comes from the locality itself: its surviving records, institutions, industries, conflicts, folklore, people, and unanswered questions.</p>
+          </div>
         </div>
       </section>
 
-      <section className="orientation-section">
+      <section className="orientation-section locality-section">
         <div>
-          <p className="eyebrow">Change the place and the story changes</p>
           <h2>TCC is not one town wearing different street names.</h2>
           <p>A coal town leaves one trail behind. A port city leaves another. A rural county, industrial neighborhood, river community, courthouse town, or old resort district carries different maps, institutions, industries, conflicts, folklore, geography, and people into play.</p>
           <p>The rules travel. The history does not. Each locality changes the evidence on the table, the kinds of questions worth asking, the places an Agent can go, and the pressures that can grow into an adventure.</p>

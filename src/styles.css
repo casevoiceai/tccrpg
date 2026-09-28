@@ -1636,3 +1636,26 @@ body .orientation-page .settings-section { padding-top: 4rem !important; }
   }
 }
 
+
+/* Settings-to-locality transition */
+.settings-section .settings-close {
+  width: min(100%, 72rem) !important;
+  padding-top: 2rem !important;
+  text-align: left !important;
+}
+.settings-section .settings-close-lead {
+  max-width: 66rem !important;
+  margin: 0 auto 1.1rem !important;
+  text-align: center !important;
+  font-size: clamp(1.55rem, 2vw, 2rem) !important;
+}
+.settings-section .settings-close p:not(.settings-close-lead) {
+  max-width: 60rem !important;
+  margin: 0.8rem auto 0 !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1rem, 1.15vw, 1.1rem) !important;
+  line-height: 1.68 !important;
+  text-align: left !important;
+}
+body .orientation-page .settings-section { padding-bottom: 4rem !important; }
+body .orientation-page .locality-section { padding-top: 4rem !important; }
