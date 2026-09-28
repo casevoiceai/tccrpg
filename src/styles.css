@@ -1626,3 +1626,13 @@ body .orientation-page .settings-section { padding-top: 4rem !important; }
     min-height: 0 !important;
   }
 }
+
+@media (min-width: 64rem) {
+  .settings-section .settings-intro {
+    width: 100% !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    font-size: clamp(1rem, 1.1vw, 1.1rem) !important;
+  }
+}
+
