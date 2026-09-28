@@ -27,7 +27,7 @@
 
 #how-tcc-works .table-scene-setting {
   max-width: 54rem !important;
-  margin: 0 auto 2rem !important;
+  margin: 0 auto 1.15rem !important;
   text-align: center !important;
   color: var(--paper) !important;
   font-family: Georgia, "Times New Roman", serif !important;
@@ -38,7 +38,7 @@
 #how-tcc-works .records-room-art {
   width: min(calc(100vw - 2rem), 88rem) !important;
   max-width: none !important;
-  margin: 2.25rem 50% 2.35rem !important;
+  margin: 1.15rem 50% 2.35rem !important;
   transform: translateX(-50%) !important;
   overflow: hidden !important;
   border: 1px solid var(--line-strong) !important;
@@ -131,7 +131,7 @@
 
 #how-tcc-works .year-zero-final {
   max-width: none !important;
-  margin: 2.25rem 0 0 !important;
+  margin: 2.12rem 0 0 !important;
   border: 0 !important;
   padding: 0 !important;
   color: var(--paper) !important;
