@@ -1242,3 +1242,9 @@ footer p {
     margin-left: 0;
   }
 }
+
+/* Balance third-section closing block */
+.evidence-change-section {
+  padding-bottom: 2.35rem !important;
+}
+
