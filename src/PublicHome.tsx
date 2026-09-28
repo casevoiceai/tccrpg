@@ -102,7 +102,10 @@ export default function PublicHome() {
             <p>This morning, your Agent is sixty-eight years old.</p>
             <p>Tonight, they open their eyes in 1897 with a young laborer&apos;s hands, period clothes, and a foreman shouting a name that belongs to the assignment.</p>
           </div>
-          <p className="crossover-lead">The person behind those eyes is still the same continuing Agent.<br />Entering a Branch changes the body and the situation around you. It does not erase who you are.</p>
+          <div className="crossover-identity">
+            <p className="crossover-identity-kicker">Same Agent. Different body.</p>
+            <p>Your memories, judgment, and identity cross with you. The Branch changes the body, role, and circumstances around you—not the person making the choices.</p>
+          </div>
           <div className="crossover-grid">
             <article><h3>Mind: the Agent</h3><p>Your memories, personality, judgment, Skills, modern knowledge, Resolve, and long-term choices remain with the continuing Agent.</p></article>
             <article><h3>Body: Echo Ware</h3><p>Echo Ware supplies the historical body: physical capability, period appearance, a local role, ordinary possessions, and a believable place in that Branch.</p></article>
