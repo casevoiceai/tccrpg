@@ -159,11 +159,12 @@ export default function PublicHome() {
             <article><h3>The world changes</h3><p>Local industries, neighborhoods, institutions, jobs, customs, routes, and social access shape the Echo Ware, NPCs, locations, and choices available inside the Branch.</p></article>
             <article><h3>The adventure changes</h3><p>The sources reveal different pressures, contradictions, gaps, and open questions. Those are where a locality begins producing mysteries that belong to that place.</p></article>
           </div>
-          <div className="locality-example">
-            <h3>Carbondale is the first worked example—not the template.</h3>
-            <p>Carbondale, Pennsylvania gives TCC a real community whose maps, anthracite history, transportation records, industrial material, people, and places can test the system against actual sources. Another locality uses the same TCC rules with its own history.</p>
+          <div className="locality-finale">
+            <h3>Carbondale is the first worked locality. It is not the template.</h3>
+            <p>Its maps, anthracite history, transportation records, industrial material, people, and places show how one real community can supply the evidence and pressures that shape a Chronicle. Another locality keeps the same TCC rules and brings its own historical record to the table.</p>
+            <p className="locality-finale-rule">Same rules. Different place. Different evidence. Different adventure.</p>
+            <p className="locality-finale-next">The demonstration case below shows what that looks like once play begins.</p>
           </div>
-          <p className="locality-close">Your town, county, neighborhood, or city does not need to resemble Carbondale. It needs a history the table can investigate.</p>
         </div>
       </section>
 

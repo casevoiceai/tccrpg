@@ -1790,3 +1790,40 @@ body .orientation-page .locality-section { padding-top: 4rem !important; }
     min-height: 0 !important;
   }
 }
+
+/* Unified locality closing block */
+.locality-section .locality-finale {
+  width: min(100%, 68rem) !important;
+  margin: 0 auto !important;
+  border-top: 1px solid var(--line) !important;
+  padding: 2rem 0 0 !important;
+  text-align: center !important;
+}
+.locality-section .locality-finale h3 {
+  margin: 0 auto 1rem !important;
+  color: var(--paper) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.55rem, 2vw, 2rem) !important;
+  line-height: 1.2 !important;
+}
+.locality-section .locality-finale > p {
+  max-width: 60rem !important;
+  margin: 0 auto !important;
+  color: var(--paper-muted) !important;
+  font-size: clamp(1rem, 1.15vw, 1.1rem) !important;
+  line-height: 1.68 !important;
+}
+.locality-section .locality-finale-rule {
+  margin-top: 1.35rem !important;
+  color: var(--paper) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.25rem, 1.55vw, 1.55rem) !important;
+  line-height: 1.3 !important;
+}
+.locality-section .locality-finale-next {
+  margin-top: 0.75rem !important;
+}
+.locality-section .locality-example,
+.locality-section .locality-close {
+  display: none !important;
+}
