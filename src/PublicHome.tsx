@@ -136,24 +136,14 @@ export default function PublicHome() {
 
       <section className="orientation-section settings-section">
         <div>
-          <h2>Three questions decide what kind of night this becomes.</h2>
-          <p>Can the impossible be objectively real, or must every strange event remain explainable? How hard can consequences hit? Is the evidence already waiting at the table, or does the group want to go looking for more?</p>
-          <p>TCC separates those decisions so a table can choose the kind of experience it actually wants.</p>
-          <div className="setting-grid">
-            <article>
-              <h3>What can be true?</h3>
-              <p>A case can stay grounded in historically plausible explanations, leave folklore and strange events unresolved, or make supernatural forces objectively real inside the Branch. TCC calls that choice <strong>Campaign Mode</strong>.</p>
-            </article>
-            <article>
-              <h3>How hard can it hurt?</h3>
-              <p>The table can choose forgiving learning play, stronger consequences with recovery, or full stakes where lasting damage and clearly warned lethal risk can enter the game. That choice is the <strong>Rules Level</strong>.</p>
-            </article>
-            <article>
-              <h3>Where does the evidence come from?</h3>
-              <p>The historical material can arrive fully prepared, open optional guided research between sessions, or make deeper player research part of the game. That choice is <strong>Research Mode</strong>.</p>
-            </article>
+          <h2 className="settings-title">Three choices shape every TCC campaign.</h2>
+          <p className="settings-intro">Decide what can be true, how dangerous play can become, and how much research your table wants to do.</p>
+          <div className="settings-choice-grid">
+            <article><h3>Campaign Mode</h3><p className="settings-question">What kind of reality can be true?</p><p>Keep the Branch grounded in historically plausible explanations, leave folklore unresolved, or allow supernatural forces to be objectively real.</p></article>
+            <article><h3>Rules Level</h3><p className="settings-question">How dangerous and mechanically detailed is play?</p><p>Choose forgiving learning play, recoverable consequences, or permanent Level 3 stakes with clearly warned lethal risk.</p></article>
+            <article><h3>Research Mode</h3><p className="settings-question">Where does the historical evidence come from?</p><p>Play a fully prepared Ready Case, follow optional Guided Investigation leads, or make real-world research part of play through Full Agency.</p></article>
           </div>
-          <p>Those three settings are independent. A grounded case can be dangerous. A supernatural case can use forgiving rules. A fully prepared Ready Case can be played at any Rules Level.</p>
+          <div className="settings-close"><p className="settings-close-lead">Mix them independently.</p><p>A grounded case can be lethal. A supernatural case can use light rules. A Ready Case can be played at any Rules Level.</p></div>
         </div>
       </section>
 
