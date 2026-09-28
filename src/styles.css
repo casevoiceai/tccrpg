@@ -1827,3 +1827,6 @@ body .orientation-page .locality-section { padding-top: 4rem !important; }
 .locality-section .locality-close {
   display: none !important;
 }
+
+/* Tighten locality-to-case handoff */
+body .orientation-page .locality-section { padding-bottom: 2.5rem !important; }
