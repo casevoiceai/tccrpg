@@ -75,7 +75,6 @@ export default function PublicHome() {
 
       <section className="orientation-section evidence-change-section">
         <div>
-          <p className="eyebrow">Then the evidence changes the room</p>
           <h2>A source matters when it gives you a choice you did not have before.</h2>
           <div className="evidence-change-lead">
           <p>A verified building plan shows a basement coal room. That room belongs to the historical record. You can point to it on the page.</p>
