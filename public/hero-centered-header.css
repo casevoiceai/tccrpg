@@ -1,0 +1,44 @@
+/* Center homepage title/header across both hero columns. */
+.story-hero > .hero-centered-header {
+  grid-column: 1 / -1;
+  width: min(100%, 72rem);
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+.story-hero > .hero-centered-header .hero-title-lockup {
+  width: min(100%, 44rem);
+  margin: 0 auto 1.6rem;
+  text-align: center;
+}
+
+.story-hero > .hero-centered-header .hero-title-logo {
+  margin-inline: auto;
+}
+
+.story-hero > .hero-centered-header .hero-title-subtitle {
+  text-align: center;
+}
+
+.story-hero > .hero-centered-header h1 {
+  max-width: 18ch;
+  margin: 0 auto;
+  color: var(--paper);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.6vw, 3.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 47.99rem) {
+  .story-hero > .hero-centered-header {
+    margin-bottom: 1.25rem;
+  }
+  .story-hero > .hero-centered-header h1 {
+    max-width: 18ch;
+    font-size: clamp(1.9rem, 8.5vw, 2.65rem);
+    line-height: 1.08;
+  }
+}
