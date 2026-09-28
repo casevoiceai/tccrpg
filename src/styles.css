@@ -1435,16 +1435,13 @@ footer p {
   width: min(100%, 64rem) !important;
   margin: 0 auto !important;
   border-top: 1px solid var(--line) !important;
-  padding-top: 1.8rem !important;
-  color: var(--paper-muted) !important;
-  font-size: clamp(1.03rem, 1.25vw, 1.14rem) !important;
-  line-height: 1.65 !important;
+  padding-top: 1.65rem !important;
   text-align: center !important;
 }
 
-.ready-case-close strong {
-  color: var(--paper) !important;
-}
+.ready-case-close p { margin: 0 auto !important; }
+.ready-case-close-lead { color: var(--paper) !important; font-family: Georgia, "Times New Roman", serif !important; font-size: clamp(1.45rem, 1.8vw, 1.8rem) !important; line-height: 1.2 !important; }
+.ready-case-close p + p { margin-top: 0.45rem !important; color: var(--paper-muted) !important; font-size: clamp(1rem, 1.15vw, 1.1rem) !important; line-height: 1.55 !important; }
 
 @media (min-width: 48rem) {
   .ready-case-flow {

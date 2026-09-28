@@ -131,7 +131,7 @@ export default function PublicHome() {
             <h3>Want to go deeper?</h3>
             <p>Guided Investigation can open optional real-world leads between sessions. Those discoveries can add context, leverage, alternate routes, encounters, or new questions. Tables that deliberately choose Full Agency can make research part of play itself, with the Inspector verifying what the sources actually support.</p>
           </div>
-          <p className="ready-case-close"><strong>The rule is simple:</strong> research can expand the game, but the next session never depends on a player completing homework outside the table.</p>
+          <div className="ready-case-close"><p className="ready-case-close-lead">Research can expand the game.</p><p>The next session never depends on homework outside the table.</p></div>
         </div>
       </section>
 
