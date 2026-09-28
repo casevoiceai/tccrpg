@@ -155,7 +155,7 @@
 }
 
 #how-tcc-works + .orientation-section {
-  border-top: 0 !important;
+  border-top: 1px solid var(--line) !important;
 }
 
 #how-tcc-works .year-zero-link {
