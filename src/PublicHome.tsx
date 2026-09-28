@@ -118,7 +118,6 @@ export default function PublicHome() {
 
       <section className="orientation-section ready-case-section">
         <div>
-          <p className="eyebrow">Friday night starts at the table</p>
           <h2 className="ready-case-title">You can sit down and play without doing homework first.</h2>
           <p className="ready-case-intro"><strong>A Ready Case arrives ready to play.</strong> The historical material, evidence, active problem, and Echo Ware choices are already assembled before the group sits down.</p>
           <div className="ready-case-flow">
