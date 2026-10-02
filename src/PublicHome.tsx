@@ -38,7 +38,7 @@ export default function PublicHome() {
           <p className="lede"><strong>The historical record sets the boundaries.<br />The adventure begins with what it leaves open.</strong></p>
           <div className="hero-actions">
             <a className="button button-primary" href="#how-tcc-works">See how play begins</a>
-            <Link className="button button-secondary" to="/experience">Enter The Missing Name</Link>
+            <Link className="button button-secondary" to="/experience">Play The Record Doesn’t Agree</Link>
           </div>
         </div>
         <div className="orientation-hero-art" aria-hidden="true">
@@ -109,7 +109,7 @@ export default function PublicHome() {
           <div className="crossover-grid">
             <article><h3>Mind: the Agent</h3><p>Your memories, personality, judgment, Skills, modern knowledge, Resolve, and long-term choices remain with the continuing Agent.</p></article>
             <article><h3>Body: Echo Ware</h3><p>Echo Ware supplies the historical body: physical capability, period appearance, a local role, ordinary possessions, and a believable place in that Branch.</p></article>
-            <article><h3>Connection: the Link</h3><p>The present-day Agency uses Rift systems to connect Agent and Echo Ware. Ware Strain measures trouble in that active link.</p></article>
+            <article><h3>Connection: the Link</h3><p>The present-day Agency uses Rift systems to connect Agent and Echo Ware. Echo Dissonance measures instability in the active Agent-to-Echo Ware connection. Ware Strain is the separate five-box Agent + Branch lasting consequence track.</p></article>
           </div>
           <div className="crossover-close">
             <h3>Echo Ware is fictional. The Agent is the continuing character.</h3>
@@ -170,14 +170,14 @@ export default function PublicHome() {
 
       <section className="orientation-cta">
         <p className="eyebrow">Now open a case</p>
-        <h2>Two ledgers. One missing name.</h2>
-        <p>It is 1894. Two copies of the same employee ledger lie side by side. In one, a freight worker named Elias Vale exists. In the other, he does not. Both appear genuine.</p>
-        <p>Then old photographs show a sealed section of the works that does not exist on the surviving plans.</p>
-        <p>When the Agents finally reach Elias, his name begins fading from the page while he is still standing in front of them.</p>
-        <p><strong>The Missing Name</strong> is a fictional demonstration case. Its sample documents stand in for the verified local historical sources a published Ready Case would actually bring to the table.</p>
-        <p>Enter it to see the TCC loop in motion: evidence on the table, free player decisions, dice only when uncertainty matters, and a Branch that changes as the group discovers what is happening.</p>
+        <h2>The official record is too certain.</h2>
+        <p>Inside a fictional Branch archive, a Master Record claims more than the verified historical sources actually support about the Stourbridge Lion.</p>
+        <p>The Agents compare real institutional source claims, preserve genuine disagreement, and stop the Branch from turning uncertainty into false authority.</p>
+        <p>Then the archive fights back: Authority Locks appear, routes change, and a Moving File Unit tries to carry the false record to the final filing station.</p>
+        <p><strong>The Record Doesn’t Agree</strong> is the actual Level 2 Ready Case used in the current TCC Quick Start.</p>
+        <p>Play the guided browser version to use the same Agents, Echo Ware, evidence, Year Zero dice, Push, Help, Level 2 tracks, Authority Locks, structured conflict, and final record decision used at the table.</p>
         <div className="hero-actions">
-          <Link className="button button-primary" to="/experience">Enter The Missing Name</Link>
+          <Link className="button button-primary" to="/experience">Play The Record Doesn’t Agree</Link>
           <Link className="button button-secondary" to="/discover">Take the development survey</Link>
           <Link className="button button-secondary" to="/playtest">Apply to playtest</Link>
         </div>

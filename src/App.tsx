@@ -44,7 +44,7 @@ function SiteHeader({
       <nav className="site-nav" aria-label="Primary navigation">
         <Link to="/">Home</Link>
         <a href="/#how-tcc-works">How TCC Works</a>
-        <Link to="/experience">The Missing Name</Link>
+        <Link to="/experience">Play the Quick Start</Link>
         <Link to="/discover">Help Shape TCC</Link>
         <Link to="/playtest">Playtest</Link>
         <Link to="/updates">Updates</Link>
@@ -126,6 +126,7 @@ export default function App() {
           <Link to="/updates">Updates</Link>
         </nav>
         <p>Time-Crawl Chronicles is a tabletop roleplaying game in development by Vogtcom LLC.</p>
+        <p className="license-note">This game is not affiliated with, sponsored, or endorsed by Fria Ligan AB. The Year Zero Engine System Reference Document is used under Fria Ligan AB's Free Tabletop License. <a href="https://freeleaguepublishing.com/wp-content/uploads/2026/03/Year-Zero-Engine-License-Agreement-version-1.1.pdf" target="_blank" rel="noreferrer">Year Zero Engine Free Tabletop License v1.1</a>.</p>
       </footer>
     </div>
   )

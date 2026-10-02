@@ -451,3 +451,95 @@
 .sample-chronicle-page .scene-panel {
   max-width: 64rem;
 }
+
+/* V7 Quick Start guided table */
+.tracker-bar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .6rem;
+  max-width: 64rem;
+  margin: 0 auto 1.5rem;
+}
+.tracker-bar span,
+.conflict-status span,
+.initiative-card span {
+  display: grid;
+  gap: .18rem;
+  border: 1px solid var(--line);
+  background: rgba(31, 29, 25, .72);
+  padding: .7rem .8rem;
+  color: var(--paper-muted);
+  font-size: .84rem;
+}
+.tracker-bar strong,
+.conflict-status strong { color: var(--paper); }
+.character-grid,
+.source-grid,
+.lock-grid,
+.master-record-grid {
+  display: grid;
+  gap: .85rem;
+  margin: 1.5rem 0;
+}
+.character-card {
+  display: grid;
+  gap: .45rem;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: .25rem;
+  background: rgba(29, 27, 23, .82);
+  color: var(--paper);
+  padding: 1rem;
+  cursor: pointer;
+  text-align: left;
+}
+.character-card:hover,
+.character-card.selected { border-color: var(--gold-strong); background: rgba(216, 173, 99, .1); }
+.character-card span,
+.character-card small { color: var(--paper-dim); }
+.character-card p { margin: .2rem 0; color: var(--paper-muted); }
+.source-card,
+.lock-card,
+.threat-card,
+.initiative-card,
+.roll-breakdown,
+.conflict-log {
+  border: 1px solid var(--line);
+  background: rgba(31, 29, 25, .72);
+  padding: 1rem;
+}
+.source-card h3,
+.lock-card h3 { margin-bottom: .6rem; font-size: 1.08rem; }
+.source-card a { color: var(--gold-strong); }
+.lock-card.broken { border-color: var(--gold-strong); background: rgba(216, 173, 99, .08); }
+.helper-toggle {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  margin: 1rem 0;
+  color: var(--paper-muted);
+}
+.helper-toggle input { margin-top: .25rem; accent-color: var(--gold-strong); }
+.roll-breakdown,
+.threat-card,
+.initiative-card { display: grid; gap: .45rem; margin: 1rem 0 1.5rem; }
+.roll-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.conflict-status { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin: 1.25rem 0; }
+.conflict-log { margin-top: 1rem; }
+.conflict-log p { margin: 0; padding: .55rem 0; border-bottom: 1px solid var(--line); color: var(--paper-muted); }
+.conflict-log p:last-child { border-bottom: 0; }
+.lantern-strip { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0; }
+.lantern-strip strong,
+.lantern-strip span { border: 1px solid var(--line); padding: .65rem .75rem; }
+.lantern-strip strong { color: var(--gold-strong); }
+.experience-choice small { display: block; margin-top: .35rem; color: var(--paper-dim); font-weight: 500; }
+.license-note { max-width: 70rem; margin-inline: auto; color: var(--paper-dim); font-size: .8rem; line-height: 1.5; }
+.license-note a { color: inherit; text-decoration: underline; }
+@media (min-width: 48rem) {
+  .tracker-bar { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .character-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .source-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lock-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .master-record-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .conflict-status { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
