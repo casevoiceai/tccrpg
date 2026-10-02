@@ -92,6 +92,13 @@ const LOCKS = [
   { id: 'certainty', name: 'OFFICIAL CERTAINTY', help: 'Treat official-looking wording as a claim to test, not proof that uncertainty is settled.' },
 ]
 
+const ARCHITECT_CLUES = [
+  ['The Deleted Qualifier', 'A fictional copy of one “first” claim loses a qualifying word. The altered sentence now sounds more certain than the verified source.'],
+  ['The Corrected Date', 'A fictional margin note stamps one disputed date as CORRECTED, but the stamp carries no source citation.'],
+  ['The Missing Square', 'A compass/divider symbol surrounding an empty square appears beside the most overconfident fictional record.'],
+  ['The Record That Refuses to Stay Put', 'When the Agents preserve real disagreement accurately, the fictional text fades. Forcing one unsupported answer makes it rewrite itself and move to the top of the stack.'],
+] as const
+
 const FATES = [
   'File a qualified correction inside Branch Canon.',
   'Quarantine the Master Record as a known Architect artifact.',
@@ -145,6 +152,7 @@ export default function SampleChroniclePage() {
   const [helper, setHelper] = useState(false)
   const [firstRoll, setFirstRoll] = useState<RollState | null>(null)
   const [brokenLocks, setBrokenLocks] = useState<string[]>([])
+  const [lockAnswers, setLockAnswers] = useState<Record<string, { sources: string, support: string, undermine: string, change: string }>>({})
   const [initiative, setInitiative] = useState<{ agents: number, unit: number } | null>(null)
   const [health, setHealth] = useState(5)
   const [fileUnitHealth, setFileUnitHealth] = useState(3)
@@ -152,9 +160,12 @@ export default function SampleChroniclePage() {
   const [clerkSafe, setClerkSafe] = useState(false)
   const [conflictRoll, setConflictRoll] = useState<RollState | null>(null)
   const [conflictAction, setConflictAction] = useState('')
+  const [conflictHelper, setConflictHelper] = useState(false)
   const [conflictLog, setConflictLog] = useState<string[]>([])
   const [conflictOver, setConflictOver] = useState(false)
   const [recordFate, setRecordFate] = useState('')
+  const [supportedClaim, setSupportedClaim] = useState('')
+  const [unresolvedQuestion, setUnresolvedQuestion] = useState('')
 
   const agent = useMemo(() => AGENTS.find((item) => item.id === agentId), [agentId])
   const echo = useMemo(() => ECHOES.find((item) => item.id === echoId), [echoId])
@@ -170,8 +181,9 @@ export default function SampleChroniclePage() {
   const restart = () => {
     if (!window.confirm('Restart The Record Doesn’t Agree from the beginning?')) return
     setStep(0); setAgentId(''); setEchoId(''); setFirstAction(''); setHelper(false); setFirstRoll(null)
-    setBrokenLocks([]); setInitiative(null); setHealth(5); setFileUnitHealth(3); setSourceAccess(true)
-    setClerkSafe(false); setConflictRoll(null); setConflictAction(''); setConflictLog([]); setConflictOver(false); setRecordFate('')
+    setBrokenLocks([]); setLockAnswers({}); setInitiative(null); setHealth(5); setFileUnitHealth(3); setSourceAccess(true)
+    setClerkSafe(false); setConflictRoll(null); setConflictAction(''); setConflictHelper(false); setConflictLog([]); setConflictOver(false); setRecordFate('')
+    setSupportedClaim(''); setUnresolvedQuestion('')
   }
   const firstPool = useMemo(() => {
     if (!agent || !echo || !firstAction) return 0
@@ -195,7 +207,16 @@ export default function SampleChroniclePage() {
     setFirstRoll({ ...firstRoll, dice: firstRoll.dice.map((die) => die === 6 ? die : rollDice(1)[0]), pushed: true })
   }
 
+  const updateLockAnswer = (id: string, field: 'sources' | 'support' | 'undermine' | 'change', value: string) => {
+    setLockAnswers((current) => {
+      const prior = current[id] ?? { sources: '', support: '', undermine: '', change: '' }
+      return { ...current, [id]: { ...prior, [field]: value } }
+    })
+  }
+
   const breakLock = (id: string) => {
+    const answer = lockAnswers[id]
+    if (!answer || !answer.sources.trim() || !answer.support.trim() || !answer.undermine.trim() || !answer.change.trim()) return
     setBrokenLocks((current) => current.includes(id) ? current : [...current, id])
   }
 
@@ -213,10 +234,11 @@ export default function SampleChroniclePage() {
   }
   const conflictPoolFor = (action: string) => {
     if (!agent || !echo) return { pool: 0, label: '' }
-    if (action === 'fight') return { pool: echo.strength + (echo.sturdyTool ? 1 : 0), label: `Echo Strength${echo.sturdyTool ? ' + sturdy work tool' : ' + improvised object'}` }
-    if (action === 'block') return { pool: echo.strength + (agent.skills.Force ?? 0), label: 'Echo Strength + Force' }
-    if (action === 'evidence') return { pool: agent.wits + (agent.skills.Research ?? 0) + (agent.id === 'miriam' ? 1 : 0), label: 'Wits + Research' }
-    return { pool: agent.empathy + (agent.skills.Persuasion ?? 0) + (agent.id === 'marcus' ? 1 : 0), label: 'Empathy + Persuasion' }
+    let result = { pool: agent.empathy + (agent.skills.Persuasion ?? 0) + (agent.id === 'marcus' ? 1 : 0), label: 'Empathy + Persuasion' }
+    if (action === 'fight') result = { pool: echo.strength + (echo.sturdyTool ? 1 : 0), label: `Echo Strength${echo.sturdyTool ? ' + sturdy work tool' : ' + improvised object'}` }
+    if (action === 'block') result = { pool: echo.strength + (agent.skills.Force ?? 0), label: 'Echo Strength + Force' }
+    if (action === 'evidence') result = { pool: agent.wits + (agent.skills.Research ?? 0) + (agent.id === 'miriam' ? 1 : 0), label: 'Wits + Research' }
+    return conflictHelper ? { pool: result.pool + 1, label: `${result.label} + Help` } : result
   }
 
   const beginConflictAction = (action: string) => {
@@ -287,6 +309,7 @@ export default function SampleChroniclePage() {
     setConflictLog(log)
     setConflictRoll(null)
     setConflictAction('')
+    setConflictHelper(false)
   }
 
   const firstRollSuccesses = firstRoll ? countSuccesses(firstRoll.dice) : 0
@@ -381,10 +404,26 @@ export default function SampleChroniclePage() {
           <p className="eyebrow">Scene 2 · The Archive Pushes Back</p><h2>The fictional record changes. The verified sources do not.</h2>
           <p className="scene-copy">A qualifier disappears. A drawer label changes. A shelf points somewhere impossible. Three Authority Locks become visible around the false record.</p>
           <SourceGrid />
-          <div className="lock-grid">
-            {LOCKS.map((lock) => <article className={`lock-card${brokenLocks.includes(lock.id) ? ' broken' : ''}`} key={lock.id}><h3>{lock.name}</h3><p>{lock.help}</p><button type="button" className="button button-secondary" disabled={brokenLocks.includes(lock.id)} onClick={() => breakLock(lock.id)}>{brokenLocks.includes(lock.id) ? 'Lock broken' : 'Use the evidence against this lock'}</button></article>)}
+          <h3>Architect clue cards</h3>
+          <div className="source-grid">
+            {ARCHITECT_CLUES.map(([title, body]) => <article className="artifact-card" key={title}><div className="artifact-heading">TCC FICTION · Architect clue</div><h3>{title}</h3><p>{body}</p></article>)}
           </div>
-          <p className="scene-copy">QUALIFY, CROSS-CHECK, and HOLD OPEN are examples, not passwords. At a real table, any historically honest use of a verified source can weaken a lock when it actually undermines the false behavior.</p>
+          <p className="scene-copy">The supernatural response reacts to how evidence is handled, but it never tells you which real source is ultimately correct.</p>
+          <div className="lock-grid">
+            {LOCKS.map((lock) => {
+              const answer = lockAnswers[lock.id] ?? { sources: '', support: '', undermine: '', change: '' }
+              const ready = Boolean(answer.sources.trim() && answer.support.trim() && answer.undermine.trim() && answer.change.trim())
+              return <article className={`lock-card${brokenLocks.includes(lock.id) ? ' broken' : ''}`} key={lock.id}>
+                <h3>{lock.name}</h3><p>{lock.help}</p>
+                <label>1. Which verified source(s) are you using?<input value={answer.sources} onChange={(event) => updateLockAnswer(lock.id, 'sources', event.target.value)} placeholder="For example: A + D" /></label>
+                <label>2. What does the source actually support?<textarea rows={2} value={answer.support} onChange={(event) => updateLockAnswer(lock.id, 'support', event.target.value)} /></label>
+                <label>3. What false claim or behavior does that undermine?<textarea rows={2} value={answer.undermine} onChange={(event) => updateLockAnswer(lock.id, 'undermine', event.target.value)} /></label>
+                <label>4. What changes in the Branch because of it?<textarea rows={2} value={answer.change} onChange={(event) => updateLockAnswer(lock.id, 'change', event.target.value)} /></label>
+                <button type="button" className="button button-secondary" disabled={brokenLocks.includes(lock.id) || !ready} onClick={() => breakLock(lock.id)}>{brokenLocks.includes(lock.id) ? 'Lock broken' : 'Apply this evidence reasoning'}</button>
+              </article>
+            })}
+          </div>
+          <p className="scene-copy">QUALIFY, CROSS-CHECK, and HOLD OPEN are examples, not passwords. The browser records your reasoning; at a real table, the Inspector judges whether the historical connection actually undermines the false behavior.</p>
           <button className="button button-primary experience-continue" type="button" disabled={brokenLocks.length === 0} onClick={() => setStep(6)}>The archive becomes dangerous</button>
         </section>
       )}
@@ -396,12 +435,15 @@ export default function SampleChroniclePage() {
           {!initiative && <button className="button button-primary" type="button" onClick={rollInitiative}>Roll side initiative</button>}
           {initiative && <div className="initiative-card"><strong>Side initiative</strong><span>Agents: {initiative.agents}</span><span>Moving archive: {initiative.unit}</span><span>{initiative.agents > initiative.unit ? 'Agents choose the first actor.' : 'The Moving File Unit acts first; then sides alternate.'}</span></div>}
           {initiative && !conflictOver && !conflictRoll && (
-            <div className="experience-choice-list">
-              <button className="experience-choice" type="button" onClick={() => beginConflictAction('fight')}>Fight it with the tool or object your Echo Ware can reach. <small>You Can Always Try: Echo Strength + tool Bonus.</small></button>
-              <button className="experience-choice" type="button" onClick={() => beginConflictAction('block')}>Brace a cart or block the track. <small>Echo Strength + Force.</small></button>
-              <button className="experience-choice" type="button" onClick={() => beginConflictAction('evidence')}>Use verified evidence under pressure. <small>Wits + Research.</small></button>
-              <button className="experience-choice" type="button" onClick={() => beginConflictAction('clerk')}>Steady the clerk against the false filing pressure. <small>Empathy + Persuasion.</small></button>
-            </div>
+            <>
+              <label className="helper-toggle"><input type="checkbox" checked={conflictHelper} onChange={(event) => setConflictHelper(event.target.checked)} /> Another Agent makes a concrete contribution: +1 die. During structured conflict, that helper normally spends their Quick Action.</label>
+              <div className="experience-choice-list">
+                <button className="experience-choice" type="button" onClick={() => beginConflictAction('fight')}>Fight it with the tool or object your Echo Ware can reach. <small>You Can Always Try: Echo Strength + tool Bonus.</small></button>
+                <button className="experience-choice" type="button" onClick={() => beginConflictAction('block')}>Brace a cart or block the track. <small>Echo Strength + Force.</small></button>
+                <button className="experience-choice" type="button" onClick={() => beginConflictAction('evidence')}>Use verified evidence under pressure. <small>Wits + Research.</small></button>
+                <button className="experience-choice" type="button" onClick={() => beginConflictAction('clerk')}>Steady the clerk against the false filing pressure. <small>Empathy + Persuasion.</small></button>
+              </div>
+            </>
           )}
           {conflictRoll && <><DicePool roll={conflictRoll} /><div className="roll-actions">{countSuccesses(conflictRoll.dice) === 0 && !conflictRoll.pushed && <button className="button button-secondary" type="button" onClick={pushConflict}>Push this roll</button>}<button className="button button-primary" type="button" onClick={resolveConflictAction}>{countSuccesses(conflictRoll.dice) === 0 ? 'Accept the result and continue' : 'Apply the result'}</button></div></>}
           {initiative && <div className="conflict-status"><span>Echo Health: <strong>{health}/5</strong></span><span>Source access: <strong>{sourceAccess ? 'open' : 'cut off'}</strong></span><span>Clerk: <strong>{clerkSafe ? 'resisting the filing' : 'under pressure'}</strong></span><span>Authority Locks broken: <strong>{brokenLocks.length}/3</strong></span></div>}
@@ -417,7 +459,11 @@ export default function SampleChroniclePage() {
           <div className="experience-choice-list">
             {FATES.map((fate) => <button className={`experience-choice${recordFate === fate ? ' selected' : ''}`} type="button" key={fate} onClick={() => setRecordFate(fate)}>{fate}</button>)}
           </div>
-          <button className="button button-primary experience-continue" type="button" disabled={!recordFate} onClick={() => setStep(8)}>Close the assignment</button>
+          <div className="assignment-card">
+            <label><strong>Strongest historical claim the verified sources support</strong><textarea rows={3} value={supportedClaim} onChange={(event) => setSupportedClaim(event.target.value)} placeholder="State only what the verified sources actually support." /></label>
+            <label><strong>What remains unresolved?</strong><textarea rows={3} value={unresolvedQuestion} onChange={(event) => setUnresolvedQuestion(event.target.value)} placeholder="Preserve disagreement or limits the current sources do not settle." /></label>
+          </div>
+          <button className="button button-primary experience-continue" type="button" disabled={!recordFate || !supportedClaim.trim() || !unresolvedQuestion.trim()} onClick={() => setStep(8)}>Close the assignment</button>
         </section>
       )}
 
@@ -426,6 +472,8 @@ export default function SampleChroniclePage() {
           <p className="eyebrow">Return to the present</p><h2>The active Echo Ware connection ends.</h2>
           <div className="assignment-card">
             <p><strong>Record fate:</strong> {recordFate}</p>
+            <p><strong>Strongest supported historical claim:</strong> {supportedClaim}</p>
+            <p><strong>Still unresolved:</strong> {unresolvedQuestion}</p>
             <p><strong>Authority Locks broken:</strong> {brokenLocks.map((id) => LOCKS.find((lock) => lock.id === id)?.name).join(', ') || 'none'}</p>
             <p><strong>Echo Health:</strong> {health}/5</p>
             <p><strong>Echo Dissonance:</strong> 0/4. The active 0–4 track ends with Echo Ware.</p>

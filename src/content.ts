@@ -219,7 +219,7 @@ export const discoveryQuestions: DiscoveryQuestion[] = [
     id: 'researchRecoveryReaction',
     title: 'What is your immediate reaction?',
     helper:
-      'At Rules Level 2, severe temporal trauma can mark Branch Tear. An approved Research Challenge tied to that Branch can clear recoverable Level 2 Branch Tear boxes. Level 3 Branch Tear is permanent for that Branch.',
+      'At Rules Level 2, catastrophic temporal trauma can fill Ware Strain. An Inspector-approved Miss Haven Research Challenge tied to that Branch can clear one recoverable Level 2 Ware Strain box. At Level 3, Ware Strain is permanent for that Branch. Branch Tear is a separate table-side continuity record.',
     selection: 'single',
     choices: [
       {
@@ -232,7 +232,7 @@ export const discoveryQuestions: DiscoveryQuestion[] = [
         tag: 'recovery_optional',
         label: 'Interesting, but I would want alternatives.',
         response:
-          'That is useful feedback. TCC can support approved alternatives when a table cannot or does not want to do a Research Challenge.',
+          'That is useful feedback. In the current Level 2 rules, Ware Strain recovery uses the Miss Haven Research Challenge. If that feels like homework rather than play, that is a playtest problem to report, not a hidden alternate recovery rule.',
       },
       {
         tag: 'recovery_negative',

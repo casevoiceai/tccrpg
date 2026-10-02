@@ -117,7 +117,7 @@ export function PlaytestPage() {
           <h1>Application received.</h1>
           <p>Early tables will mix people with different levels of RPG experience. Applying does not guarantee a seat, but it tells us who is willing to test the game while it is still changing.</p>
           <div className="form-success-actions">
-            <Link className="button button-primary" to="/experience">Read The Missing Name again</Link>
+            <Link className="button button-primary" to="/experience">Play The Record Doesn’t Agree</Link>
             <Link className="button button-secondary" to="/">Return home</Link>
           </div>
         </section>

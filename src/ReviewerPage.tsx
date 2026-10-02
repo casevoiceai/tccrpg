@@ -229,7 +229,7 @@ export default function ReviewerPage() {
           <div className="review-public-option">
             <h2>Not an invited reviewer?</h2>
             <p>You can still read the public sample Chronicle.</p>
-            <Link className="button button-secondary" to="/experience">Read The Missing Name</Link>
+            <Link className="button button-secondary" to="/experience">Play The Record Doesn’t Agree</Link>
           </div>
         </section>
       </main>
@@ -287,7 +287,7 @@ export default function ReviewerPage() {
           </div>
 
           <div className="review-demo-link">
-            <Link to="/experience">Open The Missing Name sample case</Link>
+            <Link to="/experience">Open The Record Doesn’t Agree guided Quick Start</Link>
           </div>
         </section>
       </main>

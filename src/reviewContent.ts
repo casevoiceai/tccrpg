@@ -26,7 +26,7 @@ export const reviewerTypes = [
 export const materialsReviewed = [
   ['orientation', 'Level 1 Orientation'],
   ['discovery', 'Level 2 Discovery'],
-  ['guided_demo', 'The Missing Name guided demo'],
+  ['guided_demo', 'The Record Doesn’t Agree guided Quick Start'],
   ['quick_start', 'Quick Start · Rules Level 2'],
   ['playtest_manual', 'Playtest Manual / facilitator packet'],
   ['selected_chapters', 'Selected manuscript chapters'],
@@ -117,7 +117,7 @@ export const inspectorRatingGroup: RatingGroup = {
     { id: 'npc_manageable', label: 'NPC management appears manageable.' },
     { id: 'rules_manageable', label: 'Rules management appears manageable.' },
     { id: 'branch_manageable', label: 'Branch management appears manageable.' },
-    { id: 'consequence_quicksort', label: 'I can tell when to use narrative/physical consequences, Resolve, Ware Strain, or Branch Tear.' },
+    { id: 'consequence_quicksort', label: 'I can tell when to use narrative/physical consequences, Resolve, Echo Dissonance, Ware Strain, or the separate Branch Tear record.' },
     { id: 'rules_findable', label: 'I could locate needed rules during play.' },
     { id: 'examples_enough', label: 'The book appears to give the Inspector enough examples.' },
     { id: 'run_without_designer', label: 'I would consider running TCC without the designer present.' },

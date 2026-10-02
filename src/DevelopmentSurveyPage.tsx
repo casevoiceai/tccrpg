@@ -237,9 +237,9 @@ export function SurveyCompletePage() {
       </section>
       <section className="profile-next">
         <h2>Want to see those ideas in motion?</h2>
-        <p>The Missing Name is a short fictional case that shows the table conversation, the evidence, the player decisions, and the moment the Branch stops behaving like ordinary history.</p>
+        <p>The Record Doesn’t Agree is the current Level 2 Quick Start case. The guided browser version uses the same Agents, Echo Ware, verified source claims, Authority Locks, Moving File Unit, and record decision as the tabletop packet.</p>
         <div className="hero-actions">
-          <Link className="button button-primary" to="/experience">Read The Missing Name</Link>
+          <Link className="button button-primary" to="/experience">Play The Record Doesn’t Agree</Link>
           <Link className="button button-secondary" to="/playtest">Apply to playtest</Link>
           <Link className="button button-secondary" to="/">Return home</Link>
         </div>
