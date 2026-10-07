@@ -15,6 +15,10 @@
   margin-bottom: 0;
 }
 
+.story-sample-header h1 {
+  margin-bottom: 0.85rem;
+}
+
 .experience-meta {
   display: flex;
   flex-wrap: wrap;
