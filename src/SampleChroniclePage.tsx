@@ -87,10 +87,13 @@ const SOURCES = [
 ]
 
 const LOCKS = [
-  { id: 'absolute', name: 'ABSOLUTE FIRST', help: 'Compare Sources A–D and preserve their different scopes and qualifiers.' },
-  { id: 'timeline', name: 'SINGLE TIMELINE', help: 'Compare Sources E and F without forcing their conflicting later-history claims into one answer.' },
-  { id: 'certainty', name: 'OFFICIAL CERTAINTY', help: 'Treat official-looking wording as a claim to test, not proof that uncertainty is settled.' },
+  { id: 'absolute', name: 'ABSOLUTE FIRST', help: 'Compare Sources A–D and preserve their different scopes and qualifiers.', action: 'Restore the missing qualifiers from Sources A–D', result: 'The team restores the different scopes of the “first” claims. The fictional Master Record can no longer present its broader wording as an undisputed fact.' },
+  { id: 'timeline', name: 'SINGLE TIMELINE', help: 'Compare Sources E and F without forcing their conflicting later-history claims into one answer.', action: 'Preserve both accounts of the later history', result: 'The team keeps the Honesdale, Carbondale, and boiler accounts attributed to their sources instead of forcing one neat timeline. The false certainty breaks.' },
+  { id: 'certainty', name: 'OFFICIAL CERTAINTY', help: 'Treat official-looking wording as a claim to test, not proof that uncertainty is settled.', action: 'Challenge the unsupported “corrected” stamp', result: 'The clerk sees that an official-looking stamp is not independent evidence. The unsupported correction is marked unverified and the filing pauses.' },
 ]
+
+const SUPPORTED_CLAIM = 'Institutional sources describe the Stourbridge Lion’s August 8, 1829 test at Honesdale, but use different qualifications when calling it a “first.”'
+const UNRESOLVED_QUESTION = 'Sources E and F give different accounts of the locomotive’s later history, including what happened to the boiler. This demo does not pretend to settle that disagreement.'
 
 const ARCHITECT_CLUES = [
   ['The Deleted Qualifier', 'A fictional copy of one “first” claim loses a qualifying word. The altered sentence now sounds more certain than the verified source.'],
@@ -152,7 +155,6 @@ export default function SampleChroniclePage() {
   const [helper, setHelper] = useState(false)
   const [firstRoll, setFirstRoll] = useState<RollState | null>(null)
   const [brokenLocks, setBrokenLocks] = useState<string[]>([])
-  const [lockAnswers, setLockAnswers] = useState<Record<string, { sources: string, support: string, undermine: string, change: string }>>({})
   const [initiative, setInitiative] = useState<{ agents: number, unit: number } | null>(null)
   const [health, setHealth] = useState(5)
   const [fileUnitHealth, setFileUnitHealth] = useState(3)
@@ -164,8 +166,6 @@ export default function SampleChroniclePage() {
   const [conflictLog, setConflictLog] = useState<string[]>([])
   const [conflictOver, setConflictOver] = useState(false)
   const [recordFate, setRecordFate] = useState('')
-  const [supportedClaim, setSupportedClaim] = useState('')
-  const [unresolvedQuestion, setUnresolvedQuestion] = useState('')
 
   const agent = useMemo(() => AGENTS.find((item) => item.id === agentId), [agentId])
   const echo = useMemo(() => ECHOES.find((item) => item.id === echoId), [echoId])
@@ -181,9 +181,8 @@ export default function SampleChroniclePage() {
   const restart = () => {
     if (!window.confirm('Restart The Record Doesn’t Agree from the beginning?')) return
     setStep(0); setAgentId(''); setEchoId(''); setFirstAction(''); setHelper(false); setFirstRoll(null)
-    setBrokenLocks([]); setLockAnswers({}); setInitiative(null); setHealth(5); setFileUnitHealth(3); setSourceAccess(true)
+    setBrokenLocks([]); setInitiative(null); setHealth(5); setFileUnitHealth(3); setSourceAccess(true)
     setClerkSafe(false); setConflictRoll(null); setConflictAction(''); setConflictHelper(false); setConflictLog([]); setConflictOver(false); setRecordFate('')
-    setSupportedClaim(''); setUnresolvedQuestion('')
   }
   const firstPool = useMemo(() => {
     if (!agent || !echo || !firstAction) return 0
@@ -207,16 +206,7 @@ export default function SampleChroniclePage() {
     setFirstRoll({ ...firstRoll, dice: firstRoll.dice.map((die) => die === 6 ? die : rollDice(1)[0]), pushed: true })
   }
 
-  const updateLockAnswer = (id: string, field: 'sources' | 'support' | 'undermine' | 'change', value: string) => {
-    setLockAnswers((current) => {
-      const prior = current[id] ?? { sources: '', support: '', undermine: '', change: '' }
-      return { ...current, [id]: { ...prior, [field]: value } }
-    })
-  }
-
   const breakLock = (id: string) => {
-    const answer = lockAnswers[id]
-    if (!answer || !answer.sources.trim() || !answer.support.trim() || !answer.undermine.trim() || !answer.change.trim()) return
     setBrokenLocks((current) => current.includes(id) ? current : [...current, id])
   }
 
@@ -318,14 +308,14 @@ export default function SampleChroniclePage() {
     <main className="experience-page sample-chronicle-page">
       <header className="experience-header story-sample-header">
         <div>
-          <p className="eyebrow">Guided V7 Quick Start</p>
+          <p className="eyebrow">Guided V7 Quick Start Demo</p>
           <h1>The Record Doesn’t Agree</h1>
           <p className="sample-intro">A browser-guided version of the same Level 2 Ready Case used in the tabletop Quick Start.</p>
         </div>
         <div className="experience-meta"><span>V7 · Level 2</span><span>Step {step + 1} of 10</span><button className="text-button" type="button" onClick={restart}>Restart</button></div>
       </header>
 
-      <div className="demo-frame-note"><strong>Guided table simulation.</strong> The rules, case, Agents, Echo Ware, source claims, Authority Locks, and Moving File Unit match the Quick Start. The browser offers representative actions; at a real table, you may attempt anything that makes sense in the fiction.</div>
+      <div className="demo-frame-note"><strong>Guided table simulation. No writing required.</strong> Choose actions to see how a TCC session works. The rules, case, Agents, Echo Ware, source claims, Authority Locks, and Moving File Unit match the Quick Start. At a real table, you may attempt anything that makes sense in the fiction.</div>
       {agent && echo && (
         <section className="tracker-bar" aria-label="Level 2 tracker">
           <span><strong>Agent</strong>{agent.name}</span><span><strong>Echo</strong>{echo.name}</span><span><strong>Health</strong>{health}/5</span>
@@ -411,19 +401,15 @@ export default function SampleChroniclePage() {
           <p className="scene-copy">The supernatural response reacts to how evidence is handled, but it never tells you which real source is ultimately correct.</p>
           <div className="lock-grid">
             {LOCKS.map((lock) => {
-              const answer = lockAnswers[lock.id] ?? { sources: '', support: '', undermine: '', change: '' }
-              const ready = Boolean(answer.sources.trim() && answer.support.trim() && answer.undermine.trim() && answer.change.trim())
-              return <article className={`lock-card${brokenLocks.includes(lock.id) ? ' broken' : ''}`} key={lock.id}>
+              const broken = brokenLocks.includes(lock.id)
+              return <article className={`lock-card${broken ? ' broken' : ''}`} key={lock.id}>
                 <h3>{lock.name}</h3><p>{lock.help}</p>
-                <label>1. Which verified source(s) are you using?<input value={answer.sources} onChange={(event) => updateLockAnswer(lock.id, 'sources', event.target.value)} placeholder="For example: A + D" /></label>
-                <label>2. What does the source actually support?<textarea rows={2} value={answer.support} onChange={(event) => updateLockAnswer(lock.id, 'support', event.target.value)} /></label>
-                <label>3. What false claim or behavior does that undermine?<textarea rows={2} value={answer.undermine} onChange={(event) => updateLockAnswer(lock.id, 'undermine', event.target.value)} /></label>
-                <label>4. What changes in the Branch because of it?<textarea rows={2} value={answer.change} onChange={(event) => updateLockAnswer(lock.id, 'change', event.target.value)} /></label>
-                <button type="button" className="button button-secondary" disabled={brokenLocks.includes(lock.id) || !ready} onClick={() => breakLock(lock.id)}>{brokenLocks.includes(lock.id) ? 'Lock broken' : 'Apply this evidence reasoning'}</button>
+                <button type="button" className="button button-secondary" disabled={broken} onClick={() => breakLock(lock.id)}>{broken ? 'Lock broken' : lock.action}</button>
+                {broken && <p className="lock-result" role="status"><strong>Result:</strong> {lock.result}</p>}
               </article>
             })}
           </div>
-          <p className="scene-copy">QUALIFY, CROSS-CHECK, and HOLD OPEN are examples, not passwords. The browser records your reasoning; at a real table, the Inspector judges whether the historical connection actually undermines the false behavior.</p>
+          <p className="scene-copy">These are example actions, not a history test. At a real table, players explain their reasoning and the Inspector decides what changes. Here, one click demonstrates each countermeasure.</p>
           <button className="button button-primary experience-continue" type="button" disabled={brokenLocks.length === 0} onClick={() => setStep(6)}>The archive becomes dangerous</button>
         </section>
       )}
@@ -448,22 +434,24 @@ export default function SampleChroniclePage() {
           {conflictRoll && <><DicePool roll={conflictRoll} /><div className="roll-actions">{countSuccesses(conflictRoll.dice) === 0 && !conflictRoll.pushed && <button className="button button-secondary" type="button" onClick={pushConflict}>Push this roll</button>}<button className="button button-primary" type="button" onClick={resolveConflictAction}>{countSuccesses(conflictRoll.dice) === 0 ? 'Accept the result and continue' : 'Apply the result'}</button></div></>}
           {initiative && <div className="conflict-status"><span>Echo Health: <strong>{health}/5</strong></span><span>Source access: <strong>{sourceAccess ? 'open' : 'cut off'}</strong></span><span>Clerk: <strong>{clerkSafe ? 'resisting the filing' : 'under pressure'}</strong></span><span>Authority Locks broken: <strong>{brokenLocks.length}/3</strong></span></div>}
           {conflictLog.length > 0 && <div className="conflict-log">{conflictLog.slice(-5).map((entry, index) => <p key={`${entry}-${index}`}>{entry}</p>)}</div>}
-          {health === 0 && !conflictOver && <p className="quiet-note"><strong>Echo Ware is Broken.</strong> At a real table, another Agent would need to stabilize the situation or carry the immediate objective while your Echo cannot take normal physical actions.</p>}
+          {health === 0 && !conflictOver && <div className="assignment-card"><p className="quiet-note"><strong>Echo Ware is Broken.</strong> At a real table, another Agent would need to stabilize the situation or carry the immediate objective while your Echo cannot take normal physical actions.</p><button className="button button-secondary" type="button" onClick={() => { setConflictRoll(null); setConflictOver(true); setConflictLog((current) => [...current, 'Another Agent steps in and secures the clerk and Master Record. The guided demo continues.']) }}>Have another Agent finish the scene</button></div>}
           {conflictOver && <button className="button button-primary experience-continue" type="button" onClick={() => setStep(7)}>End structured conflict</button>}
         </section>
       )}
       {step === 7 && (
         <section className="scene-panel story-panel">
           <p className="eyebrow">Scene 4 · Decide the Record’s Fate</p><h2>The immediate threat is controlled. The fictional Master Record is in your hands.</h2>
-          <p className="scene-copy">Combat solved the immediate physical problem. Evidence and player choices resolve the larger Branch problem. There is no single required ending.</p>
+          <p className="scene-copy">Your team controlled the immediate threat. Evidence and player choices resolve the larger Branch problem. There is no single required ending.</p>
           <div className="experience-choice-list">
             {FATES.map((fate) => <button className={`experience-choice${recordFate === fate ? ' selected' : ''}`} type="button" key={fate} onClick={() => setRecordFate(fate)}>{fate}</button>)}
           </div>
           <div className="assignment-card">
-            <label><strong>Strongest historical claim the verified sources support</strong><textarea rows={3} value={supportedClaim} onChange={(event) => setSupportedClaim(event.target.value)} placeholder="State only what the verified sources actually support." /></label>
-            <label><strong>What remains unresolved?</strong><textarea rows={3} value={unresolvedQuestion} onChange={(event) => setUnresolvedQuestion(event.target.value)} placeholder="Preserve disagreement or limits the current sources do not settle." /></label>
+            <h3>Example historical debrief</h3>
+            <p><strong>Supported by the source packet:</strong> {SUPPORTED_CLAIM}</p>
+            <p><strong>Still unresolved:</strong> {UNRESOLVED_QUESTION}</p>
+            <p className="quiet-note">The demo provides this summary. In the tabletop game, players and the Inspector can discuss their conclusions.</p>
           </div>
-          <button className="button button-primary experience-continue" type="button" disabled={!recordFate || !supportedClaim.trim() || !unresolvedQuestion.trim()} onClick={() => setStep(8)}>Close the assignment</button>
+          <button className="button button-primary experience-continue" type="button" disabled={!recordFate} onClick={() => setStep(8)}>Close the assignment</button>
         </section>
       )}
 
@@ -472,8 +460,8 @@ export default function SampleChroniclePage() {
           <p className="eyebrow">Return to the present</p><h2>The active Echo Ware connection ends.</h2>
           <div className="assignment-card">
             <p><strong>Record fate:</strong> {recordFate}</p>
-            <p><strong>Strongest supported historical claim:</strong> {supportedClaim}</p>
-            <p><strong>Still unresolved:</strong> {unresolvedQuestion}</p>
+            <p><strong>Strongest supported historical claim:</strong> {SUPPORTED_CLAIM}</p>
+            <p><strong>Still unresolved:</strong> {UNRESOLVED_QUESTION}</p>
             <p><strong>Authority Locks broken:</strong> {brokenLocks.map((id) => LOCKS.find((lock) => lock.id === id)?.name).join(', ') || 'none'}</p>
             <p><strong>Echo Health:</strong> {health}/5</p>
             <p><strong>Echo Dissonance:</strong> 0/4. The active 0–4 track ends with Echo Ware.</p>
