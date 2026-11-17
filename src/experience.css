@@ -516,6 +516,8 @@
 .lock-card h3 { margin-bottom: .6rem; font-size: 1.08rem; }
 .source-card a { color: var(--gold-strong); }
 .lock-card.broken { border-color: var(--gold-strong); background: rgba(216, 173, 99, .08); }
+.lock-card .button { width: 100%; margin-top: .75rem; }
+.lock-result { margin-top: .9rem; color: var(--paper-muted); }
 .helper-toggle {
   display: flex;
   gap: .65rem;
