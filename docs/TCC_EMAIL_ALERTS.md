@@ -4,14 +4,16 @@ The TCC website stores Discovery responses, playtest applications, release-updat
 
 ## Status
 
-Notification code is prepared but **disabled by default**. Deploying this code alone does **not** send messages. Existing D1 submissions are unaffected and no old records are emailed automatically.
+Notification code and a destination-restricted `TCC_NOTIFY_EMAIL` binding are prepared in draft PR #8, but **disabled by default**. The draft is not merged or deployed. The production activation flag and sender variable are not set. No messages are sent by this code alone. Existing D1 submissions are unaffected and no old records are emailed automatically.
+
+Verified November 17, 2026 with Cloudflare Wrangler: production D1 contains one anonymous Discovery submission dated September 26, 2026 and zero playtest applications, release-update signups, or reviewer submissions. `tccttrpg@gmail.com` was already verified as an Email Routing destination September 26, 2026. The active `privacy@tccrpg.com` routing alias forwards to that Gmail. Form submissions themselves do not use this forwarding alias. Cloudflare Email Sending settings returned `Unauthorized (2036)` during a read-only check; sending readiness remains unverified.
 
 ## Activation checklist
 
-1. Sign in to the TCC Cloudflare account. Inspect the four D1 tables first to determine whether submissions already exist. Do not delete them.
-2. In Cloudflare Email Service / Email Routing, verify `tccttrpg@gmail.com` as a destination address. Verification requires Daniel to approve the Cloudflare confirmation sent to that Gmail inbox.
-3. Verify that the sending domain `tccrpg.com` is enabled to send through Cloudflare Email Service (or meets Cloudflare's verified-recipient sending prerequisites).
-4. Configure the production Worker `send_email` binding named `TCC_NOTIFY_EMAIL`, restricting its `destination_address` to `tccttrpg@gmail.com`. Include the equivalent binding in `wrangler.jsonc` when production deployment is ready so the Git-connected configuration remains reproducible. Configure the isolated preview Worker independently.
+1. **Done:** Read the TCC production D1 tables and preserve existing submissions.
+2. **Done:** Verify `tccttrpg@gmail.com` as a Cloudflare Email Routing destination. It was already verified.
+3. **Pending:** Verify that `tccrpg.com` can send to its existing verified destination through the Cloudflare Workers email binding. An Email Sending settings check returned `Unauthorized (2036)`; do not assume sending works yet.
+4. **Prepared, not deployed:** The production `send_email` binding `TCC_NOTIFY_EMAIL` is restricted to `tccttrpg@gmail.com` in the draft `wrangler.jsonc`. Configure preview independently if testing requires it.
 5. Configure `TCC_NOTIFICATION_FROM` to the approved sender address on `tccrpg.com`. It is a sender identity and need not be an incoming mailbox; verify it is allowed by Cloudflare.
 6. Show Daniel the exact **recipient, sender, subject patterns, body, and attachments** (none). Obtain explicit final approval immediately before sending any test email or activating live mail alerts.
 7. Test a fictional submission in preview, confirm one email arrives and its corresponding D1 record exists, then enable production with `TCC_NOTIFICATIONS_ACTIVE = "true"`. Recheck a real production submission and Cloudflare logs after launch.
