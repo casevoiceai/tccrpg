@@ -33,7 +33,7 @@ export function queueSubmissionNotification(context, type, submittedAt) {
     to: NOTIFICATION_DESTINATION,
     from: env.TCC_NOTIFICATION_FROM,
     subject: `[TCC website] ${subject}`,
-    text: `${subject} was saved on tccrpg.com at ${submittedAt}.\n\nSign in to the TCC Cloudflare database to review the response. This alert intentionally excludes visitor names, contact details, and written answers.\n\nThis is an automated TCC website notification.`,
+    text: `A new ${subject.replace(/^New /, '')} submission was saved on tccrpg.com at ${submittedAt}.\n\nSign in to the TCC Cloudflare database to review the response. Visitor names, contact details, and written answers are intentionally excluded from this notification.\n\nThis is an automated TCC website notification.`,
   })).catch((error) => {
     console.error('TCC submission notification failed', error)
   })
