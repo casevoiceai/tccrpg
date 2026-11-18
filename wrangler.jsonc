@@ -24,6 +24,12 @@
       "id": "4a51ac6fcd6246d89b1685b80a20315e"
     }
   ],
+  "send_email": [
+    {
+      "name": "TCC_NOTIFY_EMAIL",
+      "destination_address": "tccttrpg@gmail.com"
+    }
+  ],
   "env": {
     "preview": {
       "name": "tccrpg-preview",
@@ -38,6 +44,12 @@
         {
           "binding": "TCC_REVIEW_MATERIALS",
           "id": "efc9ca373c9545f08823f70c4706aa7f"
+        }
+      ],
+      "send_email": [
+        {
+          "name": "TCC_NOTIFY_EMAIL",
+          "destination_address": "tccttrpg@gmail.com"
         }
       ]
     }

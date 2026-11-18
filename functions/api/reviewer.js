@@ -1,3 +1,5 @@
+import { queueSubmissionNotification } from '../notifications.js'
+
 const MAX_BODY_BYTES = 96_000
 
 function json(body, status = 200) {
@@ -177,6 +179,7 @@ export async function onRequestPost(context) {
       ).bind(submittedAt, code),
     ])
 
+    queueSubmissionNotification(context, 'reviewer', submittedAt)
     return json({ ok: true, review_id: reviewId })
   } catch (error) {
     console.error('review submission failed', error)

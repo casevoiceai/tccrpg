@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { onRequestPost as submitSession } from '../functions/api/session.js'
 import { onRequestPost as submitPlaytest } from '../functions/api/playtest.js'
 import { onRequestPost as submitUpdate } from '../functions/api/updates.js'
+import { queueSubmissionNotification } from '../functions/notifications.js'
 import { runRetentionCleanup } from '../functions/retention.js'
 import { onRequestGet as openReviewerMaterial } from '../functions/api/reviewer-material.js'
 import {
@@ -62,6 +63,64 @@ function createDb({ invite = null } = {}) {
     },
   }
 }
+
+test('TCC email alerts remain off until explicitly enabled and configured', () => {
+  const sent = []
+  const context = {
+    env: {
+      TCC_NOTIFY_EMAIL: { send: (message) => { sent.push(message); return Promise.resolve() } },
+      TCC_NOTIFICATION_FROM: 'no-reply@tccrpg.com',
+    },
+  }
+  queueSubmissionNotification(context, 'playtest', '2026-11-17T12:00:00Z')
+  assert.equal(sent.length, 0)
+})
+
+test('enabled owner alerts go only to the assigned TCC Gmail and contain no submitted personal data', async () => {
+  const sent = []
+  const waits = []
+  const context = {
+    env: {
+      TCC_NOTIFICATIONS_ACTIVE: 'true',
+      TCC_NOTIFY_EMAIL: { send: async (message) => { sent.push(message) } },
+      TCC_NOTIFICATION_FROM: 'no-reply@tccrpg.com',
+    },
+    waitUntil: (promise) => waits.push(promise),
+  }
+  for (const type of ['discovery', 'playtest', 'updates', 'reviewer']) {
+    queueSubmissionNotification(context, type, '2026-11-17T12:00:00Z')
+  }
+  await Promise.all(waits)
+  assert.equal(sent.length, 4)
+  assert.equal(sent.every((message) => message.to === 'tccttrpg@gmail.com'), true)
+  assert.equal(sent.every((message) => message.from === 'no-reply@tccrpg.com'), true)
+  assert.equal(sent.every((message) => message.subject.startsWith('[TCC website]')), true)
+  assert.equal(sent.every((message) => !message.text.includes('tester@example.com')), true)
+})
+
+test('a mail service error does not turn a successfully stored response into a failed form submission', async () => {
+  const db = createDb()
+  const waits = []
+  const oldError = console.error
+  try {
+    console.error = () => {}
+    const result = await read(await submitUpdate({
+      env: {
+        TCC_DB: db,
+        TCC_NOTIFICATIONS_ACTIVE: 'true',
+        TCC_NOTIFICATION_FROM: 'no-reply@tccrpg.com',
+        TCC_NOTIFY_EMAIL: { send: async () => { throw new Error('mailer_unavailable') } },
+      },
+      waitUntil: (promise) => waits.push(promise),
+      request: jsonRequest('/api/updates', { email: 'tester@example.com', consent: true }),
+    }))
+    await Promise.all(waits)
+    assert.equal(result.status, 200)
+    assert.equal(db.calls.length, 1)
+  } finally {
+    console.error = oldError
+  }
+})
 
 
 function createKv({ value = new Uint8Array([37, 80, 68, 70]).buffer, metadata = {} } = {}) {

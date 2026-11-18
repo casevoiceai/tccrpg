@@ -1,3 +1,5 @@
+import { queueSubmissionNotification } from '../notifications.js'
+
 const MAX_BODY_BYTES = 48_000
 
 function json(body, status = 200) {
@@ -100,6 +102,7 @@ export async function onRequestPost(context) {
       )
       .run()
 
+    queueSubmissionNotification(context, 'discovery', submittedAt)
     return json({ ok: true, submitted_at: submittedAt })
   } catch (error) {
     console.error('portal submission failed', error)

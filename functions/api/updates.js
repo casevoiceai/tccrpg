@@ -1,3 +1,5 @@
+import { queueSubmissionNotification } from '../notifications.js'
+
 const MAX_BODY_BYTES = 8_000
 
 function json(body, status = 200) {
@@ -70,6 +72,7 @@ export async function onRequestPost(context) {
       .bind(email, sessionId, source, consentedAt)
       .run()
 
+    queueSubmissionNotification(context, 'updates', consentedAt)
     return json({ ok: true })
   } catch (error) {
     console.error('release update signup failed', error)

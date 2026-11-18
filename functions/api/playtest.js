@@ -1,3 +1,5 @@
+import { queueSubmissionNotification } from '../notifications.js'
+
 const MAX_BODY_BYTES = 32_000
 
 function json(body, status = 200) {
@@ -137,6 +139,7 @@ export async function onRequestPost(context) {
       )
       .run()
 
+    queueSubmissionNotification(context, 'playtest', createdAt)
     return json({ ok: true, application_id: applicationId })
   } catch (error) {
     console.error('playtest application failed', error)
